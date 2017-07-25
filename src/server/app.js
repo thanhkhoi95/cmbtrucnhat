@@ -25,6 +25,7 @@ app.use(bodyParser.urlencoded({
 app.use(logger('dev'));
 
 app.use(genConfig.baseUrl + '/artist', require('./routes/artist.route')());
+app.use(genConfig.baseUrl + '/musician', require('./routes/musician.route')());
 // app.use(genConfig.baseUrl + '/match', require('./routes/music')());
 app.use(genConfig.baseUrl + '/auth', require('./routes/auth.route')());
 

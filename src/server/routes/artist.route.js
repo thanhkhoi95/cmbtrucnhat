@@ -9,7 +9,7 @@
         router.get('/', getAllArtist);
         router.get('/:id', getArtistById);
         router.post('/', auth.parser('admin'), createArtist);
-        // router.put('/:id', auth.parser('admin'), updateArtistById);
+        router.put('/:id', auth.parser('admin'), updateArtistById);
         // router.delete('/:id', auth.parser('admin'), deleteArtistById);
 
         function getAllArtist(req, res, next) {
@@ -18,7 +18,6 @@
             artistDao.getAll(pageIndex, pageSize).then(
                 /* Fulfilled */
                 function (response) {
-                    console.log(response);
                     res.send(response);
                 },
                 /* Catch error */
@@ -61,8 +60,19 @@
             );
         }
 
-        function updateArtistById() {
-
+        function updateArtistById(req, res, next) {
+            var artistInfo = req.body;
+            artistInfo._id = req.params.id;
+            artistDao.updateById(artistInfo).then(
+                /* Fulfilled */
+                function (response) {
+                    res.send(response);
+                },
+                /* Catch error */
+                function (error) {
+                    next(error);
+                }
+            );
         }
 
         function deleteArtistById() {

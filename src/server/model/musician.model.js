@@ -4,7 +4,7 @@
     var Schema = mongoose.Schema;
 
     var musicianSchema = new Schema({
-        ten: {
+        name: {
             type: String,
             required: true
         },

@@ -17,6 +17,9 @@
             type: String,
             required: true
         },
+        lyric: {
+            type: String
+        },
         uploadDate: {
             type: Date,
             required: true
