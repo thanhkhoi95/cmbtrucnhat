@@ -17,6 +17,10 @@
             type: String,
             required: true
         },
+        fileName: {
+            type: String,
+            required: true
+        },
         lyric: {
             type: String
         },

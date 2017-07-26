@@ -26,7 +26,7 @@ app.use(logger('dev'));
 
 app.use(genConfig.baseUrl + '/artist', require('./routes/artist.route')());
 app.use(genConfig.baseUrl + '/musician', require('./routes/musician.route')());
-// app.use(genConfig.baseUrl + '/match', require('./routes/music')());
+app.use(genConfig.baseUrl + '/music', require('./routes/music.route')());
 app.use(genConfig.baseUrl + '/auth', require('./routes/auth.route')());
 
 console.log('About to crank up node');
