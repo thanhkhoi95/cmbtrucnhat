@@ -30,9 +30,11 @@
         function getArtistById(req, res, next) {
             var artistId = req.params.id;
             artistDao.getById(artistId).then(
+                /* Fulfilled */
                 function (response) {
                     res.send(response);
                 },
+                /* Catch error */
                 function (error) {
                     next(error);
                 }
