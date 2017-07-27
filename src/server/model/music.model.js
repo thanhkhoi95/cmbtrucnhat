@@ -1,6 +1,6 @@
 (function () {
     var mongoose = require('mongoose');
-    var deepPopulate = require('mongoose-deep-poplate')(mongoose);
+    var deepPopulate = require('mongoose-deep-populate')(mongoose);
     mongoose.plugin(deepPopulate);
     var Schema = mongoose.Schema;
 
@@ -17,12 +17,13 @@
             type: String,
             required: true
         },
-        fileName: {
+        fileId: {
             type: String,
             required: true
         },
         lyric: {
-            type: String
+            type: String,
+            default: 'Không có'
         },
         uploadDate: {
             type: Date,

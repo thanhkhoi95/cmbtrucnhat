@@ -2,7 +2,7 @@
 
     var Musician = require('../model/musician.model');
     var genConf = require('../config/general');
-    var pagination = require('../services/pagination')
+    var pagination = require('../services/pagination');
 
     module.exports = {
         getById: getById,
