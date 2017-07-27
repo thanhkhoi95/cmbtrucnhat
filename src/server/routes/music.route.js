@@ -14,8 +14,8 @@
         router.post('/create', auth.parser('admin'), multipartMiddleware, uploadMusic);
         router.get('/play', streamMusic);
         router.all('/download', downloadMusic);
-        // router.put('/:id', auth.parser('admin'), updateArtistById);
-        // router.delete('/:id', auth.parser('admin'), deleteArtistById);
+        router.put('/:id', auth.parser('admin'), updateArtistById);
+        router.delete('/:id', auth.parser('admin'), deleteArtistById);
 
         function downloadMusic(req, res, next) {
             var musicId = req.query.id;
