@@ -19,13 +19,14 @@
         mongoose.connect(conStrBuild(), {
             useMongoClient: true,
             /* other options */
-        })
-        .then(
+        }).then(
             function () {
                 console.log('Successfully connect to database!');
             },
             function () {
-                console.log('Connect to database failed!');
+                console.log('Unable to connect to database!');
+                console.log('Trying to reconnect after 5s...')
+                setTimeout(connect, 5000);
             }
         );
     }

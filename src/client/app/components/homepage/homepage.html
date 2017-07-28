@@ -1,0 +1,54 @@
+<div class="homeContainer ">
+  <div class="box upcomingMatch">
+    <div class="upcomingMatchContainer">
+      <div class="matchTimeGroup">
+        <audio id="player" controls controlsList="nodownload" loop>
+          <p>fuck</p>
+          <source src="http://localhost:3000/api/music/play?id=597a09edd810621400753940" type="audio/mpeg"></audio>
+      </div>
+
+    </div>
+  </div>
+  <div class="box rankings">
+    <h4 class="homeTitle">TOP RANKING</h4>
+    <div class="SwitchBtn btn-group">
+      <button type="button" class="btn teamSw" ng-click="vm.rankSwitch(1)" ng-class="vm.sw==1 ? 'pressedDw' : ''">
+                <img src="../../../assets/images/group.svg" alt="Smiley face" height="12" width="12">
+            </button>
+      <button type="button" class="btn personalSw" ng-click="vm.rankSwitch(2)" ng-class="vm.sw==2 ? 'pressedDw' : ''">
+                <img src="../../../assets/images/personIcon.svg" alt="Smiley face" height="6" width="6">
+            </button>
+    </div>
+    <div class="listContainer">
+      <div ng-repeat="rank in vm.ranks">
+        <ranking-item rank={{$index+1}} name={{rank.name}} point={{rank.score}} background={{vm.backgrounColor[$index]}}></ranking-item>
+      </div>
+    </div>
+  </div>
+  <div class="box challenges">
+    <h4 class="homeTitle">CHALLENGES</h4>
+    <div class="listContainer" id="listCon">
+      <div infinite-scroll='vm.loadMore()' infinite-scroll-distance='1' infinite-scroll-container='"#listCon"' infinite-scroll-parent="true">
+        <info-tab ng-repeat="team in vm.teams" team="team" accept="vm.accept(team.name);"></info-tab>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="choseTeamModal" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Chose team to accept {{vm.currentTeam}}'s challenge</h4>
+        </div>
+        <div class="modal-body">
+          <p>This is a large modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Accept</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

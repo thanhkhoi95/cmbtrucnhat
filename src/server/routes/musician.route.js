@@ -9,8 +9,35 @@
         router.get('/', getAllMusician);
         router.get('/:id', getMusicianById);
         router.post('/', auth.parser('admin'), createMusician);
-        router.put('/:id', auth.parser('admin'), updateMusicianById);
-        // router.delete('/:id', auth.parser('admin'), deleteArtistById);
+        router.put('/', auth.parser('admin'), updateMusician);
+        router.delete('/:id', auth.parser('admin'), deleteMusicianById);
+        router.post('/search', searchMusician);
+
+        function searchMusician(req, res, next){
+            var pageIndex = req.query.pageIndex;
+            var pageSize = req.query.pageSize;
+            var str = req.body.searchString;
+            musicianDao.search(pageIndex, pageSize, str).then(
+                function (response) {
+                    res.send(response);
+                },
+                function (error) {
+                    next(error);
+                }
+            );
+        }
+
+        function deleteMusicianById(req, res, next){
+            var musicianId = req.params.id;
+            musicianDao.deleteById(musicianId).then(
+                function (response){
+                    res.send(response);
+                },
+                function (error){
+                    next(error);
+                }
+            );
+        }
 
         function getAllMusician(req, res, next) {
             var pageIndex = req.query.pageIndex;
@@ -60,10 +87,9 @@
             );
         }
 
-        function updateMusicianById(req, res, next) {
+        function updateMusician(req, res, next) {
             var musicianInfo = req.body;
-            musicianInfo._id = req.params.id;
-            musicianDao.updateById(musicianInfo).then(
+            musicianDao.update(musicianInfo).then(
                 /* Fulfilled */
                 function (response) {
                     res.send(response);
@@ -73,10 +99,6 @@
                     next(error);
                 }
             );
-        }
-
-        function deleteArtistById() {
-
         }
 
         return router;

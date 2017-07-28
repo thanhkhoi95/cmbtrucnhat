@@ -1,0 +1,23 @@
+<div class="history-list">
+    <div class="infoTabShadow">
+        <div class="history-detail">
+            <div class="homeTeam" style="float:left;width:40%;">
+                <div class="avatarTeam"></div>
+                <div class="nameTeam">{{history.teamName}}</div>
+                <div class="result">
+                    <div class="icon" ng-class="{winIcon: history.result==='Win', loseIcon:history.result==='Lose',iconD:history.result==='Draw'}"></div>
+                    <div class="score" style="float:right;">{{history.hometeamScore}}</div>
+                </div>
+
+            </div>
+            <div class="time">{{history.time}}</div>
+            <div class="awayTeam" style="float:right;width:40%;">
+                <div class="score" style="float:left;">{{history.awayteamScore}}</div>
+                <div class="icon" ng-class="{winIcon: history.result==='Lose', loseIcon:history.result==='Win',iconD:history.result==='Draw'}"></div>
+                <div class="nameTeam">{{history.awayTeam}}</div>
+                <div class="avatarTeam"></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,8 +9,35 @@
         router.get('/', getAllArtist);
         router.get('/:id', getArtistById);
         router.post('/', auth.parser('admin'), createArtist);
-        router.put('/:id', auth.parser('admin'), updateArtistById);
-        // router.delete('/:id', auth.parser('admin'), deleteArtistById);
+        router.put('/', auth.parser('admin'), updateArtist);
+        router.delete('/:id', auth.parser('admin'), deleteArtistById);
+        router.post('/search', searchArtist);
+
+        function searchArtist(req, res, next){
+            var pageIndex = req.query.pageIndex;
+            var pageSize = req.query.pageSize;
+            var str = req.body.searchString;
+            artistDao.search(pageIndex, pageSize, str).then(
+                function (response) {
+                    res.send(response);
+                },
+                function (error) {
+                    next(error);
+                }
+            );
+        }
+
+        function deleteArtistById(req, res, next){
+            var artistId = req.params.id;
+            artistDao.deleteById(artistId).then(
+                function (response){
+                    res.send(response);
+                },
+                function (error){
+                    next(error);
+                }
+            );
+        }
 
         function getAllArtist(req, res, next) {
             var pageIndex = req.query.pageIndex;
@@ -32,6 +59,7 @@
             artistDao.getById(artistId).then(
                 /* Fulfilled */
                 function (response) {
+                    
                     res.send(response);
                 },
                 /* Catch error */
@@ -62,10 +90,9 @@
             );
         }
 
-        function updateArtistById(req, res, next) {
+        function updateArtist(req, res, next) {
             var artistInfo = req.body;
-            artistInfo._id = req.params.id;
-            artistDao.updateById(artistInfo).then(
+            artistDao.update(artistInfo).then(
                 /* Fulfilled */
                 function (response) {
                     res.send(response);
@@ -75,10 +102,6 @@
                     next(error);
                 }
             );
-        }
-
-        function deleteArtistById() {
-
         }
 
         return router;

@@ -9,18 +9,93 @@
 
     module.exports = function () {
 
-        // router.get('/', getAllMusic);
-        // router.get('/:id', getMusicById);
+        router.get('/', getAllMusic);
+        router.get('/getmusic/:id', getMusicById);
         router.post('/create', auth.parser('admin'), multipartMiddleware, uploadMusic);
         router.get('/play', streamMusic);
         router.all('/download', downloadMusic);
-        router.put('/:id', auth.parser('admin'), updateArtistById);
-        router.delete('/:id', auth.parser('admin'), deleteArtistById);
+        router.put('/', auth.parser('admin'), updateMusic);
+        router.delete('/:id', auth.parser('admin'), deleteMusicById);
+        router.post('/search', searchMusic);
+
+        function searchMusic(req, res, next) {
+            var type = req.body.type;
+            var str = req.body.searchString;
+            musicDao.search(type, str).then(
+                /* Fulfilled */
+                function (response) {
+                    res.send(response);
+                },
+                /* Catch error */
+                function (error) {
+                    next(error);
+                }
+            );
+        }
+
+        function getMusicById(req, res, next) {
+            var musicId = req.params.id;
+            musicDao.getById(musicId).then(
+                /* Fulfilled */
+                function (response) {
+                    res.send(response);
+                },
+                /* Catch error */
+                function (error) {
+                    next(error);
+                }
+            );
+        }
+
+        function getAllMusic(req, res, next) {
+            var pageIndex = req.query.pageIndex;
+            var pageSize = req.query.pageSize;
+            musicDao.getAll(pageIndex, pageSize).then(
+                /* Fulfilled */
+                function (response) {
+                    res.send(response);
+                },
+                /* Catch error */
+                function (error) {
+                    next(error);
+                }
+            );
+        }
+
+        function updateMusic(req, res, next) {
+            var musicInfo = req.body;
+            musicDao.update(musicInfo).then(
+                /* Fulfilled */
+                function (response) {
+                    res.send(response);
+                },
+                /* Catch error */
+                function (error) {
+                    next(error);
+                }
+            );
+        }
+
+        function deleteMusicById(req, res, next) {
+            var musicId = req.params.id;
+            musicDao.deleteById(musicId).then(
+                /* Fulfilled */
+                function (response) {
+                    fs.unlink(__dirname + '/../upload/' + response.fileId);
+                    delete response.fileId;
+                    res.send(response);
+                },
+                /* Catch error */
+                function (error) {
+                    next(error);
+                }
+            );
+        }
 
         function downloadMusic(req, res, next) {
             var musicId = req.query.id;
             var music;
-            musicDao.getById(musicId).then(
+            musicDao.getById(musicId, true).then(
                 /* Fulfilled */
                 function (response) {
                     music = response;
@@ -50,12 +125,12 @@
         function streamMusic(req, res, next) {
             var musicId = req.query.id;
             var flag = true;
-            musicDao.getById(musicId).then(
+            musicDao.getById(musicId, true).then(
                 /* Fulfilled */
                 function (response) {
                     var music = response.music;
                     var file = __dirname + '/../upload/' + music.fileId;
-                    console.log(music);
+                    console.log(response);
                     console.log(file);
                     fs.exists(file, function (exists) {
                         if (exists) {
@@ -108,7 +183,6 @@
                 /* Catch errors */
                 function (err) {
                     flag = false;
-                    console.log(err);
                     next(err);
                 }
             );
@@ -116,7 +190,6 @@
         }
 
         function uploadMusic(req, res, next) {
-            console.log(req.body, req.files);
             var file;
 
             if (req.files.music) {
@@ -149,7 +222,18 @@
                     fs.writeFile(pathUpload, data, function (err) {
                         if (!err) {
                             req.body.fileId = fileId;
-                            req.body.uploadDate = new Date().getDate();
+                            var today = new Date();
+                            var dd = today.getDate();
+                            var mm = today.getMonth() + 1; //January is 0!
+                            var yyyy = today.getFullYear();
+                            if (dd < 10) {
+                                dd = '0' + dd
+                            }
+                            if (mm < 10) {
+                                mm = '0' + mm
+                            }
+                            today = mm + '/' + dd + '/' + yyyy;
+                            req.body.uploadDate = today;
                             musicDao.create(req.body).then(
                                 /* Fulfilled */
                                 function (response) {

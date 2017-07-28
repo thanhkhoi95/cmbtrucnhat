@@ -16,6 +16,17 @@
         }
     });
 
+    artistSchema.pre('remove', function (next) {
+        this.model('music').update(
+            {artistId: this._id},
+            {artistId: undefined},
+            {multi: true},
+            next
+        );
+    });
+
+    artistSchema.index({name: 'text'});
+
     var artist = mongoose.model('artist', artistSchema);
 
     module.exports = artist;

@@ -1,0 +1,113 @@
+        .history-abc {
+            width: 99.5%;
+            height: 85%;
+            overflow: auto;
+            box-sizing: border-box;
+            padding: 0 16px 0 20px;
+            &::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                border-radius: 10px; // background-color: #F5F5F5;
+            }
+            &::-webkit-scrollbar {
+                width: 0.5%; // background-color: #F5F5F5;
+            }
+            &::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+                background-color: #434343;
+            }
+        }
+
+        .history-list {
+            width: 96%;
+            height: 60px; // line-height: 60px;
+            border-radius: 5px;
+            background-color: rgba(67, 67, 67, 0.4);
+            box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.4);
+            margin-bottom: 18px;
+            margin-left: 20px;
+            .infoTabShadow {
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+                color: white;
+                div {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                .history-detail {
+                    width: 100%;
+                    text-align: center;
+                    height: 100%;
+                    margin-top: 15px;
+                    .avatarTeam {
+                        min-width: 12%;
+                        height: 35px;
+                        border: 1px solid white;
+                        border-radius: 100%;
+                        line-height: 20px!important;
+                        font-size: 15px;
+                        margin: 0 10%;
+                    }
+                    .nameTeam {
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        width: 30%;
+                        text-align: left;
+                    }
+                    .time {
+                        width: 20%;
+                    }
+                    .score {
+                        font-size: 18px;
+                        font-weight: bold;
+                    }
+                    .winIcon,
+                    .loseIcon,
+                    .icon {
+                        width: 25px;
+                        height: 35px;
+                        background-size: cover;
+                    }
+                    .winIcon {
+                        background: url("../../../../assets/images/cup.png") no-repeat center !important;
+                    }
+                    .loseIcon {
+                        background: url("../../../../assets/images/sad2.png") no-repeat center !important;
+                    }
+                    .iconD {
+                        background: url("../../../../assets/images/confused.png") no-repeat center;
+                    }
+                    .homeTeam {
+                        float: left;
+                        width: 40%;
+                        .result {
+                            float: right;
+                            width: 47px;
+                            .iconD,
+                            .loseIcon,
+                            .winIcon,
+                            {
+                                float: left;
+                                margin-left: 5px;
+                            }
+                            .score {
+                                float: right;
+                            }
+                        }
+                    }
+                    .awayTeam {
+                        float: right;
+                        width: 40%;
+                        .score,
+                        .iconD,
+                        .loseIcon,
+                        .winIcon {
+                            float: left;
+                            margin-left: 5px;
+                        }
+                    }
+                }
+            }
+        }

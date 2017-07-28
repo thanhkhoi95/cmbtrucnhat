@@ -13,19 +13,20 @@
     }
 
     function musicToResponseObject(music) {
-        var musicObject = {};
-        musicObject._id = music._id;
-        musicObject.name = music.name;
-        musicObject.uploadDate = music.uploadDate;
-        musicObject.plays = music.plays;
-        musicObject.downloads = music.downloads;
-        musicObject.lyric = music.lyric;
-        if (music.artistId) {
-            musicObject.artist = music.artistId;
+        var musicObject = music.toObject();
+
+        delete musicObject.fileId;
+
+        if (musicObject.artistId) {
+            musicObject.artist = musicObject.artistId;
         }
-        if (music.musicianId) {
-            musicObject.musician = music.musicianId;
+        if (musicObject.musicianId) {
+            musicObject.musician = musicObject.musicianId;
         }
+
+        delete musicObject.musicianId;
+        delete musicObject.artistId;
+
         return musicObject;
     }
 

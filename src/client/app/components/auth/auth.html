@@ -1,0 +1,16 @@
+<div class="pageContainer fontAuth">
+    <div class="RLParentContainer">
+        <ng-include src="'app/components/auth/banner.html'"></ng-include>
+        <div class="RLContainer" ng-style="vm.a==1 ? {'width':'45%'} : {'width':'65%'}">
+            <div class="SwitchBtn btn-group">
+                <button type="button" class="btn signInSw" ui-sref="auth.login" ui-sref-active="pressedSw">Sign In</button>
+                <button type="button" class="btn signUpSw" ui-sref="auth.register" ui-sref-active="pressedSw">Sign Up</button>
+            </div>
+            <div class="RLForm" ng-style="vm.a==1 ? {'top':'20%'} : {'top':'10%'}">
+                <h3><span ui-sref="auth.login" ui-sref-active="pressedText">Sign In</span> <span>or</span> <span ui-sref="auth.register" ui-sref-active="pressedText">Sign Up</span></h3>
+                <ui-view>
+                </ui-view>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,346 @@
+/*HOME PAGE*/
+
+
+/*BOTH*/
+
+.homeContainer {
+    width: 100%;
+    height: 86%;
+    padding: 0 3%;
+    display: inline-block;
+    overflow-y: auto;
+    @extend .customScrollBar;
+    .box {
+        background-color: #2F2F2F;
+        box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+        display: inline-block;
+        .listContainer {
+            min-height: 87%;
+            padding: 0 16px 0 20px;
+        }
+    }
+    .btn {
+        width: 82px;
+        height: 23px;
+        border-radius: 20px;
+        box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+        margin: 0 1.5%;
+        padding: 0;
+        font-size: 12px;
+    }
+    .homeTitle {
+        color: white;
+        font-size: 15px;
+        font-weight: normal;
+        margin: 20px 20px;
+    }
+    .rankings {
+        .homeTitle {
+            display: inline-block;
+        }
+        .SwitchBtn {
+            float: right;
+            width: 41px;
+            height: 14px;
+            margin: 20px 20px 0px 0px;
+            border-radius: 13px;
+            box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.2);
+            background: none;
+        }
+        button {
+            width: 20px !important;
+            height: 100% !important;
+            box-shadow: none !important;
+            background: #484847 !important;
+            &:focus {
+                outline: 0 !important;
+            }
+        }
+        .pressedDw {
+            background: #F64948 !important;
+        }
+        .teamSw {
+            img {
+                position: relative;
+                top: -5px;
+            }
+        }
+        .personalSw {
+            img {
+                position: relative;
+                top: -5px;
+                left: -1px;
+            }
+        }
+    }
+}
+
+.upcomingMatch {
+    .upcomingMatchContainer {
+        width: 100%; // height: 90px;
+        color: white;
+        line-height: 90px;
+        text-align: center;
+        .upcomingTitle {
+            .homeTitle {
+                margin: 10px;
+            }
+            h4:last-child {
+                font-weight: bold;
+                font-size: 20px;
+            }
+        }
+        div {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 2%;
+        }
+        .matchTimeGroup {
+            height: 90px;
+            .weekContainer {
+                top: 32%;
+            }
+            .infoDate {
+                bottom: 22%;
+            }
+        }
+        .avatarVsGroup {
+            height: 100%;
+            width: 230px;
+            .avatarVS {
+                width: 25px;
+                height: 25px;
+                border: 1px solid white;
+                border-radius: 100%;
+                line-height: 20px!important;
+                font-size: 15px;
+                margin: 0 10%;
+            }
+        }
+        .avatar {
+            width: 60px;
+            height: 60px;
+            margin: 0!important;
+        }
+    }
+}
+
+.matchTimeGroup {
+    position: relative;
+    line-height: normal!important;
+    width: 140px;
+    text-align: center;
+}
+
+.weekContainer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 18%;
+    margin: 0;
+    .dayTab {
+        width: 15px;
+        height: 15px;
+        border: 1px solid white;
+        border-radius: 100%;
+        font-size: 8px;
+        margin: 0!important;
+        span {
+            height: 100%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+    .active {
+        background-color: #F55C5C;
+    }
+}
+
+.infoDate {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    bottom: 18%;
+    margin: 0;
+}
+
+.infoTabContainer {
+    width: 100%;
+    height: auto; // line-height: 60px;
+    border-radius: 5px;
+    background-color: rgba(67, 67, 67, 0.4);
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.4);
+    margin-bottom: 11px;
+    .infoTabShadow {
+        box-shadow: inset 7px 7px 9px -7px rgba(200, 200, 200, 0.1);
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        color: white;
+        div {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .teamInfoGroup {
+            width: 100%;
+            text-align: center;
+            height: 100%;
+            .avatar {
+                width: 30px;
+                height: 30px;
+                margin: 0 0 0 2%
+            }
+            .teamName {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 100px;
+                text-align: left;
+            }
+            div {
+                margin: 0 1.5%;
+            }
+            .matchTimeGroup {
+                height: 60px;
+            }
+        }
+        .btnGroup {
+            width: 200px;
+        }
+        .acceptBtn {
+            background-color: rgba(138, 203, 65, 0.9);
+        }
+        .suggestBtn {
+            background-color: rgba(0, 162, 255, 0.9);
+        }
+    }
+}
+
+.rankingItemContainer {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.4);
+    margin-bottom: 11px;
+    .rankingItemShadow {
+        box-shadow: inset 7px 7px 9px -7px rgba(200, 200, 200, 0.1);
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        color: white;
+        .rankingPoint {
+            margin-top: 20px !important;
+            height: 20px;
+            border-radius: 20px;
+            background: white;
+            border: 1px solid;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding-left: 7px;
+            padding-right: 7px;
+            margin-right: 15px;
+            float: right;
+            span {
+                position: relative;
+                top: -115%;
+                color: #000000;
+            }
+        }
+        div {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .teamInfoGroup {
+            float: left;
+            width: 70%;
+            height: 100%;
+            padding: 0 3%;
+            .avatar {
+                width: 35px;
+                height: 35px;
+                margin-right: 5%;
+            }
+            .teamName {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                width: calc(60% - 22px);
+                text-align: left;
+            }
+            .rank {
+                width: 22px;
+                height: 22px;
+                border-radius: 100%;
+                border: 1px solid #ffffff;
+                margin-right: 7%;
+                span {
+                    width: 100%;
+                    display: inline-block;
+                    position: relative;
+                    font-size: 11px;
+                    text-align: center;
+                    top: calc(-110% + 1px); // left: -1px;
+                }
+            }
+        }
+    }
+}
+
+
+/*PC DISPLAY*/
+
+@media (min-width: 769px) {
+    .homeContainer {
+        width: 100%;
+        height: 86%;
+    }
+    .upcomingMatch {
+        width: 100%;
+        height: auto;
+        margin-bottom: 2.2%;
+    }
+    .challenges {
+        width: 64%;
+        height: 77%;
+    }
+    .rankings {
+        width: 32%;
+        height: 77%;
+        margin-left: 3%;
+        float: right;
+    }
+    .teamInfoGroup {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+/*PHONE DISPLAY*/
+
+@media (max-width: 768px) {
+    .homeContainer {
+        font-size: small;
+    }
+    .box {
+        margin-bottom: 5%;
+    }
+    .upcomingMatch {
+        width: 100%;
+        height: auto;
+    }
+    .challenges {
+        width: 100%;
+        height: 400px;
+    }
+    .rankings {
+        width: 100%;
+        height: 400px;
+    }
+    .infoTabContainer {
+        line-height: 60px;
+    }
+}

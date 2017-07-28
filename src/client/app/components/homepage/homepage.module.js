@@ -1,0 +1,1 @@
+angular.module('app.homepage', ['services.auth', 'infinite-scroll']);

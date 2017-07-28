@@ -1,0 +1,53 @@
+<div class="pageContainer fontLayout">
+  <div class="backgroundLayout"></div>
+  <!--<div class="sideBar-container">
+        <ul class="sideBar-wrapper">
+            <li>
+                <a><img src="../../../assets/images/soccer-ball-variant.svg" ></a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="layout.homepage" ng-click="vm.namePage ='DASHBOARD'"><img src="../../../assets/images/home-button.svg"></a>
+            </li>
+            <li>
+                <a ng-click="vm.namePage='GROUP'"><img src="../../../assets/images/group.svg"></a>
+            </li>
+            <li>
+                <a ng-click="vm.namePage='PROFILE'"><img src="../../../assets/images/user.svg"></a>
+            </li>
+        </ul>
+
+    </div>-->
+  <div class="sideBar-container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img src="../../../assets/images/logo.svg" >
+      </a>
+    </div>
+    <div class="collapse navbar-collapse  sideBar-wrapper" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li ui-sref-active="active">
+          <a ui-sref="layout.homepage" ng-click="vm.namePage ='We listen - We feel the beat'"><img src="../../../assets/images/home-button.svg"><p>HOME PAGE</p></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="main-panel">
+    <div class="topNavContainer">
+      <h3 class="topNavTitle">{{vm.namePage}}</h3>
+      <div class="topNavGroup">
+        <div><img src="../../../assets/images/speech-bubbles.svg"></div>
+        <div><img src="../../../assets/images/notifications-button.svg"></div>
+        <div class=" dropdown">
+          <button class="btn avatar dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Edit profile</a></li>
+            <li><a href="#">Edit your team</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" ng-click=vm.logout()>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ui-view class="shuffle-animation"></ui-view>
+  </div>
+</div>

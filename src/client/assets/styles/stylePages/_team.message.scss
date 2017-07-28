@@ -1,0 +1,131 @@
+.messageContainer {
+    height: 100%;
+    padding: 10px 30px;
+    .messageBarContainer {
+        color: white;
+        margin-bottom: 15px;
+        .messageTitle {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        input,
+        select {
+            display: inline-block;
+            width: auto;
+            height: 30px;
+            border-radius: 16px;
+            color: #95989A;
+            border-color: #95989A;
+            background-color: transparent;
+            padding-top: 3px;
+        }
+    }
+}
+
+.challengeMesContainer {
+    @include containerTrans(height);
+    position: relative;
+    background-color: #161616;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    .infoTabContainer {
+        position: relative;
+        z-index: 2;
+        background-color: #202020;
+        box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
+        .infoTabShadow {
+            box-shadow: none;
+            line-height: 45px;
+            .messageIconGroup {
+                margin: 0 20px;
+                img {
+                    width: 60px;
+                }
+                .iconName {
+                    display: inline-block;
+                    margin: 0 20px;
+                }
+            }
+            .messageInfoGroup {
+                .avatar {
+                    width: 28px;
+                    height: 28px;
+                }
+                p {
+                    vertical-align: middle;
+                    display: inline-block;
+                    margin: 0 20px;
+                }
+                .teamName {
+                    @extend .textOverflow;
+                    width: 100px;
+                    margin: 0 5px;
+                }
+            }
+            .messageBtnGroup {
+                float: right;
+                img:first-of-type {
+                    width: 25px;
+                    margin-left: 20px;
+                }
+                img:last-child {
+                    width: 15px;
+                    margin: 0 20px 0 15px;
+                }
+                button {
+                    vertical-align: middle;
+                    display: inline-block;
+                    width: 100px;
+                    height: 30px;
+                    border-radius: 16px;
+                    color: #95989A;
+                    border: 1px solid #95989A;
+                    background-color: transparent;
+                    line-height: 0;
+                    &:hover {
+                        color: white;
+                        border: 1px solid white;
+                    }
+                }
+                .buttonActive {
+                    color: white;
+                    border: 1px solid white;
+                }
+            }
+        }
+    }
+    .detailTab {
+        color: white;
+        text-align: center;
+        div {
+            vertical-align: middle;
+            display: inline-block;
+            margin: 0 50px;
+        }
+        .weekContainer {
+            position: relative;
+            padding-bottom: 2px;
+        }
+    }
+}
+
+.challengeMesDetail {
+    @include containerTrans(height);
+    height: 80px;
+    .infoTabContainer {
+        margin-bottom: 5px;
+    }
+}
+
+
+/* PC DISPLAY*/
+
+@media (min-width: 768px) {}
+
+
+/* PHONE DISPLAY*/
+
+@media (max-width: 767px) {}

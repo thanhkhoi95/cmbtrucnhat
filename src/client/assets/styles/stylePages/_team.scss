@@ -1,0 +1,95 @@
+//TEAM PAGE
+.team-container {
+    margin-left: 3%;
+    height: 86%;
+    overflow-y: auto;
+    padding-left: 0!important;
+    @extend .customScrollBar;
+    .row {
+        margin-left: 0!important;
+    }
+    .main-menu-container {
+        padding: 0;
+        .lightup {
+            background: rgb(75, 75, 75) !important;
+            transition: all 0.2s ease-in;
+            color: white!important;
+            .icon {
+                opacity: 1!important;
+            }
+        }
+        .team-menu {
+            color: #B8B8B8;
+            display: inline-block;
+            background: rgb(42, 42, 42);
+            padding: 0;
+            margin-right: 20px;
+            height: 110px;
+            &:hover {
+                cursor: pointer;
+            }
+            .neonOn-green {
+                width: 100%;
+                height: 2px;
+                position: relative;
+                bottom: -108px;
+                box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+                background: rgb(26, 255, 0);
+                transition: all 0.2s ease-in;
+            }
+            .neonOn-pink {
+                width: 100%;
+                height: 2px;
+                position: relative;
+                bottom: -108px;
+                box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+                background: #F80032;
+                transition: all 0.2s ease-in;
+            }
+            .neonOn-red {
+                width: 100%;
+                height: 2px;
+                position: relative;
+                bottom: -108px;
+                box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+                background: #00CBFF;
+                transition: all 0.2s ease-in;
+            }
+            .neonOff {
+                width: 100%;
+                height: 2px;
+                position: relative;
+                bottom: -108px;
+                background: rgb(94, 94, 94);
+                box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+                transition: all 0.2s ease-in;
+            }
+            .menu-name {
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+            }
+            .quantity {
+                position: absolute;
+                font-size: 45px;
+                right: 20px;
+            }
+            .icon {
+                width: 27px;
+                height: 27px;
+                position: absolute;
+                top: 30px;
+                left: 20px;
+                opacity: 0.6;
+            }
+        }
+    }
+    .page-detail {
+        background-color: #2F2F2F;
+        box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+        display: inline-block;
+        width: 98%;
+        height: calc(100% - 150px);
+        margin: 20px 0 0 0;
+    }
+}

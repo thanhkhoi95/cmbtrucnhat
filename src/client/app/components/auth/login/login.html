@@ -1,0 +1,17 @@
+<form ng-submit="vm.login()">
+    <div class="input-group">
+        <h5>E-MAIL</h5>
+        <input type="text" class="form-control" required placeholder="Enter your e-mail" name="email" ng-model="vm.email">
+    </div>
+    <div class="input-group">
+        <h5>PASSWORD</h5>
+        <input type="password" class="form-control" required placeholder="••••••••••••" name="password" ng-model="vm.password">
+    </div>
+    <div class="rem-for">
+        <input type="checkbox" class="btn remember" name="remember" ng-model="vm.remember" ng-init="vm.remember=true">Remember
+        me
+        <a ui-sref="auth.forgotPassword"> Forgot Password?</a>
+    </div>
+
+    <button type="submit" class="btn btn-RL">Sign In</button>
+</form>

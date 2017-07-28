@@ -1,0 +1,63 @@
+.editprofile {
+    .sc-container {
+        padding: 4.5ch 10%;
+    }
+    input[type="email"],
+    input[type="text"],
+    input[type="password"],
+    select,
+    textarea {
+        width: 86%;
+        margin-bottom: 3%;
+        border: 1px solid #323232;
+        padding: 1.5%;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 80%;
+        color: #B9BABA;
+        margin-left: 18px;
+        background-color: #292929 !important;
+    }
+    select {
+        width: 50%;
+    }
+    textarea {
+        height: 50px;
+    }
+    input[type="submit"] {
+        width: 86%;
+        background: #3399cc;
+        border: 0;
+        padding: 4%;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 100%;
+        cursor: pointer;
+        transition: background .3s;
+        -webkit-transition: background .3s;
+    }
+    input[type="submit"]:hover {
+        background: #2288bb;
+    }
+    .name {
+        .left {
+            float: left;
+            width: 44%;
+        }
+        .right {
+            float: right;
+            width: 44%;
+        }
+    }
+    .confirm {
+        width: 100%;
+        .btn-primary {
+            float: left;
+            margin-left: 30% !important;
+            width: 18%;
+        }
+        .btn-default {
+            float: right;
+            margin-right: 30% !important;
+            width: 18%;
+        }
+    }
+}

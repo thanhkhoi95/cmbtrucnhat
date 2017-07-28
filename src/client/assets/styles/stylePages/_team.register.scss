@@ -1,0 +1,42 @@
+.teamRegisterContainer {
+    color: white;
+    .thumbnail {
+        background-color: transparent;
+        opacity: 0.7;
+        border-width: 2px;
+        margin-top: 20px;
+        &:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+        img {
+            width: 100px;
+            margin-top: 10px;
+        }
+        .caption {
+            color: white;
+        }
+    }
+    .infoTeamRegister {
+        .input-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        input {
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            border-bottom: 1px solid #95989A;
+            color: white;
+        }
+        button {
+            float: right;
+            font-weight: bold;
+            color: #2f2f2f;
+            border-radius: 25px;
+            width: 30%;
+            margin-top: 40px;
+        }
+    }
+}

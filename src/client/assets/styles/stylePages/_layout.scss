@@ -1,0 +1,194 @@
+/*#region Angular ng-include, ng-view, ng-repeat shuffle animations*/
+
+.shuffle-animation.ng-enter,
+.shuffle-animation.ng-leave {
+    position: relative;
+}
+
+.shuffle-animation.ng-enter {
+    -moz-transition: ease-out all 0.3s 0.4s;
+    -o-transition: ease-out all 0.3s 0.4s;
+    -webkit-transition: ease-out all 0.3s 0.4s;
+    transition: ease-out all 0.3s 0.4s;
+    left: 2em;
+    opacity: 0;
+}
+
+.shuffle-animation.ng-enter.ng-enter-active {
+    left: 0;
+    opacity: 1;
+}
+
+.shuffle-animation.ng-leave {
+    -moz-transition: 0.3s ease-out all;
+    -o-transition: 0.3s ease-out all;
+    -webkit-transition: 0.3s ease-out all;
+    transition: 0.3s ease-out all;
+    left: 0;
+    opacity: 1;
+}
+
+.shuffle-animation.ng-leave.ng-leave-active {
+    left: 2em;
+    opacity: 0;
+}
+
+@mixin calcPeMPx($a, $b) {
+    width: -webkit-calc(#{$a} - #{$b});
+    width: -moz-calc(#{$a} - #{$b});
+    width: calc(#{$a} - #{$b});
+}
+
+
+/*LAYOUT*/
+
+.backgroundLayout {
+    width: 100%;
+    height: 100%;
+    background-color: #363636;
+    position: absolute;
+    z-index: -1;
+}
+
+
+/*BOTH*/
+
+.sideBar-container {
+    background-color: #2A2929;
+    box-shadow: 5px 0 6px rgba(17, 17, 17, 0.4);
+    .sideBar-wrapper {
+        width: 100%;
+        color: #FFFFFF;
+        list-style: none;
+        li {
+            width: 100%;
+            height: 70px;
+            a {
+                height: 100%;
+                color: #FFFFFF; // padding: 15px 15px;
+                opacity: .66;
+                display: block;
+                text-decoration: none;
+            }
+            &:hover>a {
+                background: rgba(255, 255, 255, 0.13);
+                opacity: 1;
+                cursor: pointer;
+            }
+            &.active>a {
+                color: #FFFFFF;
+                opacity: 1; //  background: rgba(255, 255, 255, 0.23);
+            }
+        }
+    }
+    img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.topNavContainer {
+    width: 100%;
+    height: 10%; // margin: 0;
+    padding: 2% 3% 4% 3%;
+    color: white;
+    display: inline-block;
+    .topNavTitle {
+        float: left;
+        margin: 5px 0 0 0;
+    }
+    .topNavGroup {
+        float: right;
+        div {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 7px;
+        }
+        img {
+            width: 18px;
+            height: 18px;
+            opacity: 0.8;
+        }
+        .avatar {
+            width: 32px;
+            height: 32px;
+        }
+    }
+}
+
+.avatar {
+    border-radius: 100%;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/* PC DISPLAY*/
+
+@media (min-width: 768px) {
+    .sideBar-container {
+        width: 70px;
+        height: 100%;
+        float: left;
+        .sideBar-wrapper {
+            width: 100%;
+            text-align: center;
+            margin: 10px 0 0 0;
+            padding: 0!important;
+            a {
+                padding: 20px;
+            }
+            p {
+                display: none;
+            }
+        }
+        .navbar-brand {
+            width: 70px;
+            height: 70px;
+            padding: 20px!important;
+        }
+    }
+    .main-panel {
+        @include calcPeMPx(100%, 70px);
+        height: 100%;
+        display: inline-block;
+    }
+}
+
+
+/* PHONE DISPLAY*/
+
+@media (max-width: 767px) {
+    .sideBar-container {
+        img {
+            width: 25px;
+            height: 25px;
+        }
+        .navbar-header {
+            span {
+                background-color: white;
+            }
+        }
+        .sideBar-wrapper {
+            a {
+                line-height: 45px;
+            }
+            img {
+                margin-bottom: 3%;
+            }
+            p {
+                display: inline-block;
+                font-size: large;
+                margin: 0 2%;
+            }
+        }
+    }
+    .main-panel {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+    }
+}

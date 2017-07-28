@@ -1,0 +1,157 @@
+//PROFILE PAGE
+.profile {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 87.5%;
+    overflow: auto;
+    .information {
+        float: left;
+        width: 33%;
+        height: 100%;
+        margin-left: 3%;
+        background-color: #2A2929; // margin-top: 15px;
+    }
+    .avatar {
+        float: left;
+        width: 33%;
+        height: 25%;
+        border-radius: 0% !important;
+        margin-top: 30px;
+        margin-left: 10%;
+    }
+    .information-detail {
+        float: right;
+        margin-top: 30px;
+        margin-left: 2.5%;
+        color: #B9BABA;
+        line-height: 130%;
+        width: 45%;
+        p {
+            margin-bottom: 3px !important;
+        }
+    }
+    hr {
+        width: 80%;
+        margin-right: 20%;
+        margin-top: 1px;
+        margin-bottom: 30px;
+        border: 0;
+        height: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .player {
+        width: 100%;
+        color: white;
+        .name {
+            float: left;
+            width: 100%;
+            text-align: center;
+            margin-left: 5%;
+            margin-top: 10px;
+            margin-bottom: 25px;
+            h4 {
+                float: left !important;
+                margin-left: 4%;
+            }
+            .like {
+                float: right;
+                margin-top: 2%;
+                margin-right: 10%;
+                .img1 {
+                    float: left;
+                }
+                .img2 {
+                    float: right;
+                }
+            }
+        }
+    }
+    .container {
+        color: white;
+        width: 100%;
+        border-style: none;
+        .table {
+            margin-top: 10%;
+            th {
+                border-top: 0px !important;
+                border-bottom: 0px !important;
+            }
+            td {
+                border-top: 0px !important;
+                border-right: 1px solid #353636 !important;
+                font-size: 14px;
+                margin-left: 20px;
+            } // tr:nth-child(even){background:#333333; }   
+        }
+        .detail {
+            background-color: #414040;
+            color: #719D3F;
+        }
+        .light {
+            background-color: #333333;
+        }
+        .dark {
+            background-color: #2F2F2F;
+        }
+    }
+    .namepage {
+        color: white;
+        margin-top: 15px;
+        margin-left: 70px;
+    }
+    .history {
+        float: right;
+        width: 55%;
+        height: 100%;
+        margin-right: 3%;
+        background-color: #2A2929; // margin-top: 15px;
+        overflow: auto;
+        .title {
+            color: #719D3F;
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .navbar-nav {
+            margin-bottom: 0 0 0 20px;
+        }
+        .nav {
+            background-color: #292929;
+            margin-bottom: 30px;
+            width: 100%;
+            height: 50px;
+            .navbar-nav>li {
+                width: 50%;
+            }
+            .navbar-nav>li>a {
+                color: #719D3F !important;
+                text-align: center;
+            }
+            .navbar-nav>li>a:hover {
+                color: white !important;
+            }
+            .navbar-nav>.active>a {
+                background-color: #323232;
+            }
+        }
+        .edit-profile {
+            color: white;
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .information,
+    .history {
+        float: none !important;
+        width: 100% !important;
+        height: 100%;
+    } // .avatar,
+    // .information-detail {
+    //     float: none !important;
+    //     width: 30% !important;
+    // }
+    .table {
+        width: 100% !important;
+    }
+}

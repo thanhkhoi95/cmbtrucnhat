@@ -1,0 +1,74 @@
+<form name="register" ng-submit="vm.register()">
+    <div class="input-group">
+        <div class="input-group slitGroup">
+            <h5>FIRST NAME</h5>
+            <input type="text" class="form-control" required placeholder="Your first name" name="firstname" ng-model="vm.firstname">
+        </div>
+        <div class="input-group slitGroup">
+            <h5>LAST NAME</h5>
+            <input type="text" class="form-control" required placeholder="Your last name" name="lastname" ng-model="vm.lastname">
+        </div>
+        <div class="input-group slitGroup">
+            <h5>E-MAIL</h5>
+            <input type="email" class="form-control" required placeholder="Your e-mail to Sign in" name="email" ng-model="vm.email">
+            <div validate-icon='email'></div>
+        </div>
+
+        <div class="input-group slitGroup">
+            <h5>BIRTHDAY</h5>
+            <input type="date" class="form-control" required placeholder="05/26/1995" name="birthday" ng-model="vm.birthday">
+
+        </div>
+        <div class="input-group " ng-style="{'padding':'1% 10% 0 0'}">
+            <h5>ADDRESS</h5>
+            <input type="text" class="form-control" required placeholder="Your address goes here" name="address" ng-model="vm.address">
+        </div>
+        <div class="input-group slit3Group">
+            <h5>GENDER</h5>
+            <div class="input-group rem-for">
+                <input type="radio" checked required name="gender" ng-model="vm.gender" value="Male">Male
+                <input type="radio" ng-style="{'margin-left':'7%'}" required name="gender" ng-model="vm.gender" value="Female">Female
+            </div>
+        </div>
+        <div class="input-group slit3Group">
+            <h5>POSITION</h5>
+            <select class="form-control" ng-model="vm.position">
+                <option value="Goalkeeper">Goalkeeper</option>
+                <option value="Defender">Defender</option>
+                <option value="Midfielder">Midfielder</option>
+                <option value="Forward">Forward</option>
+            </select>
+        </div>
+        <div class="input-group slit3Group">
+            <h5>PHONE NUMBER</h5>
+            <input type="number" class="form-control" required placeholder="0120-253-xxxx" name="phonenumber" ng-model="vm.phone">
+        </div>
+
+        <div class="input-group slitGroup">
+            <h5>PASSWORD</h5>
+            <input name="password" ng-model="vm.password" type="password" class="form-control" required placeholder="••••••••••••">
+            <div validate-icon='password_confirm'></div>
+        </div>
+        <div class="input-group slitGroup">
+            <h5>CONFIRM PASSWORD</h5>
+            <input validate-pass="vm.password" name="password_confirm" ng-model="vm.password_confirm" type="password" class="form-control" required placeholder="••••••••••••">
+            <div validate-icon='password_confirm'></div>
+        </div>
+    </div>
+
+
+
+    <div class="rem-for">
+        <div class="message">
+            <p ng-show="register.password_confirm.$dirty && register.password_confirm.$invalid">Please match password</p>
+
+        </div>
+        <button type="submit" ng-style="{'margin':'0'}" class="btn btn-RL">Sign Up</button>
+
+        <a ui-sref="auth.login" ng-style="{'margin':'1% 2%'}"> I'm already member </a>
+
+    </div>
+
+
+
+</form>

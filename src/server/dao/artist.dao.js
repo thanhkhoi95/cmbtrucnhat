@@ -8,8 +8,58 @@
         getById: getById,
         create: create,
         getAll: getAll,
-        updateById: updateById
+        update: update,
+        deleteById: deleteById,
+        search: search
     };
+
+    function search(pageIndex, pageSize, str) {
+        if (!pageIndex || pageIndex < 1) {
+            pageIndex = 1;
+        } else {
+            pageIndex = parseInt(pageIndex);
+        }
+        if (!pageSize || pageSize < 1) {
+            pageSize = genConf.pageSize;
+        } else {
+            pageSize = parseInt(pageSize);
+        }
+
+        return Artist.count({ $text: { $search: str } }).then(function (count) {
+            return Artist.find({ $text: { $search: str } })
+                .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
+                .limit(pageSize).exec()
+                .then(
+                /* Fulfilled */
+                function (artists) {
+                    var res = pagination.paging(artists, count, pageIndex, pageSize);
+                    return Promise.resolve(res);
+                },
+                /* Catch error */
+                function (err) {
+                    return Promise.reject(err);
+                });
+        });
+    }
+
+    function deleteById(artistId) {
+        return Artist.remove({ _id: artistId }).then(
+            function () {
+                return Promise.resolve(
+                    {
+                        message: "Artist deleted"
+                    }
+                );
+            },
+            function (err) {
+                return Promise.resolve(
+                    {
+                        message: err.message
+                    }
+                );
+            }
+        );
+    }
 
     function getById(ArtistId) {
         return Artist.findOne({ _id: ArtistId }).then(
@@ -53,9 +103,13 @@
     function getAll(pageIndex, pageSize) {
         if (!pageIndex || pageIndex < 1) {
             pageIndex = 1;
+        } else {
+            pageIndex = parseInt(pageIndex);
         }
         if (!pageSize || pageSize < 1) {
             pageSize = genConf.pageSize;
+        } else {
+            pageSize = parseInt(pageSize);
         }
 
         return Artist.count({}).then(function (count) {
@@ -75,7 +129,7 @@
         });
     }
 
-    function updateById(artistInfo) {
+    function update(artistInfo) {
         return Artist.findOne({ _id: artistInfo._id }).then(
             /* Fulfilled */
             function (artist) {

@@ -8,8 +8,28 @@
         getById: getById,
         create: create,
         getAll: getAll,
-        updateById: updateById
+        update: update,
+        deleteById: deleteById
     };
+
+    function deleteById(musicianId) {
+        return Musician.remove({ _id: musicianId }).then(
+            function () {
+                return Promise.resolve(
+                    {
+                        message: "Musician deleted"
+                    }
+                );
+            },
+            function (err) {
+                return Promise.resolve(
+                    {
+                        message: err.message
+                    }
+                );
+            }
+        );
+    }
 
     function getById(musicianId) {
         return Musician.findOne({ _id: musicianId }).then(
@@ -53,9 +73,13 @@
     function getAll(pageIndex, pageSize) {
         if (!pageIndex || pageIndex < 1) {
             pageIndex = 1;
+        } else {
+            pageIndex = parseInt(pageIndex);
         }
         if (!pageSize || pageSize < 1) {
             pageSize = genConf.pageSize;
+        } else {
+            pageSize = parseInt(pageSize);
         }
 
         return Musician.count({}).then(function (count) {
@@ -75,7 +99,7 @@
         });
     }
 
-    function updateById(musicianInfo) {
+    function update(musicianInfo) {
         return Musician.findOne({ _id: musicianInfo._id }).then(
             /* Fulfilled */
             function (musician) {
