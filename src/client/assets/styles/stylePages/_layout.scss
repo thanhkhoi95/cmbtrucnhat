@@ -163,11 +163,20 @@
 
 @media (max-width: 767px) {
     .sideBar-container {
+        #webName {
+            margin: 0;
+            width: calc(100% - 55px);
+            float: right;
+            margin-top: 2px;
+            color: white;
+        }
         img {
             width: 25px;
             height: 25px;
         }
         .navbar-header {
+            display: inline-block;
+            margin: 0;
             span {
                 background-color: white;
             }

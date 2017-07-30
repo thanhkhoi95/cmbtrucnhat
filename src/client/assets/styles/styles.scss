@@ -7,6 +7,74 @@ html {
     overflow-y: hidden;
 }
 
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};
+}
+
+@include keyframes(change-color-progress) {
+    0% {
+        background-color: olive;
+    }
+    50% {
+        background-color: orange;
+    }
+    100% {
+        background-color: olive;
+    }
+}
+
+@include keyframes(change-color-default) {
+    0% {
+        background-color: darkslategray;
+    }
+    100% {
+        background-color: dimgrey;
+    }
+}
+
+.removeBtn {
+    width: 15px;
+    height: 15px;
+    background-image: url('../src/client/assets/images/remove-symbol.svg');
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 100%;
+}
+
+.infoBtn {
+    width: 15px;
+    height: 15px;
+    background-image: url('../src/client/assets/images/info.svg');
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 100%;
+    margin-right: 5px;
+}
+
 // ::-webkit-scrollbar-track {
 //     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 //     border-radius: 10px; // background-color: #F5F5F5;
@@ -19,9 +87,211 @@ html {
 //     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
 //     background-color: #434343;
 // }
+.playlistItemContainer {
+    border-radius: 5px;
+    background-color: rgba(0, 50, 150, 0.2);
+    cursor: pointer;
+}
+
+.playlistItemContainer-playing {
+    border-radius: 5px;
+    background-color: rgba(50, 200, 0, 0.2);
+    cursor: pointer;
+}
 
 #player {
-    width: 100%;
+    width: 90%;
+    height: 100%;
+    margin: 0;
+    bottom: 0;
+    #musicTitle {
+        height: 30%;
+        width: 100%;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 3px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow:hidden;
+    }
+    nav {
+        width: 100%;
+        height: 70%;
+        text-align: left;
+        #defaultBar {
+            margin: 0;
+            width: 100%;
+            height: 7px;
+            position: relative;
+            background-color: #1E1E1E;
+            border-radius: 3px;
+            text-align: left;
+            cursor: pointer;
+            &:hover {
+                border: 1px solid grey;
+                height: 9px;
+                #progressBar {
+                    @include animation('change-color-progress 1.5s infinite');
+                }
+            }
+            #progressBar {
+                border: none;
+                display: inline-block;
+                margin: 0;
+                position: absolute;
+                height: 7px;
+                background-color: olive;
+                width: 0;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            #bufferBar {
+                border: none;
+                display: inline-block;
+                margin: 1px 0 0 0;
+                position: absolute;
+                height: 5px;
+                background-color: rgba(73, 73, 73, 0.7);
+                width: 0;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+        }
+        #defaultVolumeBar {
+            margin: 0;
+            width: 100px;
+            height: 6px;
+            position: relative;
+            background-color: #1E1E1E;
+            border-radius: 3px;
+            text-align: left;
+            bottom: 9px;
+            cursor: pointer;
+            &:hover {
+                border: 1px solid grey;
+                height: 8px;
+                #adjustVolumeBar {
+                    background-color: white;
+                }
+            }
+            #adjustVolumeBar {
+                border: none;
+                display: inline-block;
+                margin: 0;
+                position: absolute;
+                height: 6px;
+                background-color: grey;
+                width: 0;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+        }
+        #controlButtons {
+            margin: 0;
+            width: 100%;
+            #playBtn {
+                margin-top: 7px;
+                background-color: #2f2f2f;
+                border: none;
+                height: 26px;
+                width: 26px;
+                background-image: url('../src/client/assets/images/play-arrow.svg');
+                background-size: 15px 15px;
+                background-repeat: no-repeat;
+                background-position: 7px 6px;
+                border-radius: 100%;
+                &:focus {
+                    outline: none;
+                }
+                &:hover {
+                    background-color: rgba(73, 73, 73, 0.7);
+                }
+                &:active {
+                    background-color: black;
+                }
+            }
+            #nextBtn {
+                margin-top: 7px;
+                background-color: #2f2f2f;
+                border: none;
+                height: 26px;
+                width: 26px;
+                background-image: url('../src/client/assets/images/fast-forward-arrows.svg');
+                background-size: 15px 15px;
+                background-repeat: no-repeat;
+                background-position: center;
+                border-radius: 100%;
+                &:focus {
+                    outline: none;
+                }
+                &:hover {
+                    background-color: rgba(73, 73, 73, 0.7);
+                }
+                &:active {
+                    background-color: black;
+                }
+            }
+            #previousBtn {
+                margin-top: 7px;
+                background-color: #2f2f2f;
+                border: none;
+                height: 26px;
+                width: 26px;
+                background-image: url('../src/client/assets/images/rewind-button.svg');
+                background-size: 15px 15px;
+                background-repeat: no-repeat;
+                background-position: center;
+                border-radius: 100%;
+                &:focus {
+                    outline: none;
+                }
+                &:hover {
+                    background-color: rgba(73, 73, 73, 0.7);
+                }
+                &:active {
+                    background-color: black;
+                }
+            }
+            #volumeBtn {
+                margin-top: 7px;
+                background-color: #2f2f2f;
+                border: none;
+                height: 26px;
+                width: 26px;
+                background-image: url('../src/client/assets/images/volume-up-indicator.svg');
+                background-size: 15px 16px;
+                background-repeat: no-repeat;
+                background-position: 5px 6px;
+                border-radius: 100%;
+                &:focus {
+                    outline: none;
+                }
+                &:hover {
+                    background-color: rgba(73, 73, 73, 0.7);
+                }
+                &:active {
+                    background-color: black;
+                }
+            }
+            #time {
+                float: right;
+                margin: 9px 0 0 0;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+#webName {
+    font-size: 19px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+}
+
+#playlist {
+    height: 84%;
 }
 
 .matchTimeGroup {
@@ -64,151 +334,45 @@ html {
     }
 }
 
+#bars {
+    height: 30px;
+    left: 50%;
+    margin: -30px 0 0 -20px;
+    position: absolute;
+    top: 50%;
+    width: 40px;
+}
+
+.bar {
+    background: #E20074;
+    bottom: 1px;
+    height: 3px;
+    position: absolute;
+    width: 3px;
+    @include animation('sound 0ms -800ms linear infinite alternate');
+}
+
+.bar:nth-child(1) {
+    left: 1px;
+    animation-duration: 474ms;
+}
+
+.bar:nth-child(2) {
+    left: 5px;
+    animation-duration: 433ms;
+}
+
+.bar:nth-child(3) {
+    left: 9px;
+    animation-duration: 407ms;
+}
+
+.bar:nth-child(4) {
+    left: 13px;
+    animation-duration: 458ms;
+}
+
 @import 'stylePages/fonts';
 @import 'stylePages/auth';
 @import 'stylePages/layout';
 @import 'stylePages/homepage';
-@import 'stylePages/profile';
-@import 'stylePages/profile.historymatches';
-@import 'stylePages/profile.editprofile';
-@import 'stylePages/team';
-@import 'stylePages/team.message';
-@import 'stylePages/team.list';
-@import 'stylePages/team.register';
-.teamProfile {
-    .messageBarContainer {
-        margin-bottom: 5px;
-    }
-    .teamProfileContainer {
-        color: white;
-        height: 85%;
-        background-color: #403F3F;
-        .memberList {
-            height: 100%;
-            .carousel-control {
-                background-image: none;
-                width: 8%;
-                .back {
-                    float: left!important;
-                }
-                .nextIcon {
-                    float: right;
-                    width: 100%;
-                    height: 100%;
-                    position: relative;
-                    img {
-                        position: absolute;
-                        top: 0;
-                        bottom: 0;
-                        right: 0;
-                        left: 0;
-                        margin: auto;
-                        height: 50px;
-                    }
-                }
-            }
-            .carousel-inner {
-                width: 100%;
-                margin-top: 10px;
-                font-size: smaller;
-                .memberTeamContainer {
-                    height: 150px;
-                    background-color: #5B5B5B;
-                    position: relative;
-                    padding: 0;
-                    .memberTeam {
-                        height: 100px;
-                        .avatar {
-                            width: 70px;
-                            height: 70px;
-                            display: inline-block;
-                            margin: 15px 3%;
-                            box-shadow: none;
-                            float: left;
-                        }
-                        .nameContainer {
-                            display: inline-block;
-                            float: left;
-                            margin-top: 3%;
-                            h4 {
-                                margin-bottom: 0!important;
-                            }
-                            p {
-                                opacity: 0.7;
-                            }
-                        }
-                    }
-                    .detailContainer {
-                        position: absolute;
-                        bottom: 0;
-                        height: 50px;
-                        width: 100%;
-                        box-shadow: 0px -2px 3px rgba(0, 0, 0, 0.2);
-                        .content {
-                            height: 100%;
-                            display: inline-block;
-                            margin: 0 3%;
-                            h5 {
-                                margin-bottom: 0!important;
-                            }
-                            p {
-                                opacity: 0.7;
-                            }
-                            img {
-                                width: 25px;
-                            }
-                        }
-                        .deleteButton {
-                            float: right;
-                            line-height: 45px;
-                            margin: 0;
-                            img:hover {
-                                border-radius: 100%;
-                                box-shadow: -1px -2px 6px rgba(0, 0, 0, 0.6);
-                                cursor: pointer;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .infoTeam {
-            padding: 0!important;
-            height: 100%;
-            .thumbnail {
-                height: 100%;
-                background-color: transparent;
-                border: none;
-                padding: 10px;
-                border-radius: 0;
-                border-right: 1px solid #616162;
-                img {
-                    width: 100%;
-                    height: 50%;
-                    object-fit: cover;
-                }
-                .caption {
-                    width: 100%;
-                    float: left;
-                    h4 {
-                        @extend .textOverflow;
-                    }
-                    font-size: smaller;
-                    color: white;
-                }
-                .homeTeamCaption {
-                    h4 {
-                        margin-bottom: 1%;
-                    }
-                    p {
-                        img {
-                            width: 15px;
-                            height: 15px;
-                            margin-right: 10px;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}

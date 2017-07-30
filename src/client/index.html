@@ -18,6 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
     <base href="/">
 
+    <link rel="icon" href="/src/client/assets/images/icon.png">
     <!-- build:css styles/lib.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -53,6 +54,8 @@
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="/bower_components/ngstorage/ngStorage.js"></script>
     <script src="/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="/bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="/bower_components/angular-ui-sortable/sortable.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -88,20 +91,15 @@
     <script src="/src/client/app/shared/blocks/router/router-helper.provider.js"></script>
     <script src="/src/client/app/shared/blocks/toastr/constants.js"></script>
     <script src="/src/client/app/shared/blocks/toastr/toastr.config.js"></script>
-    <script src="/src/client/app/shared/directives/dayOfWeek/day-of-week.directive.js"></script>
-    <script src="/src/client/app/shared/directives/historylist/history-tab.directive.js"></script>
     <script src="/src/client/app/shared/directives/infoTab/info-tab.directive.js"></script>
-    <script src="/src/client/app/shared/directives/messageTab/message-tab.directive.js"></script>
+    <script src="/src/client/app/shared/directives/playlistItem/playlist-item.directive.js"></script>
     <script src="/src/client/app/shared/directives/rankingItem/ranking-item.directive.js"></script>
-    <script src="/src/client/app/shared/directives/teamTab/team-tab.directive.js"></script>
     <script src="/src/client/app/shared/directives/validateIcon/validateIcon.js"></script>
     <script src="/src/client/app/shared/directives/validatePass/validatePass.js"></script>
     <script src="/src/client/app/shared/directives/validatePass/widgets/ht-img-person.directive.js"></script>
     <script src="/src/client/app/shared/directives/validatePass/widgets/ht-widget-header.directive.js"></script>
-    <script src="/src/client/app/shared/directives/winlose/win_lose.directive.js"></script>
     <script src="/src/client/app/shared/services/auth.js"></script>
     <script src="/src/client/app/shared/services/errorTranslator.js"></script>
-    <script src="/src/client/app/shared/test-helpers/mock-data.js"></script>
     <!-- endinject -->
 
     <!-- inject:templates:js -->

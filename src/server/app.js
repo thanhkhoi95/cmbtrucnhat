@@ -17,7 +17,7 @@ process.env.SECRET_KEY = 'huycongxe';
 /* Connect to database */
 dbConfig.connect();
 
-app.use(favicon(__dirname + '/favicon.ico'));
+//app.use(favicon(__dirname + '/favicon.ico'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false

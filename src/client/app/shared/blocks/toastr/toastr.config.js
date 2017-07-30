@@ -13,8 +13,8 @@
     }
 
     var config = {
-        appErrorPrefix: '[phui Error] ',
-        appTitle: 'phui'
+        appErrorPrefix: '[Error] ',
+        appTitle: 'Welife'
     };
 
     core.value('config', config);

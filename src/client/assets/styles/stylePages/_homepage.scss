@@ -15,7 +15,7 @@
         box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
         display: inline-block;
         .listContainer {
-            min-height: 87%;
+            min-height: 84%;
             padding: 0 16px 0 20px;
         }
     }
@@ -40,12 +40,32 @@
         }
         .SwitchBtn {
             float: right;
-            width: 41px;
-            height: 14px;
-            margin: 20px 20px 0px 0px;
-            border-radius: 13px;
-            box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.2);
-            background: none;
+            width: 32px;
+            height: 32px;
+            margin: 10px 20px 0px 0px;
+            border-radius: 100%;
+            cursor: pointer;
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+        }
+        .normal {
+            background-image: url('../src/client/assets/images/normal.png');
+            background-size: 18px 18px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .loop {
+            background-image: url('../src/client/assets/images/replay.png');
+            background-size: 18px 18px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .loop-one {
+            background-image: url('../src/client/assets/images/replay1.png');
+            background-size: 18px 18px;
+            background-repeat: no-repeat;
+            background-position: center;
         }
         button {
             width: 20px !important;
@@ -255,9 +275,9 @@
         }
         .teamInfoGroup {
             float: left;
-            width: 70%;
+            width: 80%;
             height: 100%;
-            padding: 0 3%;
+            padding: 0 5%;
             .avatar {
                 width: 35px;
                 height: 35px;
@@ -267,7 +287,7 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 overflow: hidden;
-                width: calc(60% - 22px);
+                width: 100%;
                 text-align: left;
             }
             .rank {

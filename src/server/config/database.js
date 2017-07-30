@@ -25,7 +25,8 @@
             },
             function () {
                 console.log('Unable to connect to database!');
-                console.log('Trying to reconnect after 5s...')
+                console.log('Trying to reconnect after 5s...');
+                console.log(conStrBuild());
                 setTimeout(connect, 5000);
             }
         );
@@ -45,7 +46,7 @@
     function conStrBuild() {
         var conStr = db.host + '/' + db.database;
         conStr = (db.password === '' ? '' : db.password + '@') + conStr;
-        conStr = (db.user === '' ? '' : db.password + ':') + conStr;
+        conStr = (db.user === '' ? '' : db.user + ':') + conStr;
         return 'mongodb://' + conStr;
     }
 

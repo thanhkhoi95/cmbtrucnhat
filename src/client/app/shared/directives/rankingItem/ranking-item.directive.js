@@ -14,7 +14,6 @@
                 rank: '@',
                 name: '@',
                 point: '@',
-                background: '@'
             },
             templateUrl: 'app/shared/directives/rankingItem/ranking-item.html'
         };

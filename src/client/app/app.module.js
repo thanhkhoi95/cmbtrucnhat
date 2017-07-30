@@ -16,7 +16,8 @@
         'blocks.exception',
         'blocks.logger',
         'blocks.router',
-        'infinite-scroll'
+        'infinite-scroll',
+        'ui.sortable'
     ]);
 
 })();

@@ -13,8 +13,53 @@
         deleteById: deleteById,
         getAll: getAll,
         getById: getById,
-        search: search
+        search: search,
+        incPlays: incPlays,
+        incDownloads: incDownloads
     };
+
+    function incDownloads(musicId) {}
+
+    function incPlays(musicId) {
+        return Music.findOne({ _id: musicId }).then(
+            /* Fulfilled */
+            function (music) {
+                if (!music) {
+                    return Promise.reject(
+                        {
+                            statusCode: 400,
+                            message: 'Music not found!'
+                        }
+                    );
+                }
+
+                music.plays += 1;
+
+                return music.save().then(
+                    /* Fulfilled */
+                    function (resMusic) {
+                        return Promise.resolve(
+                            {
+                                message: 'Increase plays successfully'
+                            }
+                        );
+                    },
+                    /* Catch errors */
+                    function (err) {
+                        return Promise.reject(
+                            {
+                                message: err.message
+                            }
+                        );
+                    }
+                );
+            },
+            /* Catch error */
+            function (err) {
+                return Promise.reject(err);
+            }
+        );
+    }
 
     function search(type, str, pageIndex, pageSize) {
         if (!pageIndex || pageIndex < 1) {
@@ -30,7 +75,7 @@
 
         if (type === 'name') {
             Music.collection.dropIndex('lyric_text');
-            Music.collection.createIndex({name: 'text'});
+            Music.collection.createIndex({ name: 'text' });
             return Music.count({ $text: { $search: str } }).then(function (count) {
                 return Music.find({ $text: { $search: str } })
                     .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
@@ -56,7 +101,7 @@
 
         if (type === 'lyric') {
             Music.collection.dropIndex('name_text');
-            Music.collection.createIndex({lyric: 'text'});
+            Music.collection.createIndex({ lyric: 'text' });
             return Music.count({ $text: { $search: str } }).then(function (count) {
                 return Music.find({ $text: { $search: str } })
                     .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
@@ -157,7 +202,6 @@
         return Music.findOne({ _id: musicId }).deepPopulate(['artistId', 'musicianId']).then(
             /* Fulfilled */
             function (music) {
-                console.log(music);
                 if (!music) {
                     return Promise.reject(
                         {
