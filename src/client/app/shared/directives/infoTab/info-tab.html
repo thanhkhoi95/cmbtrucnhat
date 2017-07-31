@@ -1,18 +1,33 @@
 <div class="infoTabContainer">
     <div class="infoTabShadow">
         <div class="teamInfoGroup">
-            <div class="avatar"></div>
-            <div class="teamName">{{team.name}}</div>
-            <div>{{team.time}}</div>
-            <div>{{team.type}} vs {{team.type}}</div>
-            <div class="matchTimeGroup">
-                <div day-of-week={{team.dayOfWeek}}></div>
-                <div class="infoDate">{{team.date}}</div>
+            <div class="teamName trackName">
+                <i class="fa fa-music" aria-hidden="true">&nbsp;&nbsp;</i>
+                {{vm.track.name}}
             </div>
-            <div class="btnGroup">
+            <div class="teamName singer">
+                Singer: &nbsp;{{vm.track.artist.name}}
+            </div>
+            <div class="teamName composer">
+                Composer: &nbsp;{{vm.track.musician.name}}
+            </div>
+            <div class="teamName plays">
+                <i class="fa fa-play-circle" aria-hidden="true"></i> &nbsp;&nbsp;{{vm.track.plays}}
+            </div>
+            <div class="teamName downloads">
+                <i class="fa fa-arrow-circle-down" aria-hidden="true"></i> &nbsp;&nbsp;{{vm.track.downloads}}
+            </div>
+            <!-- <div class="btnGroup">
                 <button type="button" class="btn acceptBtn" ng-click="accept()" data-toggle="modal" data-target="#choseTeamModal">Accept</button>
                 <button type="button" class="btn suggestBtn">Suggest</button>
-            </div>
+            </div> -->
         </div>
+        <div class="teamInfoGroup btnGroup">
+            <div class="infoBtn" ng-click="showInfo({trackId: vm.track._id})" data-toggle="modal" data-target="#choseTeamModal"></div>
+            <div class="playnowBtn" ng-click="playNow({trackId: vm.track._id})"></div>
+            <div class="addBtn" ng-click="addToPlaylist({trackId: vm.track._id})"></div>
+            <div class="downBtn" ng-click="download()"></div>
+        </div>
+
     </div>
 </div>

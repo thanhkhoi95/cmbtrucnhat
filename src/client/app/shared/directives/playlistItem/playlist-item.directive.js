@@ -20,7 +20,7 @@
         playlistItemController.$inject = ['$scope'];
 
         function playlistItemController($scope) {
-            vm = this;
+            var vm = this;
             vm.track = JSON.parse($scope.track);
 
             $scope.test = function (e){

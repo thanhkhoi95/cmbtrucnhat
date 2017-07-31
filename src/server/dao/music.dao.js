@@ -233,7 +233,7 @@
             pageSize = parseInt(pageSize);
         }
 
-        return Music.count({}).then(function (count) {
+        return Music.count({}).sort({ uploadDate: 'desc'}).exec().then(function (count) {
             return Music.find({})
                 .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
                 .limit(pageSize)

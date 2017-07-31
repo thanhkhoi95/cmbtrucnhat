@@ -55,24 +55,61 @@ html {
 }
 
 .removeBtn {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     background-image: url('../src/client/assets/images/remove-symbol.svg');
-    background-size: 15px 15px;
+    background-size: 20px 20px;
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 100%;
+    margin: 5px 0 5px 0;
+    cursor: pointer;
 }
 
 .infoBtn {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     background-image: url('../src/client/assets/images/info.svg');
-    background-size: 15px 15px;
+    background-size: 20px 20px;
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 100%;
     margin-right: 5px;
+    margin: 5px 0 5px 0;
+    cursor: pointer;
+}
+
+.playnowBtn {
+    width: 20px;
+    height: 20px;
+    background-image: url('../src/client/assets/images/play-circle.svg');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 5px;
+    margin: 5px 0 5px 0;
+    cursor: pointer;
+}
+
+.addBtn {
+    width: 20px;
+    height: 20px;
+    background-image: url('../src/client/assets/images/add.svg');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 5px;
+    margin: 5px 0 5px 0;
+    cursor: pointer;
+}
+
+.downBtn {
+    width: 20px;
+    height: 20px;
+    background-image: url('../src/client/assets/images/download.svg');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 5px 0 5px 0;
+    cursor: pointer;
 }
 
 // ::-webkit-scrollbar-track {
@@ -89,14 +126,18 @@ html {
 // }
 .playlistItemContainer {
     border-radius: 5px;
-    background-color: rgba(0, 50, 150, 0.2);
+    background-color: rgba(150, 150, 150, 0.1);
     cursor: pointer;
 }
 
 .playlistItemContainer-playing {
     border-radius: 5px;
-    background-color: rgba(50, 200, 0, 0.2);
+    background-color: rgba(150, 100, 0, 0.2);
     cursor: pointer;
+}
+
+#listCon {
+    height: 84%;
 }
 
 #player {
@@ -324,7 +365,7 @@ html {
         border-radius: 10px; // background-color: #F5F5F5;
     }
     &::-webkit-scrollbar {
-        width: 0.5%;
+        width: 5px;
         height: 3px; // background-color: #F5F5F5;
     }
     &::-webkit-scrollbar-thumb {
@@ -370,6 +411,11 @@ html {
 .bar:nth-child(4) {
     left: 13px;
     animation-duration: 458ms;
+}
+
+.infoBody {
+    max-height: 400px;
+    overflow: auto;
 }
 
 @import 'stylePages/fonts';
