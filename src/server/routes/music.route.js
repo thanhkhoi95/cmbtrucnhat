@@ -10,7 +10,8 @@
 
     module.exports = function () {
 
-        router.get('/', getAllMusic);
+        router.get('/getnewest', getAllMusicNewest);
+        router.get('/getpopular', getAllMusicPopular)
         router.get('/getmusic/:id', getMusicById);
         router.post('/create', auth.parser('admin'), multipartMiddleware, uploadMusic);
         router.get('/play', streamMusic);
@@ -48,10 +49,25 @@
             );
         }
 
-        function getAllMusic(req, res, next) {
+        function getAllMusicNewest(req, res, next) {
             var pageIndex = req.query.pageIndex;
             var pageSize = req.query.pageSize;
-            musicDao.getAll(pageIndex, pageSize).then(
+            musicDao.getAll(pageIndex, pageSize, 0).then(
+                /* Fulfilled */
+                function (response) {
+                    res.send(response);
+                },
+                /* Catch error */
+                function (error) {
+                    next(error);
+                }
+            );
+        }
+
+        function getAllMusicPopular(req, res, next) {
+            var pageIndex = req.query.pageIndex;
+            var pageSize = req.query.pageSize;
+            musicDao.getAll(pageIndex, pageSize, 1).then(
                 /* Fulfilled */
                 function (response) {
                     res.send(response);
@@ -107,6 +123,7 @@
                             res.setHeader('Content-disposition', 'attachment; filename=' + fileName);
                             res.setHeader('Content-Type', 'application/audio/mpeg3');
                             var rstream = fs.createReadStream(file);
+                            musicDao.incDownloads(musicId);
                             rstream.pipe(res);
                         } else {
                             next({

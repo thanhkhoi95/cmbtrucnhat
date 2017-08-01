@@ -5,6 +5,10 @@ html {
     overflow: auto;
     overflow-x: hidden;
     overflow-y: hidden;
+    background-image: url('../src/client/assets/images/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 @mixin keyframes($animation-name) {
@@ -54,6 +58,89 @@ html {
     }
 }
 
+@include keyframes(sound) {
+    0% {
+        opacity: .35;
+        height: 3px;
+    }
+    100% {
+        opacity: 1;
+        height: 20px;
+    }
+}
+
+.searchBtn {
+    width: 20px;
+    height: 20px;
+    background-image: url('../src/client/assets/images/search.svg');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.refreshBtn {
+    width: 20px;
+    height: 20px;
+    background-image: url('../src/client/assets/images/refresh.svg');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.topBtn {
+    width: 20px;
+    height: 20px;
+    background-image: url('../src/client/assets/images/top.svg');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.topBtn-active {
+    width: 20px;
+    height: 20px;
+    background-image: url('../src/client/assets/images/top-active.svg');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.newBtn {
+    width: 20px;
+    height: 20px;
+    background-image: url('../src/client/assets/images/new.svg');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 30px 0 10px;
+}
+
+.newBtn-active {
+    width: 20px;
+    height: 20px;
+    background-image: url('../src/client/assets/images/new-active.svg');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 30px 0 10px;
+}
+
 .removeBtn {
     width: 20px;
     height: 20px;
@@ -73,7 +160,7 @@ html {
     background-repeat: no-repeat;
     background-position: center;
     margin-right: 5px;
-    margin: 5px 0 5px 0;
+    //margin: 5px 0 5px 0;
     cursor: pointer;
 }
 
@@ -153,7 +240,7 @@ html {
         margin-top: 3px;
         text-overflow: ellipsis;
         white-space: nowrap;
-        overflow:hidden;
+        overflow: hidden;
     }
     nav {
         width: 100%;
@@ -377,15 +464,12 @@ html {
 
 #bars {
     height: 30px;
-    left: 50%;
-    margin: -30px 0 0 -20px;
+    margin: -24px 0 0 0px;
     position: absolute;
-    top: 50%;
-    width: 40px;
 }
 
 .bar {
-    background: #E20074;
+    background: darkorange;
     bottom: 1px;
     height: 3px;
     position: absolute;
@@ -395,7 +479,7 @@ html {
 
 .bar:nth-child(1) {
     left: 1px;
-    animation-duration: 474ms;
+    animation-duration: 374ms;
 }
 
 .bar:nth-child(2) {
@@ -405,7 +489,7 @@ html {
 
 .bar:nth-child(3) {
     left: 9px;
-    animation-duration: 407ms;
+    animation-duration: 400ms;
 }
 
 .bar:nth-child(4) {
@@ -413,9 +497,57 @@ html {
     animation-duration: 458ms;
 }
 
+.bar:nth-child(5) {
+    left: 17px;
+    animation-duration: 483ms;
+}
+
 .infoBody {
     max-height: 400px;
     overflow: auto;
+}
+
+.modal-content {
+    background-color: #2f2f2f;
+    color: white;
+}
+
+.modal-header {
+    border: 0;
+    .close {
+        color: white;
+    }
+}
+
+.modal-body {
+    margin-bottom: 15px;
+    .lyric {
+        white-space: pre;
+    }
+}
+
+#soundwave {
+    position: relative;
+    left: -20px;
+}
+
+.searchGroup {
+    height: 100%;
+    margin: 0 3% 0 3%;
+    width: 100%;
+}
+
+.plbtnGroup {
+    width: 30%;
+    text-align: right;
+    padding-right: 2%;
+}
+
+.tracksListBtnGroup {
+    width: 60% !important;
+    display: inline-block !important;
+    margin: 15px 0px 16px 0px !important;
+    text-align: right !important;
 }
 
 @import 'stylePages/fonts';

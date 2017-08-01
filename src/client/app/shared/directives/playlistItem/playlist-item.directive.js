@@ -12,7 +12,8 @@
             restrict: 'EA',
             scope: {
                 track: '@',
-                removePlaylistItem: '&'
+                removePlaylistItem: '&',
+                showInfo: '&'
             },
             templateUrl: 'app/shared/directives/playlistItem/playlist-item.html'
         };
@@ -23,11 +24,12 @@
             var vm = this;
             vm.track = JSON.parse($scope.track);
 
-            $scope.test = function (e){
+            $scope.myShowInfoFunction = function (e){
                 e = e || window.event;
                 e.stopPropagation();
-                console.log(123);
-            }
+                $scope.showInfo({trackId: vm.track._id});
+                $('#choseTeamModal').modal('toggle');
+            };
         }
 
         return directive;

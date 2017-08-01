@@ -5,15 +5,17 @@
 
 .homeContainer {
     width: 100%;
-    height: 86%;
-    padding: 0 3%;
+    height: 97%;
+    padding: 0 3% 10% 3%;
+    margin: 3% 0 3% 0;
     display: inline-block;
     overflow-y: auto;
     @extend .customScrollBar;
     .box {
-        background-color: #2F2F2F;
+        background-color: rgba(47, 47, 47, 0.95);
         box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
         display: inline-block;
+        border-radius: 5px;
         .listContainer {
             min-height: 84%;
             padding: 0 16px 0 20px;
@@ -33,6 +35,8 @@
         font-size: 15px;
         font-weight: normal;
         margin: 20px 20px;
+        display: inline-block;
+        width: 30%;
     }
     .rankings {
         .homeTitle {
@@ -207,6 +211,7 @@
         .btnGroup {
             margin: 0 !important;
             width: 12% !important;
+            text-align: center !important;
         }
         .teamInfoGroup {
             width: 80%;
@@ -339,7 +344,8 @@
 @media (min-width: 769px) {
     .homeContainer {
         width: 100%;
-        height: 86%;
+        height: 100%;
+        padding: 0 3% 3% 3%;
     }
     .upcomingMatch {
         width: 100%;

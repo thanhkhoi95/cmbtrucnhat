@@ -19,19 +19,23 @@
         vm.playNow = playNow;
         vm.addToPlaylist = addToPlaylist;
         vm.showInfo = showInfo;
+        vm.refresh = refresh;
+        vm.getAll = getAll;
 
-        vm.getSourceApiUrl = 'http://localhost:3000/api/music/play?id=';
+        vm.getSourceApiUrl = '/api/music/play?id=';
         vm.playingTrackId = '';
         vm.playingTrackName = '';
         vm.playMode = 0;
         vm.song = {};
+        vm.tracksListMode = 0;
+        vm.tracksListTitle = 'Newest tracks';
 
-        var isPlaying = false;
+        vm.isPlaying = false;
         var myAudio = document.getElementById('music');
         var myAudioSource = document.getElementById('audioSource');
         var durationMinutes, durationSeconds;
         var currentMinutes = 0, currentSeconds;
-        var displayTime;
+        var displayTime = '00:00/00:00';
         vm.displayTime = displayTime;
 
         $scope.tracksList = [];
@@ -39,6 +43,25 @@
         $scope.playlist = [];
 
         updateVolumeBar();
+
+        function getAll(mode) {
+            if (vm.tracksListMode === mode) return;
+            vm.tracksListMode = mode;
+            if (mode === 0){
+                vm.tracksListTitle = 'Newest tracks';
+            } else if (mode === 1) {
+                vm.tracksListTitle = 'Top tracks';
+            }
+            console.log(vm.tracksListMode);
+            refresh();
+        }
+
+        function refresh() {
+            currentPage = 1;
+            console.log(currentPage);
+            $scope.tracksList = [];
+            loadMore(true);
+        }
 
         function changePlayMode() {
             vm.playMode++;
@@ -67,6 +90,7 @@
         }
 
         function playClickedTrack(trackId) {
+            if (trackId === vm.playingTrackId) return;
             for (var track in $scope.playlist) {
                 if ($scope.playlist[track]._id === trackId) {
                     vm.playingTrackId = $scope.playlist[track]._id;
@@ -107,7 +131,18 @@
             for (var track in $scope.tracksList) {
                 if ($scope.tracksList[track]._id === trackId) {
                     vm.song = $scope.tracksList[track];
-                    vm.song.lyric = vm.song.lyric.replace(/\n/g, '<br>');
+                    vm.song.uploadDate = moment(vm.song.uploadDate).format('DD-MM-YYYY');
+                    if (vm.song.artist) {
+                        if (vm.song.artist.birthdate) {
+                            vm.song.artist.birthdate = moment(vm.song.artist.birthdate).format('DD-MM-YYYY');
+                        }
+                    }
+                    if (vm.song.musician) {
+                        if (vm.song.musician.birthdate) {
+                            vm.song.musician.birthdate = moment(vm.song.musician.birthdate).format('DD-MM-YYYY');
+                        }
+                    }
+                    // vm.song.lyric = vm.song.lyric.replace(/\n/g, '<br>');
                 }
             }
         }
@@ -120,7 +155,7 @@
                     if (track === $scope.playlist.length) {
                         vm.playingTrackIndex = track;
                         vm.playingTrackId = $scope.playlist[0]._id;
-                        vm.playingTrackName = $scope.playlist[track].name;
+                        vm.playingTrackName = $scope.playlist[0].name;
                     } else {
                         vm.playingTrackIndex = track;
                         vm.playingTrackId = $scope.playlist[track]._id;
@@ -173,7 +208,7 @@
         }
 
         function switchPlayAndPauseImage() {
-            if (isPlaying) {
+            if (vm.isPlaying) {
                 $('#playBtn').css('background-image', 'url(\'../src/client/assets/images/pause.svg\')');
                 $('#playBtn').css('background-position', 'center');
             } else {
@@ -218,10 +253,10 @@
                             track++;
                             if (track === $scope.playlist.length) {
                                 vm.playingTrackIndex = track;
-                                vm.playingTrackId = $scope.playlist[0]._id;
+                                vm.playingTrackId = '';
                                 myAudio.pause();
-                                myAudioSource.src = vm.getSourceApiUrl + vm.playingTrackId;
-                                vm.playingTrackName = $scope.playlist[0].name;
+                                myAudioSource.src = '';
+                                vm.playingTrackName = '';
                                 myAudio.load();
                                 $('#progressBar').width(0);
                                 updateBufferBar();
@@ -275,34 +310,34 @@
         });
 
         myAudio.addEventListener('play', function () {
-            isPlaying = true;
+            vm.isPlaying = true;
             switchPlayAndPauseImage();
             updateBufferBar();
         });
 
         myAudio.addEventListener('pause', function () {
-            isPlaying = false;
+            vm.isPlaying = false;
             switchPlayAndPauseImage();
         });
 
         myAudio.addEventListener('emptied', function () {
-            isPlaying = false;
+            vm.isPlaying = false;
             switchPlayAndPauseImage();
         });
 
         function playBtnClick() {
-            if (!isPlaying) {
+            if (!vm.isPlaying) {
                 myAudio.play();
             } else {
                 myAudio.pause();
             }
         }
 
-        function getSuggestedMatchList(pageIndex) {
+        function getTracks(pageIndex) {
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/api/music?pageIndex=' + pageIndex + '&pageSize=' + pageSize
+                url: (vm.tracksListMode === 0 ? '/api/music/getnewest?pageIndex=' : '/api/music/getpopular?pageIndex=') + pageIndex + '&pageSize=' + pageSize
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function () {
@@ -311,10 +346,11 @@
             return deferred.promise;
         }
 
-        function loadMore() {
-            if (!vm.isBusy) {
+        function loadMore(urgent) {
+            if (!vm.isBusy || urgent) {
+                console.log('load');
                 vm.isBusy = true;
-                var more = getSuggestedMatchList(currentPage);
+                var more = getTracks(currentPage);
                 more.then(
                     function (res){
                         for (var i in res.items) {

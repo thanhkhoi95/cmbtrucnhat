@@ -25,15 +25,16 @@
             vm.track = JSON.parse($scope.track);
             if (!vm.track.artist) {
                 vm.track.artist = {};
-                vm.track.artist.name = 'Không rõ';
+                vm.track.artist.name = 'Unknown';
             }
             if (!vm.track.musician) {
                 vm.track.musician = {};
-                vm.track.musician.name = 'Không rõ';
+                vm.track.musician.name = 'Unknown';
             }
+
             $scope.download = function () {
                 window.open('/api/music/download?id=' + vm.track._id);
-            };
+            }
         }
 
         return directive;

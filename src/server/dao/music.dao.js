@@ -12,13 +12,51 @@
         update: update,
         deleteById: deleteById,
         getAll: getAll,
-        getById: getById,
         search: search,
         incPlays: incPlays,
         incDownloads: incDownloads
     };
 
-    function incDownloads(musicId) {}
+    function incDownloads(musicId) {
+        return Music.findOne({ _id: musicId }).then(
+            /* Fulfilled */
+            function (music) {
+                if (!music) {
+                    return Promise.reject(
+                        {
+                            statusCode: 400,
+                            message: 'Music not found!'
+                        }
+                    );
+                }
+
+                music.downloads += 1;
+
+                return music.save().then(
+                    /* Fulfilled */
+                    function (resMusic) {
+                        return Promise.resolve(
+                            {
+                                message: 'Increase downloads successfully'
+                            }
+                        );
+                    },
+                    /* Catch errors */
+                    function (err) {
+                        return Promise.reject(
+                            {
+                                message: err.message
+                            }
+                        );
+                    }
+                );
+            },
+            /* Catch error */
+            function (err) {
+                return Promise.reject(err);
+            }
+        );
+    }
 
     function incPlays(musicId) {
         return Music.findOne({ _id: musicId }).then(
@@ -221,7 +259,7 @@
         );
     }
 
-    function getAll(pageIndex, pageSize) {
+    function getAll(pageIndex, pageSize, mode) {
         if (!pageIndex || pageIndex < 1) {
             pageIndex = 1;
         } else {
@@ -232,27 +270,50 @@
         } else {
             pageSize = parseInt(pageSize);
         }
-
-        return Music.count({}).sort({ uploadDate: 'desc'}).exec().then(function (count) {
-            return Music.find({})
-                .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
-                .limit(pageSize)
-                .populate(['artistId', 'musicianId'])
-                .exec()
-                .then(
-                /* Fulfilled */
-                function (musics) {
-                    var res = pagination.paging(musics, count, pageIndex, pageSize);
-                    for (var i in res.items) {
-                        res.items[i] = converter.musicToResponseObject(res.items[i]);
-                    }
-                    return Promise.resolve(res);
-                },
-                /* Catch error */
-                function (err) {
-                    return Promise.reject(err);
-                });
-        });
+        
+        if (mode === 0) {
+            return Music.count({}).exec().then(function (count) {
+                return Music.find({}).sort({ uploadDate: -1})
+                    .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
+                    .limit(pageSize)
+                    .populate(['artistId', 'musicianId'])
+                    .exec()
+                    .then(
+                    /* Fulfilled */
+                    function (musics) {
+                        var res = pagination.paging(musics, count, pageIndex, pageSize);
+                        for (var i in res.items) {
+                            res.items[i] = converter.musicToResponseObject(res.items[i]);
+                        }
+                        return Promise.resolve(res);
+                    },
+                    /* Catch error */
+                    function (err) {
+                        return Promise.reject(err);
+                    });
+            });
+        } else if (mode === 1) {
+            return Music.count({}).exec().then(function (count) {
+                return Music.find({}).sort({ plays: -1})
+                    .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
+                    .limit(pageSize)
+                    .populate(['artistId', 'musicianId'])
+                    .exec()
+                    .then(
+                    /* Fulfilled */
+                    function (musics) {
+                        var res = pagination.paging(musics, count, pageIndex, pageSize);
+                        for (var i in res.items) {
+                            res.items[i] = converter.musicToResponseObject(res.items[i]);
+                        }
+                        return Promise.resolve(res);
+                    },
+                    /* Catch error */
+                    function (err) {
+                        return Promise.reject(err);
+                    });
+            });
+        }
     }
 
     function deleteById(musicId) {
