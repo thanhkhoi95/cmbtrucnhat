@@ -81,6 +81,18 @@ html {
     margin: 0 10px;
 }
 
+.searchBtn-active {
+    width: 20px;
+    height: 20px;
+    background-image: url('../src/client/assets/images/search-active.svg');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 10px;
+}
+
 .refreshBtn {
     width: 20px;
     height: 20px;
@@ -489,17 +501,17 @@ html {
 
 .bar:nth-child(3) {
     left: 9px;
-    animation-duration: 400ms;
+    animation-duration: 300ms;
 }
 
 .bar:nth-child(4) {
     left: 13px;
-    animation-duration: 458ms;
+    animation-duration: 478ms;
 }
 
 .bar:nth-child(5) {
     left: 17px;
-    animation-duration: 483ms;
+    animation-duration: 500ms;
 }
 
 .infoBody {
@@ -513,7 +525,7 @@ html {
 }
 
 .modal-header {
-    border: 0;
+    border: none;
     .close {
         color: white;
     }
@@ -524,6 +536,10 @@ html {
     .lyric {
         white-space: pre;
     }
+}
+
+.modal-footer {
+    border: none;
 }
 
 #soundwave {
@@ -548,6 +564,31 @@ html {
     display: inline-block !important;
     margin: 15px 0px 16px 0px !important;
     text-align: right !important;
+}
+
+.radioGroup {
+    margin-left: 20px;
+}
+
+.radioTitle {
+    position: relative;
+    top: -2px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+#searchContent {
+    width: 100%;
+    border: none;
+    background-color: #a6a6a6;
+    height: 40px;
+    border-radius: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    &:focus {
+        outline: none;
+    }
 }
 
 @import 'stylePages/fonts';

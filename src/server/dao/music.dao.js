@@ -219,15 +219,18 @@
                                 for (var i in res.items) {
                                     res.items[i] = converter.musicToResponseObject(res.items[i]);
                                 }
+                                console.log('asdfas');
                                 return Promise.resolve(res);
                             },
                             /* Catch error */
                             function (err) {
+                                console.log('asdfas');
                                 return Promise.reject(err);
                             });
                     });
                 },
                 function (err) {
+                    console.log('asdfas');
                     return Promise.reject({
                         message: err.message
                     });
@@ -270,10 +273,10 @@
         } else {
             pageSize = parseInt(pageSize);
         }
-        
+
         if (mode === 0) {
             return Music.count({}).exec().then(function (count) {
-                return Music.find({}).sort({ uploadDate: -1})
+                return Music.find({}).sort({ uploadDate: -1 })
                     .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
                     .limit(pageSize)
                     .populate(['artistId', 'musicianId'])
@@ -294,7 +297,7 @@
             });
         } else if (mode === 1) {
             return Music.count({}).exec().then(function (count) {
-                return Music.find({}).sort({ plays: -1})
+                return Music.find({}).sort({ plays: -1 })
                     .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
                     .limit(pageSize)
                     .populate(['artistId', 'musicianId'])

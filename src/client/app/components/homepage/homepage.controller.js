@@ -21,6 +21,8 @@
         vm.showInfo = showInfo;
         vm.refresh = refresh;
         vm.getAll = getAll;
+        vm.check = check;
+        vm.searchSong = searchSong;
 
         vm.getSourceApiUrl = '/api/music/play?id=';
         vm.playingTrackId = '';
@@ -29,6 +31,9 @@
         vm.song = {};
         vm.tracksListMode = 0;
         vm.tracksListTitle = 'Newest tracks';
+        vm.search = {
+            searchString: ''
+        };
 
         vm.isPlaying = false;
         var myAudio = document.getElementById('music');
@@ -47,18 +52,16 @@
         function getAll(mode) {
             if (vm.tracksListMode === mode) return;
             vm.tracksListMode = mode;
-            if (mode === 0){
+            if (mode === 0) {
                 vm.tracksListTitle = 'Newest tracks';
             } else if (mode === 1) {
                 vm.tracksListTitle = 'Top tracks';
             }
-            console.log(vm.tracksListMode);
             refresh();
         }
 
         function refresh() {
             currentPage = 1;
-            console.log(currentPage);
             $scope.tracksList = [];
             loadMore(true);
         }
@@ -333,6 +336,20 @@
             }
         }
 
+        function check(elementId) {
+            document.getElementById(elementId).checked = true;
+        }
+
+        function searchSong() {
+            vm.search.type = $('input[name="searchType"]:checked').val();
+            vm.search.filter = $('input[name="searchFilter"]:checked').val();
+            if (!vm.search.searchString || vm.search.searchString === '') return;
+            $('#searchModal').modal('hide');
+            vm.tracksListMode = 2;
+            vm.tracksListTitle = 'Search\'s result';
+            refresh();
+        }
+
         function getTracks(pageIndex) {
             var deferred = $q.defer();
             $http({
@@ -346,13 +363,29 @@
             return deferred.promise;
         }
 
+        function getSearchTracks(pageIndex) {
+            var deferred = $q.defer();
+            $http.post('/api/music/search?pageIndex=' + pageIndex + '&pageSize=' + pageSize, vm.search).then(
+                function successCallback(response) {
+                    deferred.resolve(response.data);
+                }, function (err) {
+                    deferred.reject(err);
+                }
+            );
+            return deferred.promise;
+        }
+
         function loadMore(urgent) {
             if (!vm.isBusy || urgent) {
-                console.log('load');
                 vm.isBusy = true;
-                var more = getTracks(currentPage);
+                var more;
+                if (vm.tracksListMode === 0 || vm.tracksListMode === 1) {
+                    more = getTracks(currentPage);
+                } else {
+                    more = getSearchTracks(currentPage);
+                }
                 more.then(
-                    function (res){
+                    function (res) {
                         for (var i in res.items) {
                             if (res.items[i]) {
                                 res.items[i].birthdate = moment(res.items[i].time).format('DD-MM-YYYY');
