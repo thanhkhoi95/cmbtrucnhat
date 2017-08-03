@@ -1,0 +1,1084 @@
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-image: url("../src/client/assets/images/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+@-webkit-keyframes change-color-progress {
+  0% {
+    background-color: olive; }
+  50% {
+    background-color: orange; }
+  100% {
+    background-color: olive; } }
+
+@keyframes change-color-progress {
+  0% {
+    background-color: olive; }
+  50% {
+    background-color: orange; }
+  100% {
+    background-color: olive; } }
+
+@-webkit-keyframes change-color-default {
+  0% {
+    background-color: darkslategray; }
+  100% {
+    background-color: dimgrey; } }
+
+@keyframes change-color-default {
+  0% {
+    background-color: darkslategray; }
+  100% {
+    background-color: dimgrey; } }
+
+@-webkit-keyframes sound {
+  0% {
+    opacity: .35;
+    height: 3px; }
+  100% {
+    opacity: 1;
+    height: 20px; } }
+
+@keyframes sound {
+  0% {
+    opacity: .35;
+    height: 3px; }
+  100% {
+    opacity: 1;
+    height: 20px; } }
+
+.searchBtn {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/search.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 10px; }
+
+.searchBtn-active {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/search-active.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 10px; }
+
+.refreshBtn {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/refresh.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 10px; }
+
+.azBtn {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/az.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 10px; }
+
+.azBtn-active {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/az-active.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 10px; }
+
+.topBtn {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/top.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 10px; }
+
+.topBtn-active {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/top-active.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 10px; }
+
+.newBtn {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/new.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 30px 0 10px; }
+
+.newBtn-active {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/new-active.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 30px 0 10px; }
+
+.removeBtn {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/remove-symbol.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 5px 0 5px 0;
+  cursor: pointer; }
+
+.infoBtn {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/info.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 5px;
+  cursor: pointer; }
+
+.playnowBtn {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/play-circle.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 5px;
+  margin: 5px 0 5px 0;
+  cursor: pointer; }
+
+.addBtn {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/add.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 5px;
+  margin: 5px 0 5px 0;
+  cursor: pointer; }
+
+.downBtn {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/download.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 5px 0 5px 0;
+  cursor: pointer; }
+
+.playlistItemContainer {
+  border-radius: 5px;
+  background-color: rgba(150, 150, 150, 0.1);
+  cursor: pointer; }
+
+.playlistItemContainer-playing {
+  border-radius: 5px;
+  background-color: rgba(150, 100, 0, 0.2);
+  cursor: pointer; }
+
+#listCon {
+  height: 84%; }
+
+#player {
+  width: 90%;
+  height: 100%;
+  margin: 0;
+  bottom: 0; }
+  #player #musicTitle {
+    height: 30%;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 3px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; }
+  #player nav {
+    width: 100%;
+    height: 70%;
+    text-align: left; }
+    #player nav #defaultBar {
+      margin: 0;
+      width: 100%;
+      height: 7px;
+      position: relative;
+      background-color: #1E1E1E;
+      border-radius: 3px;
+      text-align: left;
+      cursor: pointer; }
+      #player nav #defaultBar:hover {
+        border: 1px solid grey;
+        height: 9px; }
+        #player nav #defaultBar:hover #progressBar {
+          -webkit-animation: change-color-progress 1.5s infinite;
+          animation: change-color-progress 1.5s infinite; }
+      #player nav #defaultBar #progressBar {
+        border: none;
+        display: inline-block;
+        margin: 0;
+        position: absolute;
+        height: 7px;
+        background-color: olive;
+        width: 0;
+        border-radius: 3px;
+        cursor: pointer; }
+      #player nav #defaultBar #bufferBar {
+        border: none;
+        display: inline-block;
+        margin: 1px 0 0 0;
+        position: absolute;
+        height: 5px;
+        background-color: rgba(73, 73, 73, 0.7);
+        width: 0;
+        border-radius: 3px;
+        cursor: pointer; }
+    #player nav #defaultVolumeBar {
+      margin: 0;
+      width: 100px;
+      height: 6px;
+      position: relative;
+      background-color: #1E1E1E;
+      border-radius: 3px;
+      text-align: left;
+      bottom: 9px;
+      cursor: pointer; }
+      #player nav #defaultVolumeBar:hover {
+        border: 1px solid grey;
+        height: 8px; }
+        #player nav #defaultVolumeBar:hover #adjustVolumeBar {
+          background-color: white; }
+      #player nav #defaultVolumeBar #adjustVolumeBar {
+        border: none;
+        display: inline-block;
+        margin: 0;
+        position: absolute;
+        height: 6px;
+        background-color: grey;
+        width: 0;
+        border-radius: 3px;
+        cursor: pointer; }
+    #player nav #controlButtons {
+      margin: 0;
+      width: 100%; }
+      #player nav #controlButtons #playBtn {
+        margin-top: 7px;
+        background-color: #2f2f2f;
+        border: none;
+        height: 26px;
+        width: 26px;
+        background-image: url("../src/client/assets/images/play-arrow.svg");
+        background-size: 15px 15px;
+        background-repeat: no-repeat;
+        background-position: 7px 6px;
+        border-radius: 100%; }
+        #player nav #controlButtons #playBtn:focus {
+          outline: none; }
+        #player nav #controlButtons #playBtn:hover {
+          background-color: rgba(73, 73, 73, 0.7); }
+        #player nav #controlButtons #playBtn:active {
+          background-color: black; }
+      #player nav #controlButtons #nextBtn {
+        margin-top: 7px;
+        background-color: #2f2f2f;
+        border: none;
+        height: 26px;
+        width: 26px;
+        background-image: url("../src/client/assets/images/fast-forward-arrows.svg");
+        background-size: 15px 15px;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 100%; }
+        #player nav #controlButtons #nextBtn:focus {
+          outline: none; }
+        #player nav #controlButtons #nextBtn:hover {
+          background-color: rgba(73, 73, 73, 0.7); }
+        #player nav #controlButtons #nextBtn:active {
+          background-color: black; }
+      #player nav #controlButtons #previousBtn {
+        margin-top: 7px;
+        background-color: #2f2f2f;
+        border: none;
+        height: 26px;
+        width: 26px;
+        background-image: url("../src/client/assets/images/rewind-button.svg");
+        background-size: 15px 15px;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 100%; }
+        #player nav #controlButtons #previousBtn:focus {
+          outline: none; }
+        #player nav #controlButtons #previousBtn:hover {
+          background-color: rgba(73, 73, 73, 0.7); }
+        #player nav #controlButtons #previousBtn:active {
+          background-color: black; }
+      #player nav #controlButtons #volumeBtn {
+        margin-top: 7px;
+        background-color: #2f2f2f;
+        border: none;
+        height: 26px;
+        width: 26px;
+        background-image: url("../src/client/assets/images/volume-up-indicator.svg");
+        background-size: 15px 16px;
+        background-repeat: no-repeat;
+        background-position: 5px 6px;
+        border-radius: 100%; }
+        #player nav #controlButtons #volumeBtn:focus {
+          outline: none; }
+        #player nav #controlButtons #volumeBtn:hover {
+          background-color: rgba(73, 73, 73, 0.7); }
+        #player nav #controlButtons #volumeBtn:active {
+          background-color: black; }
+      #player nav #controlButtons #time {
+        float: right;
+        margin: 9px 0 0 0;
+        font-size: 14px; }
+
+#webName {
+  font-size: 19px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 50px;
+  color: white; }
+
+#playlist {
+  height: 84%; }
+
+.matchTimeGroup {
+  width: 100% !important;
+  margin: 0 !important; }
+
+.fontLayout {
+  font-family: "Segoe UI", "Roboto", sans-serif !important; }
+
+.textOverflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; }
+
+.listContainer {
+  width: 99.5%;
+  padding-right: 2%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box; }
+
+.customScrollBar::-webkit-scrollbar-track, .listContainer::-webkit-scrollbar-track, .homeContainer::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px; }
+
+.customScrollBar::-webkit-scrollbar, .listContainer::-webkit-scrollbar, .homeContainer::-webkit-scrollbar {
+  width: 5px;
+  height: 3px; }
+
+.customScrollBar::-webkit-scrollbar-thumb, .listContainer::-webkit-scrollbar-thumb, .homeContainer::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #434343; }
+
+#bars {
+  height: 30px;
+  margin: -24px 0 0 0px;
+  position: absolute; }
+
+.bar {
+  background: darkorange;
+  bottom: 1px;
+  height: 3px;
+  position: absolute;
+  width: 3px;
+  -webkit-animation: sound 0ms -800ms linear infinite alternate;
+  animation: sound 0ms -800ms linear infinite alternate; }
+
+.bar:nth-child(1) {
+  left: 1px;
+  -webkit-animation-duration: 374ms;
+          animation-duration: 374ms; }
+
+.bar:nth-child(2) {
+  left: 5px;
+  -webkit-animation-duration: 433ms;
+          animation-duration: 433ms; }
+
+.bar:nth-child(3) {
+  left: 9px;
+  -webkit-animation-duration: 300ms;
+          animation-duration: 300ms; }
+
+.bar:nth-child(4) {
+  left: 13px;
+  -webkit-animation-duration: 478ms;
+          animation-duration: 478ms; }
+
+.bar:nth-child(5) {
+  left: 17px;
+  -webkit-animation-duration: 500ms;
+          animation-duration: 500ms; }
+
+.infoBody {
+  max-height: 400px;
+  overflow: auto; }
+
+.modal-content {
+  background-color: #2f2f2f;
+  color: white; }
+
+.modal-header {
+  border: none; }
+  .modal-header .close {
+    color: white; }
+
+.modal-body {
+  margin-bottom: 15px; }
+  .modal-body .lyric {
+    white-space: pre; }
+
+.modal-footer {
+  border: none; }
+
+#soundwave {
+  position: relative;
+  left: -20px; }
+
+.searchGroup {
+  height: 100%;
+  margin: 0 3% 0 3%;
+  width: 100%; }
+
+.plbtnGroup {
+  width: 30%;
+  text-align: right;
+  padding-right: 2%; }
+
+.tracksListBtnGroup {
+  width: 60% !important;
+  display: inline-block !important;
+  margin: 15px 0px 16px 0px !important;
+  text-align: right !important; }
+
+.radioGroup {
+  margin-left: 20px; }
+
+.radioTitle {
+  position: relative;
+  top: -2px;
+  margin-right: 20px;
+  cursor: pointer; }
+
+#searchContent {
+  width: 100%;
+  border: none;
+  background-color: #a6a6a6;
+  height: 40px;
+  border-radius: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); }
+  #searchContent:focus {
+    outline: none; }
+
+@font-face {
+  font-family: "JosefinSans";
+  src: url("../assets/fonts/RobotoTTF/Roboto-Light.ttf") format("truetype"); }
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/RobotoTTF/Roboto-Regular.ttf") format("truetype"); }
+
+.fontAuth {
+  font-family: "JosefinSans", sans-serif !important; }
+
+.pageContainer {
+  width: 100%;
+  height: 100%; }
+
+.RLParentContainer {
+  width: 100%;
+  height: 100%;
+  /*BANNER*/
+  /*REGISTER & LOGIN PAGE*/ }
+  .RLParentContainer .btn:focus {
+    outline: 0 !important; }
+  .RLParentContainer .bannerContainer {
+    transition: width 500ms ease;
+    width: 55%;
+    height: 100%;
+    float: left;
+    background: linear-gradient(-7deg, #76b852, #8dc26f); }
+  .RLParentContainer .RLContainer {
+    transition: width 500ms ease;
+    width: 45%;
+    height: 100%;
+    float: right;
+    box-shadow: -1px 0px 30px #213317;
+    background: linear-gradient(134deg, #455351, #3c3e52);
+    color: #AAAAAA; }
+    .RLParentContainer .RLContainer .SwitchBtn {
+      float: right;
+      margin: 15px 30px 0 0;
+      border-radius: 15px;
+      overflow: hidden; }
+      .RLParentContainer .RLContainer .SwitchBtn .btn {
+        background-color: #535D65;
+        padding: 6px 18px !important; }
+    .RLParentContainer .RLContainer .RLForm {
+      transition: top 500ms ease;
+      width: 80%;
+      position: relative;
+      top: 20%;
+      left: 10%; }
+      .RLParentContainer .RLContainer .RLForm .input-group {
+        width: 100%;
+        padding: 2% 0 0 0; }
+        .RLParentContainer .RLContainer .RLForm .input-group .form-control {
+          background-color: transparent;
+          border: none;
+          box-shadow: none;
+          border-radius: 0;
+          border-bottom: 1px solid #515765;
+          color: white;
+          padding-left: 0; }
+          .RLParentContainer .RLContainer .RLForm .input-group .form-control:focus {
+            box-shadow: none;
+            border-bottom: 1px solid #ccc; }
+          .RLParentContainer .RLContainer .RLForm .input-group .form-control option {
+            background-color: #535D65; }
+        .RLParentContainer .RLContainer .RLForm .input-group h5 {
+          color: white; }
+        .RLParentContainer .RLContainer .RLForm .input-group i {
+          position: absolute;
+          right: 22%;
+          bottom: 13%; }
+      .RLParentContainer .RLContainer .RLForm .slitGroup {
+        width: 49%;
+        padding: 1% 10% 0 0 !important;
+        display: inline-block; }
+      .RLParentContainer .RLContainer .RLForm .slit3Group {
+        width: 31.75%;
+        padding-right: 5%;
+        display: inline-block; }
+      .RLParentContainer .RLContainer .RLForm .rem-for {
+        font-size: small;
+        padding: 6% 0; }
+        .RLParentContainer .RLContainer .RLForm .rem-for a {
+          float: right;
+          text-decoration: none;
+          font-style: italic;
+          color: #adb3af; }
+        .RLParentContainer .RLContainer .RLForm .rem-for input {
+          margin-right: 1%;
+          margin-bottom: 1px;
+          vertical-align: text-bottom; }
+        .RLParentContainer .RLContainer .RLForm .rem-for .message {
+          float: left;
+          color: red; }
+      .RLParentContainer .RLContainer .RLForm .btn-RL {
+        margin: 4% 0;
+        padding-left: 12%;
+        padding-right: 12%;
+        border-radius: 15px;
+        color: white;
+        border: none;
+        background: linear-gradient(3deg, #62c02c, #86bf66);
+        float: right; }
+
+.pressedText {
+  color: white;
+  padding-bottom: 1%;
+  border-bottom: 1px solid #86bf66;
+  cursor: pointer; }
+
+.pressedSw {
+  background: linear-gradient(3deg, #62c02c, #86bf66);
+  color: white; }
+
+@media (max-width: 768px) {
+  .RLParentContainer .bannerContainer {
+    display: none; }
+  .RLParentContainer .RLContainer {
+    width: 100% !important; } }
+
+/*#region Angular ng-include, ng-view, ng-repeat shuffle animations*/
+.shuffle-animation.ng-enter,
+.shuffle-animation.ng-leave {
+  position: relative; }
+
+.shuffle-animation.ng-enter {
+  transition: ease-out all 0.3s 0.4s;
+  left: 2em;
+  opacity: 0; }
+
+.shuffle-animation.ng-enter.ng-enter-active {
+  left: 0;
+  opacity: 1; }
+
+.shuffle-animation.ng-leave {
+  transition: 0.3s ease-out all;
+  left: 0;
+  opacity: 1; }
+
+.shuffle-animation.ng-leave.ng-leave-active {
+  left: 2em;
+  opacity: 0; }
+
+/*LAYOUT*/
+.backgroundLayout {
+  width: 100%;
+  height: 100%;
+  background-color: #363636;
+  position: absolute;
+  z-index: -1; }
+
+/*BOTH*/
+.sideBar-container {
+  background-color: #2A2929;
+  box-shadow: 5px 0 6px rgba(17, 17, 17, 0.4); }
+  .sideBar-container .sideBar-wrapper {
+    width: 100%;
+    color: #FFFFFF;
+    list-style: none; }
+    .sideBar-container .sideBar-wrapper li {
+      width: 100%;
+      height: 70px; }
+      .sideBar-container .sideBar-wrapper li a {
+        height: 100%;
+        color: #FFFFFF;
+        opacity: .66;
+        display: block;
+        text-decoration: none; }
+      .sideBar-container .sideBar-wrapper li:hover > a {
+        background: rgba(255, 255, 255, 0.13);
+        opacity: 1;
+        cursor: pointer; }
+      .sideBar-container .sideBar-wrapper li.active > a {
+        color: #FFFFFF;
+        opacity: 1; }
+  .sideBar-container img {
+    width: 30px;
+    height: 30px; }
+
+.topNavContainer {
+  width: 100%;
+  height: 10%;
+  color: white;
+  display: inline-block; }
+  .topNavContainer .topNavTitle {
+    float: left;
+    margin: 5px 0 0 0; }
+  .topNavContainer .topNavGroup {
+    float: right; }
+    .topNavContainer .topNavGroup div {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 7px; }
+    .topNavContainer .topNavGroup img {
+      width: 18px;
+      height: 18px;
+      opacity: 0.8; }
+    .topNavContainer .topNavGroup .avatar {
+      width: 32px;
+      height: 32px; }
+
+.avatar {
+  border-radius: 100%;
+  background-color: white;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+/* PC DISPLAY*/
+@media (min-width: 768px) {
+  .sideBar-container {
+    width: 70px;
+    height: 100%;
+    float: left; }
+    .sideBar-container .sideBar-wrapper {
+      width: 100%;
+      text-align: center;
+      margin: 10px 0 0 0;
+      padding: 0 !important; }
+      .sideBar-container .sideBar-wrapper a {
+        padding: 20px; }
+      .sideBar-container .sideBar-wrapper p {
+        display: none; }
+    .sideBar-container .navbar-brand {
+      width: 70px;
+      height: 70px;
+      padding: 20px !important; }
+  .main-panel {
+    width: calc(100% - 70px);
+    height: 100%;
+    display: inline-block; } }
+
+/* PHONE DISPLAY*/
+@media (max-width: 767px) {
+  .sideBar-container #webName {
+    margin: 0;
+    width: calc(100% - 55px);
+    float: right;
+    margin-top: 2px;
+    color: white; }
+  .sideBar-container img {
+    width: 25px;
+    height: 25px; }
+  .sideBar-container .navbar-header {
+    display: inline-block;
+    margin: 0; }
+    .sideBar-container .navbar-header span {
+      background-color: white; }
+  .sideBar-container .sideBar-wrapper a {
+    line-height: 45px; }
+  .sideBar-container .sideBar-wrapper img {
+    margin-bottom: 3%; }
+  .sideBar-container .sideBar-wrapper p {
+    display: inline-block;
+    font-size: large;
+    margin: 0 2%; }
+  .main-panel {
+    width: 100%;
+    height: 100%;
+    display: inline-block; } }
+
+/*HOME PAGE*/
+/*BOTH*/
+.homeContainer {
+  width: 100%;
+  height: 97%;
+  padding: 0 3% 10% 3%;
+  margin: 3% 0 3% 0;
+  display: inline-block;
+  overflow-y: auto; }
+  .homeContainer .box {
+    background-color: rgba(47, 47, 47, 0.95);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+    display: inline-block;
+    border-radius: 5px; }
+    .homeContainer .box .listContainer {
+      min-height: 84%;
+      padding: 0 16px 0 20px; }
+  .homeContainer .btn {
+    width: 82px;
+    height: 23px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+    margin: 0 1.5%;
+    padding: 0;
+    font-size: 12px; }
+  .homeContainer .homeTitle {
+    color: white;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 20px 20px;
+    display: inline-block;
+    width: 30%; }
+  .homeContainer .rankings .homeTitle {
+    display: inline-block; }
+  .homeContainer .rankings .SwitchBtn {
+    float: right;
+    width: 32px;
+    height: 32px;
+    margin: 10px 20px 0px 0px;
+    border-radius: 100%;
+    cursor: pointer; }
+    .homeContainer .rankings .SwitchBtn:hover {
+      background-color: rgba(0, 0, 0, 0.3); }
+  .homeContainer .rankings .normal {
+    background-image: url("../src/client/assets/images/normal.png");
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: center; }
+  .homeContainer .rankings .loop {
+    background-image: url("../src/client/assets/images/replay.png");
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: center; }
+  .homeContainer .rankings .loop-one {
+    background-image: url("../src/client/assets/images/replay1.png");
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: center; }
+  .homeContainer .rankings button {
+    width: 20px !important;
+    height: 100% !important;
+    box-shadow: none !important;
+    background: #484847 !important; }
+    .homeContainer .rankings button:focus {
+      outline: 0 !important; }
+  .homeContainer .rankings .pressedDw {
+    background: #F64948 !important; }
+  .homeContainer .rankings .teamSw img {
+    position: relative;
+    top: -5px; }
+  .homeContainer .rankings .personalSw img {
+    position: relative;
+    top: -5px;
+    left: -1px; }
+
+.upcomingMatch .upcomingMatchContainer {
+  width: 100%;
+  color: white;
+  line-height: 90px;
+  text-align: center; }
+  .upcomingMatch .upcomingMatchContainer .upcomingTitle .homeTitle {
+    margin: 10px; }
+  .upcomingMatch .upcomingMatchContainer .upcomingTitle h4:last-child {
+    font-weight: bold;
+    font-size: 20px; }
+  .upcomingMatch .upcomingMatchContainer div {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 2%; }
+  .upcomingMatch .upcomingMatchContainer .matchTimeGroup {
+    height: 90px; }
+    .upcomingMatch .upcomingMatchContainer .matchTimeGroup .weekContainer {
+      top: 32%; }
+    .upcomingMatch .upcomingMatchContainer .matchTimeGroup .infoDate {
+      bottom: 22%; }
+  .upcomingMatch .upcomingMatchContainer .avatarVsGroup {
+    height: 100%;
+    width: 230px; }
+    .upcomingMatch .upcomingMatchContainer .avatarVsGroup .avatarVS {
+      width: 25px;
+      height: 25px;
+      border: 1px solid white;
+      border-radius: 100%;
+      line-height: 20px !important;
+      font-size: 15px;
+      margin: 0 10%; }
+  .upcomingMatch .upcomingMatchContainer .avatar {
+    width: 60px;
+    height: 60px;
+    margin: 0 !important; }
+
+.matchTimeGroup {
+  position: relative;
+  line-height: normal !important;
+  width: 140px;
+  text-align: center; }
+
+.weekContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 18%;
+  margin: 0; }
+  .weekContainer .dayTab {
+    width: 15px;
+    height: 15px;
+    border: 1px solid white;
+    border-radius: 100%;
+    font-size: 8px;
+    margin: 0 !important; }
+    .weekContainer .dayTab span {
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle; }
+  .weekContainer .active {
+    background-color: #F55C5C; }
+
+.infoDate {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  bottom: 18%;
+  margin: 0; }
+
+.infoTabContainer {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  background-color: rgba(150, 150, 150, 0.1);
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.4);
+  margin-bottom: 13px;
+  cursor: default; }
+  .infoTabContainer .infoTabShadow {
+    box-shadow: inset 7px 7px 9px -7px rgba(200, 200, 200, 0.1);
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    color: white; }
+    .infoTabContainer .infoTabShadow div {
+      display: inline-block;
+      vertical-align: middle; }
+    .infoTabContainer .infoTabShadow .btnGroup {
+      margin: 0 !important;
+      width: 12% !important;
+      text-align: center !important; }
+    .infoTabContainer .infoTabShadow .teamInfoGroup {
+      width: 80%;
+      height: 100%;
+      margin: 7px 0px 7px 20px; }
+      .infoTabContainer .infoTabShadow .teamInfoGroup .trackName {
+        font-size: 20px !important;
+        font-weight: bold !important; }
+      .infoTabContainer .infoTabShadow .teamInfoGroup .singer {
+        width: 44% !important; }
+      .infoTabContainer .infoTabShadow .teamInfoGroup .composer {
+        width: 44% !important; }
+      .infoTabContainer .infoTabShadow .teamInfoGroup .downloads {
+        width: 44% !important; }
+      .infoTabContainer .infoTabShadow .teamInfoGroup .plays {
+        width: 44% !important; }
+      .infoTabContainer .infoTabShadow .teamInfoGroup .avatar {
+        width: 30px;
+        height: 30px;
+        margin: 0 0 0 2%; }
+      .infoTabContainer .infoTabShadow .teamInfoGroup .teamName {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+        text-align: left;
+        margin: 2px 0 2px 0; }
+      .infoTabContainer .infoTabShadow .teamInfoGroup div {
+        margin: 0 1.5%; }
+      .infoTabContainer .infoTabShadow .teamInfoGroup .matchTimeGroup {
+        height: 60px; }
+    .infoTabContainer .infoTabShadow .btnGroup {
+      width: 200px; }
+    .infoTabContainer .infoTabShadow .acceptBtn {
+      background-color: rgba(138, 203, 65, 0.9); }
+    .infoTabContainer .infoTabShadow .suggestBtn {
+      background-color: rgba(0, 162, 255, 0.9); }
+
+.rankingItemContainer {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.4);
+  margin-bottom: 11px; }
+  .rankingItemContainer .rankingItemShadow {
+    box-shadow: inset 7px 7px 9px -7px rgba(200, 200, 200, 0.1);
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    color: white; }
+    .rankingItemContainer .rankingItemShadow .rankingPoint {
+      margin-top: 20px !important;
+      height: 20px;
+      border-radius: 20px;
+      background: white;
+      border: 1px solid;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding-left: 7px;
+      padding-right: 7px;
+      margin-right: 15px;
+      float: right; }
+      .rankingItemContainer .rankingItemShadow .rankingPoint span {
+        position: relative;
+        top: -115%;
+        color: #000000; }
+    .rankingItemContainer .rankingItemShadow div {
+      display: inline-block;
+      vertical-align: middle; }
+    .rankingItemContainer .rankingItemShadow .teamInfoGroup {
+      float: left;
+      width: 70%;
+      height: 100%;
+      padding: 0 5%; }
+      .rankingItemContainer .rankingItemShadow .teamInfoGroup .avatar {
+        width: 35px;
+        height: 35px;
+        margin-right: 5%; }
+      .rankingItemContainer .rankingItemShadow .teamInfoGroup .teamName {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+        text-align: left;
+        font-weight: bold; }
+      .rankingItemContainer .rankingItemShadow .teamInfoGroup .rank {
+        width: 22px;
+        height: 22px;
+        border-radius: 100%;
+        border: 1px solid #ffffff;
+        margin-right: 7%; }
+        .rankingItemContainer .rankingItemShadow .teamInfoGroup .rank span {
+          width: 100%;
+          display: inline-block;
+          position: relative;
+          font-size: 11px;
+          text-align: center;
+          top: calc(-110% + 1px); }
+
+/*PC DISPLAY*/
+@media (min-width: 769px) {
+  .homeContainer {
+    width: 100%;
+    height: 100%;
+    padding: 0 3% 3% 3%; }
+  .upcomingMatch {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2.2%; }
+  .challenges {
+    width: 64%;
+    height: 77%; }
+  .rankings {
+    width: 32%;
+    height: 77%;
+    margin-left: 3%;
+    float: right; }
+  .teamInfoGroup {
+    width: 100%; } }
+
+/*PHONE DISPLAY*/
+@media (max-width: 768px) {
+  .homeContainer {
+    font-size: small; }
+  .box {
+    margin-bottom: 5%; }
+  .upcomingMatch {
+    width: 100%;
+    height: auto; }
+  .challenges {
+    width: 100%;
+    height: 400px; }
+  .rankings {
+    width: 100%;
+    height: 400px; }
+  .infoTabContainer {
+    line-height: 60px; } }
