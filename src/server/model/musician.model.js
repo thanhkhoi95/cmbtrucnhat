@@ -8,6 +8,9 @@
             type: String,
             required: true
         },
+        lowerCaseName: {
+            type: String
+        },
         birthdate: {
             type: Date
         },
@@ -23,6 +26,11 @@
             {multi: true},
             next
         );
+    });
+
+    musicianSchema.pre('save', function(next){
+        this.lowerCaseName = this.name.toLowerCase();
+        next();
     });
 
     musicianSchema.index({name: 'text'});

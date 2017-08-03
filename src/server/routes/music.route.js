@@ -11,7 +11,8 @@
     module.exports = function () {
 
         router.get('/getnewest', getAllMusicNewest);
-        router.get('/getpopular', getAllMusicPopular)
+        router.get('/getpopular', getAllMusicPopular);
+        router.get('/getaz', getAllMusicAz);
         router.get('/getmusic/:id', getMusicById);
         router.post('/create', auth.parser('admin'), multipartMiddleware, uploadMusic);
         router.get('/play', streamMusic);
@@ -19,6 +20,21 @@
         router.put('/', auth.parser('admin'), updateMusic);
         router.delete('/:id', auth.parser('admin'), deleteMusicById);
         router.post('/search', searchMusic);
+
+        function getAllMusicAz(req, res, next) {
+            var pageIndex = req.query.pageIndex;
+            var pageSize = req.query.pageSize;
+            musicDao.getAll(pageIndex, pageSize, 2).then(
+                /* Fulfilled */
+                function (response) {
+                    res.send(response);
+                },
+                /* Catch error */
+                function (error) {
+                    next(error);
+                }
+            );
+        }
 
         function searchMusic(req, res, next) {
             var type = req.body.type;

@@ -13,7 +13,7 @@
         router.delete('/:id', auth.parser('admin'), deleteMusicianById);
         router.post('/search', searchMusician);
 
-        function searchMusician(req, res, next){
+        function searchMusician(req, res, next) {
             var pageIndex = req.query.pageIndex;
             var pageSize = req.query.pageSize;
             var str = req.body.searchString;
@@ -27,13 +27,13 @@
             );
         }
 
-        function deleteMusicianById(req, res, next){
+        function deleteMusicianById(req, res, next) {
             var musicianId = req.params.id;
             musicianDao.deleteById(musicianId).then(
-                function (response){
+                function (response) {
                     res.send(response);
                 },
-                function (error){
+                function (error) {
                     next(error);
                 }
             );

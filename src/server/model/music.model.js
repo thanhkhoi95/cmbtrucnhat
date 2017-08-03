@@ -17,6 +17,9 @@
             type: String,
             required: true
         },
+        lowerCaseName: {
+            type: String
+        },
         fileId: {
             type: String,
             required: true
@@ -37,6 +40,11 @@
             type: Number,
             default: 0
         }
+    });
+
+    musicSchema.pre('save', function(next){
+        this.lowerCaseName = this.name.toLowerCase();
+        next();
     });
 
     var music = mongoose.model('music', musicSchema);

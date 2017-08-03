@@ -61,6 +61,7 @@
     <div class="tracksListBtnGroup homeTitle">
       <div class="refreshBtn" ng-click="vm.refresh()"></div>
       <div class="searchBtn" ng-class="{'searchBtn-active': vm.tracksListMode == 2}" data-toggle="modal" data-target="#searchModal"></div>
+      <div class="azBtn" ng-class="{'azBtn-active': vm.tracksListMode == 3}" ng-click="vm.getAll(3)"></div>
       <div class="topBtn" ng-class="{'topBtn-active': vm.tracksListMode == 1}" ng-click="vm.getAll(1)"></div>
       <div class="newBtn" ng-class="{'newBtn-active': vm.tracksListMode == 0}" ng-click="vm.getAll(0)"></div>
     </div>
@@ -131,12 +132,6 @@
                 <input value="lyric" type="radio" name="searchType" id="songLyric"><span class="radioTitle" ng-click="vm.check('songLyric')"> Song's lyric</span>
                 <input value="artist" type="radio" name="searchType" id="songArtist"><span class="radioTitle" ng-click="vm.check('songArtist')"> Singer</span>
                 <input value="musician" type="radio" name="searchType" id="songMusician"><span class="radioTitle" ng-click="vm.check('songMusician')"> Composer</span>
-              </div>
-              <br>
-              <h4>Filter:</h4>
-              <div class="radioGroup">
-                <input value="0" type="radio" name="searchFilter" id="newest" checked="checked"><span class="radioTitle" ng-click="vm.check('newest')"> Newest songs</span>
-                <input value="1" type="radio" name="searchFilter" id="top"><span class="radioTitle" ng-click="vm.check('top')"> Most popular song</span>
               </div>
               <br>
               <h4>Content:</h4>

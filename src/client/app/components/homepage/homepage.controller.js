@@ -56,6 +56,8 @@
                 vm.tracksListTitle = 'Newest tracks';
             } else if (mode === 1) {
                 vm.tracksListTitle = 'Top tracks';
+            } else if (mode === 3) {
+                vm.tracksListTile = 'A to Z';
             }
             refresh();
         }
@@ -230,7 +232,7 @@
                 seek = 0;
             }
             myAudio.pause();
-            myAudio.currentTime = seek * myAudio.duration;
+            myAudio.currentTime = seek * (myAudio.duration - 2);
             myAudio.play();
         });
 
@@ -247,7 +249,7 @@
             updateVolumeBar();
         });
 
-        myAudio.addEventListener('ended', function () {
+        function songEndedAction() {
             myAudio.pause();
             switch (vm.playMode) {
                 case 0:
@@ -278,6 +280,9 @@
                     updateBufferBar();
                     break;
                 case 1:
+                    console.log(1);
+                    myAudio.load();
+                    updateBufferBar();
                     myAudio.currentTime = 0;
                     break;
                 case 2:
@@ -287,11 +292,15 @@
             }
             $scope.$apply();
             myAudio.play();
+        }
+
+        myAudio.addEventListener('ended', function () {
+            songEndedAction();
         });
 
         myAudio.addEventListener('loadedmetadata', function () {
-            durationMinutes = Math.floor(myAudio.duration / 60);
-            durationSeconds = Math.floor(myAudio.duration - 60 * durationMinutes);
+            durationMinutes = Math.floor((myAudio.duration-2) / 60);
+            durationSeconds = Math.floor((myAudio.duration-2) - 60 * durationMinutes);
             displayTime = pad(currentMinutes) + ':' + pad(currentSeconds) + '/' + pad(durationMinutes) + ':' + pad(durationSeconds);
             $('#time').html(displayTime);
         });
@@ -301,15 +310,21 @@
         });
 
         myAudio.addEventListener('timeupdate', function () {
-            var duration = myAudio.duration;
+            var duration = myAudio.duration - 2;
+            var percentage;
             if (duration > 0) {
-                $('#progressBar').width(((myAudio.currentTime / duration) * 100) + '%');
+                percentage = (myAudio.currentTime / duration) * 100;
+                percentage = percentage > 100 ? 100 : percentage;
+                $('#progressBar').width(percentage + '%');
             }
             currentMinutes = Math.floor(myAudio.currentTime / 60);
             currentSeconds = Math.floor(myAudio.currentTime - 60 * currentMinutes);
             displayTime = pad(currentMinutes) + ':' + pad(currentSeconds) + '/' + pad(durationMinutes) + ':' + pad(durationSeconds);
             $('#time').html(displayTime);
             updateBufferBar();
+            if (duration <= myAudio.currentTime) {
+                songEndedAction();
+            }
         });
 
         myAudio.addEventListener('play', function () {
@@ -352,9 +367,17 @@
 
         function getTracks(pageIndex) {
             var deferred = $q.defer();
+            var url;
+            if (vm.tracksListMode === 0) {
+                url = '/api/music/getnewest?pageIndex=';
+            } else if (vm.tracksListMode === 1 ) {
+                url = '/api/music/getpopular?pageIndex=';
+            } else if (vm.tracksListMode === 3) {
+                url = '/api/music/getaz?pageIndex=';
+            }
             $http({
                 method: 'GET',
-                url: (vm.tracksListMode === 0 ? '/api/music/getnewest?pageIndex=' : '/api/music/getpopular?pageIndex=') + pageIndex + '&pageSize=' + pageSize
+                url: url + pageIndex + '&pageSize=' + pageSize
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function () {
@@ -379,7 +402,7 @@
             if (!vm.isBusy || urgent) {
                 vm.isBusy = true;
                 var more;
-                if (vm.tracksListMode === 0 || vm.tracksListMode === 1) {
+                if (vm.tracksListMode === 0 || vm.tracksListMode === 1 || vm.tracksListMode === 3) {
                     more = getTracks(currentPage);
                 } else {
                     more = getSearchTracks(currentPage);

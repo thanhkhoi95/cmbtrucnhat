@@ -13,7 +13,7 @@
         router.delete('/:id', auth.parser('admin'), deleteArtistById);
         router.post('/search', searchArtist);
 
-        function searchArtist(req, res, next){
+        function searchArtist(req, res, next) {
             var pageIndex = req.query.pageIndex;
             var pageSize = req.query.pageSize;
             var str = req.body.searchString;
@@ -27,13 +27,13 @@
             );
         }
 
-        function deleteArtistById(req, res, next){
+        function deleteArtistById(req, res, next) {
             var artistId = req.params.id;
             artistDao.deleteById(artistId).then(
-                function (response){
+                function (response) {
                     res.send(response);
                 },
-                function (error){
+                function (error) {
                     next(error);
                 }
             );
@@ -59,7 +59,7 @@
             artistDao.getById(artistId).then(
                 /* Fulfilled */
                 function (response) {
-                    
+
                     res.send(response);
                 },
                 /* Catch error */
@@ -92,6 +92,7 @@
 
         function updateArtist(req, res, next) {
             var artistInfo = req.body;
+            console.log(artistInfo);
             artistDao.update(artistInfo).then(
                 /* Fulfilled */
                 function (response) {

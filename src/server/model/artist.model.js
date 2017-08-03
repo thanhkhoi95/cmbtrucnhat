@@ -8,6 +8,9 @@
             type: String,
             required: true
         },
+        lowerCaseName: {
+            type: String
+        },
         detailInformation: {
             type: String
         },
@@ -23,6 +26,11 @@
             {multi: true},
             next
         );
+    });
+
+    artistSchema.pre('save', function(next){
+        this.lowerCaseName = this.name.toLowerCase();
+        next();
     });
 
     artistSchema.index({name: 'text'});

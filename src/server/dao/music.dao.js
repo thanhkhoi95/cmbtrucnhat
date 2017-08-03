@@ -316,6 +316,27 @@
                         return Promise.reject(err);
                     });
             });
+        } else if (mode === 2) {
+            return Music.count({}).exec().then(function (count) {
+                return Music.find({}).sort({ lowerCaseName: 1 })
+                    .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
+                    .limit(pageSize)
+                    .populate(['artistId', 'musicianId'])
+                    .exec()
+                    .then(
+                    /* Fulfilled */
+                    function (musics) {
+                        var res = pagination.paging(musics, count, pageIndex, pageSize);
+                        for (var i in res.items) {
+                            res.items[i] = converter.musicToResponseObject(res.items[i]);
+                        }
+                        return Promise.resolve(res);
+                    },
+                    /* Catch error */
+                    function (err) {
+                        return Promise.reject(err);
+                    });
+            });
         }
     }
 
