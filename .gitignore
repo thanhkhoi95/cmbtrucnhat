@@ -4,5 +4,6 @@ node_modules/
 bower_components/
 
 # other
+.tmp
 report/plato
 *.mp3
