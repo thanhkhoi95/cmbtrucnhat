@@ -1,7 +1,7 @@
 {
   "name": "welife",
   "description": "welife Project Generated from HotTowel Angular",
-  "version": "0.1",
+  "version": "0.0.0",
   "engines": {
     "node": "6.11.1",
     "npm": "3.10.x"
