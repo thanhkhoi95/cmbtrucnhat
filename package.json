@@ -8,6 +8,7 @@
   },
   "scripts": {
     "install": "bower install",
+    "postinstall": "webdriver-manager update",
     "start": "node src/server/app.js"
   },
   "dependencies": {
