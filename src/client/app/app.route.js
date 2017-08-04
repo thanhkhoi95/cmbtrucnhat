@@ -25,6 +25,16 @@
             if (toState.url === '/') {
                 event.preventDefault();
                 $state.go('layout.homepage');
+            } else if (toState.url === '/admin') {
+                if (!authService.login(null, 2)) {
+                    event.preventDefault();
+                    $state.go('auth.login');
+                }
+            } else if (toState.url === '/login') {
+                if (authService.login(null, 2)) {
+                    event.preventDefault();
+                    $state.go('layout.admin');
+                }
             }
         });
     }

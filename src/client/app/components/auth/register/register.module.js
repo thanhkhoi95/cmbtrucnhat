@@ -1,1 +1,0 @@
-angular.module('app.register', ['services.auth', 'ui.router']);

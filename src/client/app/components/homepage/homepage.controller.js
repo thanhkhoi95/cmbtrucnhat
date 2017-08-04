@@ -232,7 +232,7 @@
                 seek = 0;
             }
             myAudio.pause();
-            myAudio.currentTime = seek * (myAudio.duration - 2);
+            myAudio.currentTime = seek * (myAudio.duration - 1);
             myAudio.play();
         });
 
@@ -299,8 +299,8 @@
         });
 
         myAudio.addEventListener('loadedmetadata', function () {
-            durationMinutes = Math.floor((myAudio.duration-2) / 60);
-            durationSeconds = Math.floor((myAudio.duration-2) - 60 * durationMinutes);
+            durationMinutes = Math.floor((myAudio.duration-1) / 60);
+            durationSeconds = Math.floor((myAudio.duration-1) - 60 * durationMinutes);
             displayTime = pad(currentMinutes) + ':' + pad(currentSeconds) + '/' + pad(durationMinutes) + ':' + pad(durationSeconds);
             $('#time').html(displayTime);
         });
@@ -310,7 +310,7 @@
         });
 
         myAudio.addEventListener('timeupdate', function () {
-            var duration = myAudio.duration - 2;
+            var duration = myAudio.duration - 1;
             var percentage;
             if (duration > 0) {
                 percentage = (myAudio.currentTime / duration) * 100;

@@ -11,7 +11,7 @@ function LoginController($scope, $state, authService) {
 
     function login() {
         var request = {
-            email: vm.email,
+            username: vm.username,
             password: vm.password
         };
         console.log(request);
