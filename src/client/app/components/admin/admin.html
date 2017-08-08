@@ -1,29 +1,29 @@
 <div class="team-container container-fluid">
   <div class="main-menu-container row">
-    <div class="team-menu col-xs-3 col-sm-3" ng-class="vm.menu=='exploreTeam'?'lightup':''" ng-click="vm.changeMenu('exploreTeam')">
-      <div ng-class="vm.menu=='exploreTeam'?'neonOn-green':'neonOff'"></div>
+    <div class="team-menu col-xs-3 col-sm-3" ng-class="vm.menu==0?'lightup':''" ng-click="vm.changeMenu(0)">
+      <div ng-class="vm.menu=='0'?'neonOn-green':'neonOff'"></div>
       <img src="../../../assets/images/group (2).svg" class="icon">
       <div class="menu-name">Songs</div>
       <div class="quantity">69</div>
     </div>
-    <div class="team-menu col-xs-3 col-sm-3" ng-class="vm.menu=='message'?'lightup':''" ng-click="vm.changeMenu('message')">
-      <div ng-class="vm.menu=='message'?'neonOn-pink':'neonOff'"></div>
+    <div class="team-menu col-xs-3 col-sm-3" ng-class="vm.menu==1?'lightup':''" ng-click="vm.changeMenu(1)">
+      <div ng-class="vm.menu=='1'?'neonOn-pink':'neonOff'"></div>
       <img src="../../../assets/images/email.svg" class="icon">
       <div class="menu-name">Singers</div>
-      <div class="quantity">21</div>
+      <div class="quantity">{{vm.numOfSingers}}</div>
     </div>
-    <div class="team-menu col-xs-3 col-sm-3" ng-class="vm.menu=='match'?'lightup':''" ng-click="vm.changeMenu('match')">
-      <div ng-class="vm.menu=='match'?'neonOn-red':'neonOff'"></div>
+    <div class="team-menu col-xs-3 col-sm-3" ng-class="vm.menu==2?'lightup':''" ng-click="vm.changeMenu(2)">
+      <div ng-class="vm.menu==2?'neonOn-red':'neonOff'"></div>
       <img src="../../../assets/images/football-field.svg" class="icon">
       <div class="menu-name">Composers</div>
       <div class="quantity">13</div>
     </div>
   </div>
   <div class="page-detail">
-    <song-list ng-if="vm.menu=='exploreTeam'" menu="vm.menu"></song-list>
-    <singer ng-if="vm.menu=='message'"></singer>
+    <song-list ng-if="vm.menu==0" menu="vm.menu"></song-list>
+    <singer ng-if="vm.menu==1 && vm.subState[1]==0" menu="vm.menu" sub-state="vm.subState[1]" num-of-singers="vm.numOfSingers" current-artist-index="vm.currentArtistIndex" singers-list="vm.singersList"></singer>
 
-    <team-register ng-if="vm.menu=='teamRegister'" menu="vm.menu"></team-register>
-    <team-profile ng-if="vm.menu=='teamProfile'" menu="vm.menu"></team-profile>
+    <singer-detail  ng-if="vm.menu==1 && vm.subState[1]!=0" menu="vm.menu" sub-state="vm.subState[1]" current-artist-index="vm.currentArtistIndex" singers-list="vm.singersList"></singer-detail>
+    <!-- <team-profile ng-if="vm.menu=='teamProfile'" menu="vm.menu"></team-profile> -->
   </div>
 </div>

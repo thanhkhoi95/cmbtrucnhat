@@ -113,58 +113,96 @@
 
         if (type === 'name') {
             Music.collection.dropIndex('lyric_text');
-            Music.collection.createIndex({ name: 'text' });
-            return Music.count({ $text: { $search: str } }).then(function (count) {
-                return Music.find({ $text: { $search: str } })
-                    .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
-                    .limit(pageSize)
-                    .populate(['artistId', 'musicianId'])
-                    .exec()
-                    .then(
-                    /* Fulfilled */
-                    function (musics) {
-                        Music.collection.createIndex({ lyric: 'text' });
-                        var res = pagination.paging(musics, count, pageIndex, pageSize);
-                        for (var i in res.items) {
-                            res.items[i] = converter.musicToResponseObject(res.items[i]);
+            return Music.collection.createIndex({ name: 'text' }).then(
+                function () {
+                    return Music.count({ $text: { $search: str } }).then(
+                        function (count) {
+                            return Music.find({ $text: { $search: str } }, { score: { $meta: 'textScore' } })
+                                .sort({ score: { $meta: 'textScore' } })
+                                .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
+                                .limit(pageSize)
+                                .populate(['artistId', 'musicianId'])
+                                .exec()
+                                .then(
+                                /* Fulfilled */
+                                function (musics) {
+                                    var res = pagination.paging(musics, count, pageIndex, pageSize);
+                                    for (var i in res.items) {
+                                        res.items[i] = converter.musicToResponseObject(res.items[i]);
+                                    }
+                                    return Promise.resolve(res);
+                                },
+                                /* Catch error */
+                                function (err) {
+                                    console.log(err);
+                                    return Promise.reject(err);
+                                });
+                        },
+                        function (err) {
+                            console.log(err);
+                            return Promise.reject(
+                                {
+                                    message: 'Search error'
+                                }
+                            );
                         }
-                        return Promise.resolve(res);
-                    },
-                    /* Catch error */
-                    function (err) {
-                        Music.collection.createIndex({ lyric: 'text' });
-                        console.log(err);
-                        return Promise.reject(err);
-                    });
-            });
+                    );
+                },
+                function (err) {
+                    console.log(err);
+                    return Promise.reject(
+                        {
+                            message: 'Search error'
+                        }
+                    );
+                }
+            );
         }
 
         if (type === 'lyric') {
             Music.collection.dropIndex('name_text');
-            Music.collection.createIndex({ lyric: 'text' });
-            return Music.count({ $text: { $search: str } }).then(function (count) {
-                return Music.find({ $text: { $search: str } })
-                    .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
-                    .limit(pageSize)
-                    .populate(['artistId', 'musicianId'])
-                    .exec()
-                    .then(
-                    /* Fulfilled */
-                    function (musics) {
-                        Music.collection.createIndex({ name: 'text' });
-                        var res = pagination.paging(musics, count, pageIndex, pageSize);
-                        for (var i in res.items) {
-                            res.items[i] = converter.musicToResponseObject(res.items[i]);
+            return Music.collection.createIndex({ lyric: 'text' }).then(
+                function () {
+                    return Music.count({ $text: { $search: str } }).then(
+                        function (count) {
+                            return Music.find({ $text: { $search: str } }, { score: { $meta: 'textScore' } })
+                                .sort({ score: { $meta: 'textScore' } })
+                                .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
+                                .limit(pageSize)
+                                .populate(['artistId', 'musicianId'])
+                                .exec()
+                                .then(
+                                /* Fulfilled */
+                                function (musics) {
+                                    var res = pagination.paging(musics, count, pageIndex, pageSize);
+                                    for (var i in res.items) {
+                                        res.items[i] = converter.musicToResponseObject(res.items[i]);
+                                    }
+                                    return Promise.resolve(res);
+                                },
+                                /* Catch error */
+                                function (err) {
+                                    return Promise.reject(err);
+                                });
+                        },
+                        function (err) {
+                            console.log(err);
+                            return Promise.reject(
+                                {
+                                    message: 'Search error'
+                                }
+                            );
                         }
-                        return Promise.resolve(res);
-                    },
-                    /* Catch error */
-                    function (err) {
-                        Music.collection.createIndex({ name: 'text' });
-                        console.log(err);
-                        return Promise.reject(err);
-                    });
-            });
+                    );
+                },
+                function () {
+                    return Promise.reject(
+                        {
+                            message: 'Search error'
+                        }
+                    );
+                }
+            );
         }
 
         if (type === 'artist') {
@@ -175,7 +213,8 @@
                         idList.push(artists[i]._id);
                     }
                     return Music.count({ artistId: { $in: idList } }).then(function (count) {
-                        return Music.find({ artistId: { $in: idList } })
+                        return Music.find({ artistId: { $in: idList } }, { score: { $meta: 'textScore' } })
+                            .sort({ score: { $meta: 'textScore' } })
                             .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
                             .limit(pageSize)
                             .populate(['artistId', 'musicianId'])
@@ -211,7 +250,8 @@
                         idList.push(musicians[i]._id);
                     }
                     return Musician.count({ musicianId: { $in: idList } }).then(function (count) {
-                        return Music.find({ musicianId: { $in: idList } })
+                        return Music.find({ musicianId: { $in: idList } }, { score: { $meta: 'textScore' } })
+                            .sort({ score: { $meta: 'textScore' } })
                             .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
                             .limit(pageSize)
                             .populate(['artistId', 'musicianId'])

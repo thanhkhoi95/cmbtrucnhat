@@ -4,7 +4,7 @@
     </div>
     <div class="listContainer" id="listCon-singer">
         <div infinite-scroll='vm.loadMore()' infinite-scroll-distance='1' infinite-scroll-container='"#listCon-singer"' infinite-scroll-parent="true">
-            <singer-item ng-repeat="singer in vm.singersList" singer={{singer}}></singer-item>
+            <singer-item ng-repeat="singer in vm.singersList" singer={{singer}} ng-click="vm.changeView($index)"></singer-item>
         </div>
     </div>
 </div>

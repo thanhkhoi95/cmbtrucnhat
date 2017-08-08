@@ -1,9 +1,12 @@
 .messageContainer {
     height: 100%;
     padding: 10px 30px;
+    background: rgba(47, 47, 47, 0.2);
     .messageBarContainer {
         color: white;
         margin-bottom: 15px;
+        display: inline-block;
+        width: 50%;
         .messageTitle {
             display: inline-block;
             margin-right: 20px;
@@ -19,6 +22,9 @@
             background-color: transparent;
             padding-top: 3px;
         }
+    }
+    .listContainer {
+        min-height: 84%;
     }
 }
 

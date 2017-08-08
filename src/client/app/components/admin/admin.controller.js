@@ -3,8 +3,19 @@ angular.module('app.admin')
 
 function adminController() {
   var vm = this;
-  vm.menu = 'exploreTeam';
+
+  var newMusician = {
+    name: '',
+    birthdate: undefined,
+    detailInformation: undefined
+  };
+
+  vm.menu = 1;
+  vm.subState = [0, 0, 0];
   vm.changeMenu = changeMenu;
+  vm.numOfSingers = '';
+  vm.currentArtistIndex = -1;
+  vm.singersList = [];
 
   function changeMenu(state) {
     vm.menu = state;

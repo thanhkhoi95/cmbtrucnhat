@@ -265,6 +265,12 @@ html {
 
 #listCon-singer {
     height: 84%;
+    .infoTabContainer {
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(0, 0, 90, 0.2);
+        }
+    }
 }
 
 #player {
@@ -617,6 +623,25 @@ html {
     &:focus {
         outline: none;
     }
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-inner-spin-button{
+    display: none;
+}
+
+input[type='text'], 
+input[type='date'] {
+    &:focus {
+        border-color: #66afe9;
+        
+    }
+}
+
+.detailInformation {
+    background: none !important;
+    color: white;
+    resize: none;
 }
 
 @import 'stylePages/fonts';
