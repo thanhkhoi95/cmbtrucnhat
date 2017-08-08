@@ -5,6 +5,7 @@
         'app.login',
         'app.layout',
         'app.homepage',
+        'app.admin',
 
         'ui.router',
         'angular-jwt',

@@ -123,6 +123,7 @@
                     .then(
                     /* Fulfilled */
                     function (musics) {
+                        Music.collection.createIndex({ lyric: 'text' });
                         var res = pagination.paging(musics, count, pageIndex, pageSize);
                         for (var i in res.items) {
                             res.items[i] = converter.musicToResponseObject(res.items[i]);
@@ -131,6 +132,7 @@
                     },
                     /* Catch error */
                     function (err) {
+                        Music.collection.createIndex({ lyric: 'text' });
                         console.log(err);
                         return Promise.reject(err);
                     });
@@ -149,6 +151,7 @@
                     .then(
                     /* Fulfilled */
                     function (musics) {
+                        Music.collection.createIndex({ name: 'text' });
                         var res = pagination.paging(musics, count, pageIndex, pageSize);
                         for (var i in res.items) {
                             res.items[i] = converter.musicToResponseObject(res.items[i]);
@@ -157,6 +160,7 @@
                     },
                     /* Catch error */
                     function (err) {
+                        Music.collection.createIndex({ name: 'text' });
                         console.log(err);
                         return Promise.reject(err);
                     });

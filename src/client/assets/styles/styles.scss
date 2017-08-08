@@ -263,6 +263,10 @@ html {
     height: 84%;
 }
 
+#listCon-singer {
+    height: 84%;
+}
+
 #player {
     width: 90%;
     height: 100%;
@@ -619,3 +623,7 @@ html {
 @import 'stylePages/auth';
 @import 'stylePages/layout';
 @import 'stylePages/homepage';
+@import 'stylePages/team';
+@import 'stylePages/team.register';
+@import 'stylePages/team.list';
+@import 'stylePages/team.message';

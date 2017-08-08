@@ -84,6 +84,7 @@
 
         return Musician.count({}).then(function (count) {
             return Musician.find({})
+                .sort({ lowerCaseName: 1 })
                 .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
                 .limit(pageSize).exec()
                 .then(

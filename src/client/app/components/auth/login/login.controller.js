@@ -17,7 +17,7 @@ function LoginController($scope, $state, authService) {
         console.log(request);
         return authService.login(request, vm.remember === true ? 1 : 0).then(function (res) {
             toastr.success(res);
-            $state.go('layout.homepage');
+            $state.go('layout.admin');
         }, function (err) {
             toastr.error(err);
         });

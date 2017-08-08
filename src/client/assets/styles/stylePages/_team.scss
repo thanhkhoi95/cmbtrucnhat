@@ -1,7 +1,8 @@
 //TEAM PAGE
 .team-container {
     margin-left: 3%;
-    height: 86%;
+    margin-top: 3%;
+    height: 100%;
     overflow-y: auto;
     padding-left: 0!important;
     @extend .customScrollBar;
@@ -30,7 +31,7 @@
             }
             .neonOn-green {
                 width: 100%;
-                height: 2px;
+                height: 3px;
                 position: relative;
                 bottom: -108px;
                 box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
@@ -39,7 +40,7 @@
             }
             .neonOn-pink {
                 width: 100%;
-                height: 2px;
+                height: 3px;
                 position: relative;
                 bottom: -108px;
                 box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
@@ -48,7 +49,7 @@
             }
             .neonOn-red {
                 width: 100%;
-                height: 2px;
+                height: 3px;
                 position: relative;
                 bottom: -108px;
                 box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
@@ -64,15 +65,17 @@
                 box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
                 transition: all 0.2s ease-in;
             }
-            .menu-name {
-                position: absolute;
-                bottom: 20px;
-                right: 20px;
-            }
             .quantity {
                 position: absolute;
-                font-size: 45px;
+                bottom: 15px;
                 right: 20px;
+                font-size: 20px;
+            }
+            .menu-name {
+                position: absolute;
+                font-size: 30px;
+                right: 20px;
+                top: 15px;
             }
             .icon {
                 width: 27px;
@@ -89,7 +92,7 @@
         box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
         display: inline-block;
         width: 98%;
-        height: calc(100% - 150px);
+        height: 70%;
         margin: 20px 0 0 0;
     }
 }

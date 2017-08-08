@@ -1,8 +1,8 @@
 (function () {
     angular.module('app.homepage')
-        .controller('HomePageController', ['$scope', '$q', '$http', '$state', 'authService', HomepageController]);
+        .controller('HomePageController', ['$scope', '$q', '$http', '$state', HomepageController]);
 
-    function HomepageController($scope, $q, $http, $state, authService) {
+    function HomepageController($scope, $q, $http, $state) {
         var currentPage = 1;
         var pageSize = 12;
         var vm = this;
@@ -411,7 +411,6 @@
                     function (res) {
                         for (var i in res.items) {
                             if (res.items[i]) {
-                                res.items[i].birthdate = moment(res.items[i].time).format('DD-MM-YYYY');
                                 $scope.tracksList.push(res.items[i]);
                             }
                         }
