@@ -92,7 +92,6 @@
 
         function updateArtist(req, res, next) {
             var artistInfo = req.body;
-            console.log(artistInfo);
             artistDao.update(artistInfo).then(
                 /* Fulfilled */
                 function (response) {

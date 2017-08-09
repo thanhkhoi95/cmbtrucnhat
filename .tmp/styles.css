@@ -87,6 +87,17 @@ html {
   display: inline-block;
   margin: 0 10px; }
 
+.addnewBtn {
+  width: 20px;
+  height: 20px;
+  background-image: url("../src/client/assets/images/addnew.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 10px; }
+
 .azBtn {
   width: 20px;
   height: 20px;
@@ -1223,8 +1234,7 @@ input[type='date']:focus {
     width: 70%;
     margin-top: 40px; }
   .teamRegisterContainer .btnGroup {
-    height: 100%;
-    margin-top: 40px; }
+    height: 100%; }
 
 /* PC DISPLAY*/
 .awayTeamContainer {
@@ -1364,6 +1374,10 @@ input[type='date']:focus {
       padding-top: 3px; }
   .messageContainer .listContainer {
     min-height: 84%; }
+  .messageContainer > .btnGroup {
+    width: 49% !important;
+    margin-top: 17px;
+    text-align: right; }
 
 .challengeMesContainer {
   transition: height 500ms ease;

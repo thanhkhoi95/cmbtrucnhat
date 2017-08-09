@@ -57,6 +57,8 @@
     "globals": {
         "angular": false,
         "Promise": false,
-        "Deferred": false
+        "Deferred": false,
+        "moment": false,
+        "toastr": false
     }
 }

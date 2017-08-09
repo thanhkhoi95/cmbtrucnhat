@@ -12,22 +12,20 @@ angular.module('app.admin')
         }
     });
 
-    singerController.$inject = ['$scope', '$q', '$http', '$state'];
+singerController.$inject = ['$scope', '$q', '$http', '$state'];
 
 function singerController($scope, $q, $http, $state) {
     var vm = this;
     vm.isBusy = false;
     vm.singersListMode = 0;
-    vm.pageSize = 10;
+    vm.pageSize = 100;
     vm.currentPage = 1;
     vm.loadMore = loadMore;
     vm.changeView = changeView;
 
     function changeView(index) {
         vm.subState = 1;
-        if (index > -1) {
-            vm.currentArtistIndex = index;
-        }
+        vm.currentArtistIndex = index;
     }
 
     function getSingers(pageIndex) {
@@ -56,7 +54,7 @@ function singerController($scope, $q, $http, $state) {
             }
             more.then(
                 function (res) {
-                vm.numOfSingers = res.totalItems;
+                    vm.numOfSingers = res.totalItems;
                     for (var i in res.items) {
                         if (res.items[i]) {
                             if (res.items[i].birthdate) {

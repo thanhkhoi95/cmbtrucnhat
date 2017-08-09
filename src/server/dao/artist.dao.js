@@ -134,7 +134,6 @@
         return Artist.findOne({ _id: artistInfo._id }).then(
             /* Fulfilled */
             function (artist) {
-                console.log(artist);
                 if (!artist) {
                     return Promise.reject(
                         {
@@ -149,7 +148,6 @@
                 return artist.save().then(
                     /* Fulfilled */
                     function (updatedArtist) {
-                        console.log(updatedArtist);
                         return Promise.resolve(
                             {
                                 artist: updatedArtist

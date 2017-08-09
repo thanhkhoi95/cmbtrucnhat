@@ -20,10 +20,10 @@
     </div>
   </div>
   <div class="page-detail">
-    <song-list ng-if="vm.menu==0" menu="vm.menu"></song-list>
-    <singer ng-if="vm.menu==1 && vm.subState[1]==0" menu="vm.menu" sub-state="vm.subState[1]" num-of-singers="vm.numOfSingers" current-artist-index="vm.currentArtistIndex" singers-list="vm.singersList"></singer>
+    <song-list ng-show="vm.menu==0" menu="vm.menu"></song-list>
+    <singer ng-show="vm.menu==1 && vm.subState[1]==0" menu="vm.menu" sub-state="vm.subState[1]" num-of-singers="vm.numOfSingers" current-artist-index="vm.currentArtistIndex" singers-list="vm.singersList"></singer>
 
-    <singer-detail  ng-if="vm.menu==1 && vm.subState[1]!=0" menu="vm.menu" sub-state="vm.subState[1]" current-artist-index="vm.currentArtistIndex" singers-list="vm.singersList"></singer-detail>
+    <singer-detail  ng-if="vm.menu==1 && vm.subState[1]!=0" menu="vm.menu" sub-state="vm.subState" current-artist-index="vm.currentArtistIndex" singers-list="vm.singersList"></singer-detail>
     <!-- <team-profile ng-if="vm.menu=='teamProfile'" menu="vm.menu"></team-profile> -->
   </div>
 </div>

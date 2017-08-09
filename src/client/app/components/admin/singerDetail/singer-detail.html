@@ -1,6 +1,6 @@
 <div class="messageContainer">
     <div class="messageBarContainer ">
-        <h4 class="messageTitle">CREATE A TEAM</h4>
+        <h4 class="messageTitle">{{vm.title}}</h4>
     </div>
     <form class="teamRegisterContainer col-xs-12">
         <div class="infoTeamRegister col-xs-9">
@@ -17,16 +17,36 @@
                 <textarea class="form-control detailInformation" rows="5" name="artistInfo" ng-model="vm.currentArtist.detailInformation"></textarea>
             </div>
         </div>
-        <div class="btnGroup infoTeamRegister col-xs-3">
-            <div class="input-group">
-                <button class="btn btn-default" ng-click="vm.save()">SAVE</button>
+        <div class="btnGroup infoTeamRegister col-xs-3" ng-style="vm.currentArtistIndex == -1 ? {'margin-top': '40px'} : {}">
+            <div class="input-group" ng-if="vm.currentArtistIndex == -1">
+                <button class="btn btn-default" ng-click="vm.action(2)">ADD</button>
+            </div>
+            <div class="input-group" ng-if="vm.currentArtistIndex > -1">
+                <button class="btn btn-default" ng-click="vm.action(0)">SAVE</button>
             </div>
             <div class="input-group">
                 <button class="btn btn-default" ng-click="vm.reset()">RESET</button>
+            </div>
+            <div class="input-group" ng-if="vm.currentArtistIndex > -1">
+                <button class="btn btn-default" ng-click="vm.action(1)">REMOVE</button>
             </div>
             <div class="input-group">
                 <button class="btn btn-default" ng-click="vm.back()">BACK</button>
             </div>
         </div>
     </form>
+    <div class="modal fade" id="confirmModal" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">WARNING</h3>
+                    <p>Are you sure to update this artist's infomation?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="vm.confirm()" class="btn btn-default">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
