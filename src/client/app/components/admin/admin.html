@@ -21,9 +21,11 @@
   </div>
   <div class="page-detail">
     <song-list ng-show="vm.menu==0" menu="vm.menu"></song-list>
-    <singer ng-show="vm.menu==1 && vm.subState[1]==0" menu="vm.menu" sub-state="vm.subState[1]" num-of-singers="vm.numOfSingers" current-artist-index="vm.currentArtistIndex" singers-list="vm.singersList"></singer>
+    <singer ng-show="vm.menu==1 && vm.subState[1]==0" menu="vm.menu" sub-state="vm.subState" num-of-singers="vm.numOfSingers" current-artist-index="vm.currentArtistIndex" singers-list="vm.singersList"></singer>
+    <composer ng-show="vm.menu==2 && vm.subState[2]==0" menu="vm.menu" sub-state="vm.subState" num-of-composers="vm.numOfComposers" current-musician-index="vm.currentMusicianIndex" composers-list="vm.composersList"></composer>
 
     <singer-detail  ng-if="vm.menu==1 && vm.subState[1]!=0" menu="vm.menu" sub-state="vm.subState" current-artist-index="vm.currentArtistIndex" singers-list="vm.singersList"></singer-detail>
+    <composer-detail  ng-if="vm.menu==2 && vm.subState[2]!=0" menu="vm.menu" sub-state="vm.subState" current-musician-index="vm.currentMusicianIndex" composers-list="vm.composersList"></composer-detail>
     <!-- <team-profile ng-if="vm.menu=='teamProfile'" menu="vm.menu"></team-profile> -->
   </div>
 </div>

@@ -8,20 +8,23 @@
 
         router.get('/', getAllArtists);
         router.get('/getArtist/:id', getArtistById);
-        router.get('/topPlays', getTopPlaysArtists);
-        router.get('/topDownloads', getTopDownloadsArtists);
+        router.get('/top', getTopArtists);
         router.post('/', auth.parser('admin'), createArtist);
         router.put('/', auth.parser('admin'), updateArtist);
         router.delete('/:id', auth.parser('admin'), deleteArtistById);
         router.post('/search', searchArtist);
 
-        function getTopPlaysArtists(req, res, next) {
-            artistDao.getTopPlays();
-            res.end();
-        }
-
-        function getTopDownloadsArtists(req, res, next) {
-
+        function getTopArtists(req, res, next) {
+            var pageIndex = req.query.pageIndex;
+            var pageSize = req.query.pageSize;
+            artistDao.getTop(pageIndex, pageSize).then(
+                function (response) {
+                    res.send(response);
+                },
+                function (error) {
+                    next(error);
+                }
+            );
         }
 
         function searchArtist(req, res, next) {

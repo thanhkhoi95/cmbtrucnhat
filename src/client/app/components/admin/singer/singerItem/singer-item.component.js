@@ -4,7 +4,9 @@ angular.module('app.admin')
         controller: singerItemController,
         controllerAs: 'vm',
         bindings: {
-            singer: '@'
+            singer: '@',
+            rank: '@',
+            index: '@'
         }
     });
 
@@ -13,4 +15,5 @@ angular.module('app.admin')
 function singerItemController($scope) {
     var vm = this;
     vm.mySinger = JSON.parse(vm.singer);
+    vm.rankIndex = parseInt(vm.index) + 1;
 }

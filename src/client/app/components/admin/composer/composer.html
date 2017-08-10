@@ -4,17 +4,17 @@
     </div>
     <div class="messageBarContainer btnGroup">
         <div class="refreshBtn" ng-click="vm.refresh()"></div>
-        <div class="searchBtn" ng-class="{'searchBtn-active': vm.listMode == 2}" data-toggle="modal" data-target="#artistSearchModal"></div>
+        <div class="searchBtn" ng-class="{'searchBtn-active': vm.listMode == 2}" data-toggle="modal" data-target="#composerSearchModal"></div>
         <div class="addnewBtn" ng-click="vm.changeView(-1)"></div>
         <div ng-show="vm.subState[0] == 0" class="statisticBtn" ng-class="{'statisticBtn-active': vm.listMode == 1}" ng-click="vm.changeListMode(1)"></div>
         <div class="azBtn" ng-class="{'azBtn-active': vm.listMode == 0}" ng-click="vm.changeListMode(0)"></div>
     </div>
     <div class="listContainer" id="listCon-singer">
         <div infinite-scroll='vm.loadMore()' infinite-scroll-distance='1' infinite-scroll-container='"#listCon-singer"' infinite-scroll-parent="true">
-            <singer-item ng-repeat="singer in vm.singersList" singer={{singer}} index={{$index}} rank={{vm.listMode}} ng-click="vm.changeView($index)"></singer-item>
+            <composer-item ng-repeat="composer in vm.composersList" composer={{composer}} index={{$index}} rank={{vm.listMode}} ng-click="vm.changeView($index)"></composer-item>
         </div>
     </div>
-    <div class="modal fade" id="artistSearchModal" role="dialog">
+    <div class="modal fade" id="composerSearchModal" role="dialog">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
@@ -26,7 +26,7 @@
                         <form>
                             <h4>Artist's name:</h4>
                             <input ng-model="vm.search.searchString" type="text" id="searchContent" placeholder="Enter the contents you want to search...">
-                            <tt ng-if="vm.search.searchString == ''" style="color: red"><i>&nbsp;&nbsp;Artist'name cannot leaved blank!</i></tt>
+                            <tt ng-if="vm.search.searchString == ''" style="color: red"><i>&nbsp;&nbsp;Composer'name cannot leaved blank!</i></tt>
                         </form>
                     </p>
                 </div>

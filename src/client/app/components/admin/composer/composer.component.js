@@ -1,27 +1,27 @@
 angular.module('app.admin')
-    .component('singer', {
-        templateUrl: 'app/components/admin/singer/singer.html',
-        controller: singerController,
+    .component('composer', {
+        templateUrl: 'app/components/admin/composer/composer.html',
+        controller: composerController,
         controllerAs: 'vm',
         bindings: {
             menu: '=',
             subState: '=',
-            numOfSingers: '=',
-            currentArtistIndex: '=',
-            singersList: '='
+            numOfComposers: '=',
+            currentMusicianIndex: '=',
+            composersList: '='
         }
     });
 
-singerController.$inject = ['$scope', '$q', '$http', '$state'];
+    composerController.$inject = ['$scope', '$q', '$http', '$state'];
 
-function singerController($scope, $q, $http, $state) {
+function composerController($scope, $q, $http, $state) {
     var vm = this;
 
     vm.loadMore = loadMore;
     vm.changeView = changeView;
     vm.refresh = refresh;
     vm.changeListMode = changeListMode;
-    vm.searchArtist = searchArtist;
+    vm.searchComposer = searchComposer;
 
 
     vm.listMode = 0;
@@ -31,15 +31,15 @@ function singerController($scope, $q, $http, $state) {
     vm.search = {
         searchString: ''
     };
-    vm.title = 'ARTIST LIST (A-Z)';
+    vm.title = 'Composer list (a-z)';
 
-    function searchArtist() {
+    function searchComposer() {
         if (!vm.search.searchString || vm.search.searchString === '') {
             return;
         }
-        $('#artistSearchModal').modal('hide');
+        $('#composerSearchModal').modal('hide');
         vm.listMode = 2;
-        vm.title = 'SEARCH\'S RESULTS';
+        vm.title = 'Search\'s results';
         refresh();
     }
 
@@ -47,23 +47,23 @@ function singerController($scope, $q, $http, $state) {
         if (vm.listMode !== mode) {
             vm.listMode = mode;
             if (mode === 0) {
-                vm.title = 'ARTIST LIST (A-Z)';
+                vm.title = 'Composer list (a-z)';
             } else if (mode === 1) {
-                vm.title = 'ARTIST RANK LIST';
+                vm.title = 'Composer rank list';
             }
             refresh();
         }
     }
 
     function changeView(index) {
-        vm.subState[1] = 1;
-        vm.currentArtistIndex = index;
+        vm.subState[2] = 1;
+        vm.currentMusicianIndex = index;
     }
 
-    function getSingers(pageIndex) {
+    function getComposers(pageIndex) {
         var deferred = $q.defer();
         var url;
-        url = '/api/artist?pageIndex=';
+        url = '/api/musician?pageIndex=';
         $http({
             method: 'GET',
             url: url + pageIndex + '&pageSize=' + vm.pageSize
@@ -75,10 +75,10 @@ function singerController($scope, $q, $http, $state) {
         return deferred.promise;
     }
 
-    function getTopSingers(pageIndex) {
+    function getTopComposers(pageIndex) {
         var deferred = $q.defer();
         var url;
-        url = '/api/artist/top?pageIndex=';
+        url = '/api/musician/top?pageIndex=';
         $http({
             method: 'GET',
             url: url + pageIndex + '&pageSize=' + vm.pageSize
@@ -90,9 +90,9 @@ function singerController($scope, $q, $http, $state) {
         return deferred.promise;
     }
 
-    function getSearchSingers(pageIndex) {
+    function getSearchComposers(pageIndex) {
         var deferred = $q.defer();
-        $http.post('/api/artist/search?pageIndex=' + pageIndex + '&pageSize=' + vm.pageSize, vm.search).then(
+        $http.post('/api/musician/search?pageIndex=' + pageIndex + '&pageSize=' + vm.pageSize, vm.search).then(
             function successCallback(response) {
                 deferred.resolve(response.data);
             }, function (err) {
@@ -104,7 +104,7 @@ function singerController($scope, $q, $http, $state) {
 
     function refresh() {
         vm.currentPage = 1;
-        vm.singersList = [];
+        vm.composersList = [];
         loadMore(true);
     }
 
@@ -113,21 +113,21 @@ function singerController($scope, $q, $http, $state) {
             vm.isBusy = true;
             var more;
             if (vm.listMode === 0) {
-                more = getSingers(vm.currentPage);
+                more = getComposers(vm.currentPage);
             } else if (vm.listMode === 1) {
-                more = getTopSingers(vm.currentPage);
+                more = getTopComposers(vm.currentPage);
             } else if (vm.listMode === 2) {
-                more = getSearchSingers(vm.currentPage);
+                more = getSearchComposers(vm.currentPage);
             }
             more.then(
                 function (res) {
-                    vm.numOfSingers = res.totalItems;
+                    vm.numOfComposers = res.totalItems;
                     for (var i in res.items) {
                         if (res.items[i]) {
                             if (res.items[i].birthdate) {
                                 res.items[i].birthdate = moment(res.items[i].birthdate).format('MM/DD/YYYY');
                             }
-                            vm.singersList.push(res.items[i]);
+                            vm.composersList.push(res.items[i]);
                         }
                     }
                     if (vm.currentPage < res.totalPage) {

@@ -1,9 +1,10 @@
 (function () {
 
     var Artist = require('../model/artist.model');
-    var Music = require('../model/music.model')
+    var Music = require('../model/music.model');
     var genConf = require('../config/general');
     var pagination = require('../services/pagination');
+    var converter = require('../services/converter');
 
     module.exports = {
         getById: getById,
@@ -12,15 +13,20 @@
         update: update,
         deleteById: deleteById,
         search: search,
-        getTopPlays: getTopPlays,
-        getTopDownloads: getTopDownloads
+        getTop: getTop
     };
 
-    function getTopDownloads() {
-
-    }
-
-    function getTopPlays() {
+    function getTop(pageIndex, pageSize) {
+        if (!pageIndex || pageIndex < 1) {
+            pageIndex = 1;
+        } else {
+            pageIndex = parseInt(pageIndex);
+        }
+        if (!pageSize || pageSize < 1) {
+            pageSize = genConf.pageSize;
+        } else {
+            pageSize = parseInt(pageSize);
+        }
         var agg = [
             {
                 $match: {
@@ -33,19 +39,34 @@
                     plays: { $sum: "$plays" }
                 }
             },
-            { 
-                $sort : { 
-                    plays : -1 
-                } 
+            {
+                $sort: {
+                    plays: -1
+                }
             }
         ];
 
         return Music.aggregate(agg).then(
             function (data) {
-                return Artist.populate(data, { path: '_id', options: { sort: '-plays' } }).then(
+                return Artist.populate(data, { path: '_id' }).then(
                     function (data) {
-                        console.log(data);
-                        return Promise.resolve(data);
+                        var count = data.length;
+                        if ((pageIndex - 1) * pageSize <= count){
+                            data.splice(0, (pageIndex - 1) * pageSize);
+                            if (data.length > pageSize) {
+                                data.splice(pageSize, data.length - pageSize);
+                            }
+                        } else {
+                            data = [];
+                        }
+                        var res = pagination.paging(data, count, pageIndex, pageSize);
+                        for (var i in res.items) {
+                            if (res.items[i]) {
+                                res.items[i] = converter.statisticObjectToResponseObject(res.items[i]);
+                            }
+                        }
+                        console.log(res);
+                        return Promise.resolve(res);
                     },
                     function (err) {
                         console.log(err);
@@ -90,26 +111,35 @@
     }
 
     function deleteById(artistId) {
-        return Artist.remove({ _id: artistId }).then(
-            function () {
-                return Promise.resolve(
-                    {
-                        message: "Artist deleted"
+        return Artist.findOne({ _id: artistId }).then(
+            function (artist) {
+                return artist.remove().then(
+                    function () {
+                        return Promise.resolve(
+                            {
+                                message: 'Artist deleted'
+                            }
+                        );
+                    },
+                    function (err) {
+                        console.log(err);
+                        return Promise.resolve(
+                            {
+                                message: err.message
+                            }
+                        );
                     }
                 );
             },
             function (err) {
-                return Promise.resolve(
-                    {
-                        message: err.message
-                    }
-                );
+                console.log(err);
             }
         );
+
     }
 
-    function getById(ArtistId) {
-        return Artist.findOne({ _id: ArtistId }).then(
+    function getById(artistId) {
+        return Artist.findOne({ _id: artistId }).then(
             /* Fulfilled */
             function (artist) {
                 if (!artist) {

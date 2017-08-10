@@ -8,10 +8,24 @@
 
         router.get('/', getAllMusician);
         router.get('/:id', getMusicianById);
+        router.get('/top', getTopMusician);
         router.post('/', auth.parser('admin'), createMusician);
         router.put('/', auth.parser('admin'), updateMusician);
         router.delete('/:id', auth.parser('admin'), deleteMusicianById);
         router.post('/search', searchMusician);
+
+        function getTopMusician(req, res, next) {
+            var pageIndex = req.query.pageIndex;
+            var pageSize = req.query.pageSize;
+            musicianDao.getTop(pageIndex, pageSize).then(
+                function (response) {
+                    res.send(response);
+                },
+                function (error) {
+                    next(error);
+                }
+            );
+        }
 
         function searchMusician(req, res, next) {
             var pageIndex = req.query.pageIndex;

@@ -1,24 +1,27 @@
 angular.module('app.admin')
-  .controller('adminController', adminController);
+    .controller('adminController', adminController);
 
 function adminController() {
-  var vm = this;
+    var vm = this;
 
-  var newMusician = {
-    name: '',
-    birthdate: undefined,
-    detailInformation: undefined
-  };
+    var newMusician = {
+        name: '',
+        birthdate: undefined,
+        detailInformation: undefined
+    };
 
-  vm.menu = 1;
-  vm.subState = [0, 0, 0];
-  vm.changeMenu = changeMenu;
-  vm.numOfSingers = '';
-  vm.currentArtistIndex = -1;
-  vm.singersList = [];
+    vm.menu = 1;
+    vm.subState = [0, 0, 0];
+    vm.changeMenu = changeMenu;
+    vm.numOfSingers = '';
+    vm.currentArtistIndex = -1;
+    vm.singersList = [];
+    vm.numOfComposers = '';
+    vm.currentMusicianIndex = -1;
+    vm.composersList = [];
 
-  function changeMenu(state) {
-    vm.menu = state;
-  }
+    function changeMenu(state) {
+        vm.menu = state;
+    }
 
 }

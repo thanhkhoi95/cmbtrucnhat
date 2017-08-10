@@ -1,34 +1,111 @@
 (function () {
 
     var Musician = require('../model/musician.model');
+    var Music = require('../model/music.model');
     var genConf = require('../config/general');
     var pagination = require('../services/pagination');
+    var converter = require('../services/converter');
 
     module.exports = {
         getById: getById,
         create: create,
         getAll: getAll,
         update: update,
-        deleteById: deleteById
+        deleteById: deleteById,
+        getTop: getTop
     };
 
-    function deleteById(musicianId) {
-        return Musician.remove({ _id: musicianId }).then(
-            function () {
-                return Promise.resolve(
-                    {
-                        message: "Musician deleted"
+    function getTop(pageIndex, pageSize) {
+        if (!pageIndex || pageIndex < 1) {
+            pageIndex = 1;
+        } else {
+            pageIndex = parseInt(pageIndex);
+        }
+        if (!pageSize || pageSize < 1) {
+            pageSize = genConf.pageSize;
+        } else {
+            pageSize = parseInt(pageSize);
+        }
+        var agg = [
+            {
+                $match: {
+                    musicianId: { $ne: null }
+                }
+            },
+            {
+                $group: {
+                    _id: '$musicianId',
+                    plays: { $sum: '$plays' }
+                }
+            },
+            {
+                $sort: {
+                    plays: -1
+                }
+            }
+        ];
+
+        return Music.aggregate(agg).then(
+            function (data) {
+                return Musician.populate(data, { path: '_id' }).then(
+                    function (data) {
+                        var count = data.length;
+                        if ((pageIndex - 1) * pageSize <= count){
+                            data.splice(0, (pageIndex - 1) * pageSize);
+                            if (data.length > pageSize) {
+                                data.splice(pageSize, data.length - pageSize);
+                            }
+                        } else {
+                            data = [];
+                        }
+                        var res = pagination.paging(data, count, pageIndex, pageSize);
+                        for (var i in res.items) {
+                            if (res.items[i]) {
+                                res.items[i] = converter.statisticObjectToResponseObject(res.items[i]);
+                            }
+                        }
+                        console.log(res);
+                        return Promise.resolve(res);
+                    },
+                    function (err) {
+                        console.log(err);
+                        return Promise.reject(err);
                     }
                 );
             },
             function (err) {
-                return Promise.resolve(
-                    {
-                        message: err.message
-                    }
-                );
+                console.log(err);
+                return Promise.reject(err);
             }
         );
+    }
+
+    function deleteById(musicianId) {
+        return Musician.findOne({ _id: musicianId }).then(
+            function (musician) {
+                return musician.remove().then(
+                    function () {
+                        return Promise.resolve(
+                            {
+                                message: 'Musician deleted'
+                            }
+                        );
+                    },
+                    function (err) {
+                        console.log(err);
+                        return Promise.resolve(
+                            {
+                                message: err.message
+                            }
+                        );
+                    }
+                );
+            },
+            function (err) {
+                console.log(err);
+            }
+        );
+
     }
 
     function getById(musicianId) {
@@ -120,7 +197,7 @@
                     function (updatedMusician) {
                         return Promise.resolve(
                             {
-                                artist: updatedMusician
+                                composer: updatedMusician
                             }
                         );
                     },

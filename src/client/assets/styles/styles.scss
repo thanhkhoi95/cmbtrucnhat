@@ -117,6 +117,30 @@ html {
     margin: 0 10px;
 }
 
+.statisticBtn {
+    width: 20px;
+    height: 20px;
+    background-image: url('../src/client/assets/images/statistic.svg');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.statisticBtn-active {
+    width: 20px;
+    height: 20px;
+    background-image: url('../src/client/assets/images/statistic-active.svg');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 10px;
+}
+
 .azBtn {
     width: 20px;
     height: 20px;

@@ -2,7 +2,8 @@
 
     module.exports = {
         userToResponseObject: userToResponseObject,
-        musicToResponseObject: musicToResponseObject
+        musicToResponseObject: musicToResponseObject,
+        statisticObjectToResponseObject: statisticObjectToResponseObject
     };
 
     function userToResponseObject(user) {
@@ -28,6 +29,13 @@
         delete musicObject.artistId;
 
         return musicObject;
+    }
+
+    function statisticObjectToResponseObject(artist) {
+        var artistObject = JSON.parse(JSON.stringify(artist._id));
+        console.log(artistObject);
+        artistObject.plays = artist.plays;
+        return artistObject;
     }
 
 })();
