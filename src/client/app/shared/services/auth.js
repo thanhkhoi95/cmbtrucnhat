@@ -46,10 +46,10 @@
         }
 
         function getToken() {
-            if ($localStorage.token) {
+            if ($localStorage.welifeToken) {
                 return $localStorage.welifeToken;
 
-            } else if ($sessionStorage.token) {
+            } else if ($sessionStorage.welifeToken) {
                 return $sessionStorage.welifeToken;
 
             }

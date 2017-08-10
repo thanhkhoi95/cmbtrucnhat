@@ -85,6 +85,16 @@ function singerDetailController($scope, $http, $q, authService) {
                 break;
             }
             case 2: {
+                saveRequest().then(
+                    function (data) {
+                        toastr.success('Add new artist successfully');
+                        reset();
+                    },
+                    function (err) {
+                        toastr.error(err);
+                    }
+                );
+                $('#confirmModal').modal('hide');
                 break;
             }
         }
@@ -99,6 +109,8 @@ function singerDetailController($scope, $http, $q, authService) {
     }
 
     function action(nextAction) {
+        if (!document.getElementById('artistName').checkValidity() ||
+            !document.getElementById('artistBirthdate').checkValidity()) return;
         vm.nextAction = nextAction;
         $('#confirmModal').modal('toggle');
     }
@@ -158,11 +170,13 @@ function singerDetailController($scope, $http, $q, authService) {
             errMessage = 'Add new artist failed!';
         }
 
+        console.log(req);
         $http(req).then(
             function successCallback(response) {
                 deferred.resolve(response.data);
-            }, function () {
+            }, function (err) {
                 deferred.reject(errMessage);
+                console.log(err);
             }
         );
 

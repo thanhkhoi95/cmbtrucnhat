@@ -1,6 +1,7 @@
 (function () {
 
     var Artist = require('../model/artist.model');
+    var Music = require('../model/music.model')
     var genConf = require('../config/general');
     var pagination = require('../services/pagination');
 
@@ -10,8 +11,54 @@
         getAll: getAll,
         update: update,
         deleteById: deleteById,
-        search: search
+        search: search,
+        getTopPlays: getTopPlays,
+        getTopDownloads: getTopDownloads
     };
+
+    function getTopDownloads() {
+
+    }
+
+    function getTopPlays() {
+        var agg = [
+            {
+                $match: {
+                    artistId: { $ne: null }
+                }
+            },
+            {
+                $group: {
+                    _id: "$artistId",
+                    plays: { $sum: "$plays" }
+                }
+            },
+            { 
+                $sort : { 
+                    plays : -1 
+                } 
+            }
+        ];
+
+        return Music.aggregate(agg).then(
+            function (data) {
+                return Artist.populate(data, { path: '_id', options: { sort: '-plays' } }).then(
+                    function (data) {
+                        console.log(data);
+                        return Promise.resolve(data);
+                    },
+                    function (err) {
+                        console.log(err);
+                        return Promise.reject(err);
+                    }
+                );
+            },
+            function (err) {
+                console.log(err);
+                return Promise.reject(err);
+            }
+        );
+    }
 
     function search(pageIndex, pageSize, str) {
         if (!pageIndex || pageIndex < 1) {

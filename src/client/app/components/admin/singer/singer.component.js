@@ -22,6 +22,7 @@ function singerController($scope, $q, $http, $state) {
     vm.currentPage = 1;
     vm.loadMore = loadMore;
     vm.changeView = changeView;
+    vm.refresh = refresh;
 
     function changeView(index) {
         vm.subState = 1;
@@ -41,6 +42,11 @@ function singerController($scope, $q, $http, $state) {
             deferred.reject(null);
         });
         return deferred.promise;
+    }
+
+    function refresh() {
+        vm.singersList = [];
+        loadMore(true);
     }
 
     function loadMore(urgent) {

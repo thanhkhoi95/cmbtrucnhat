@@ -6,12 +6,23 @@
 
     module.exports = function () {
 
-        router.get('/', getAllArtist);
-        router.get('/:id', getArtistById);
+        router.get('/', getAllArtists);
+        router.get('/getArtist/:id', getArtistById);
+        router.get('/topPlays', getTopPlaysArtists);
+        router.get('/topDownloads', getTopDownloadsArtists);
         router.post('/', auth.parser('admin'), createArtist);
         router.put('/', auth.parser('admin'), updateArtist);
         router.delete('/:id', auth.parser('admin'), deleteArtistById);
         router.post('/search', searchArtist);
+
+        function getTopPlaysArtists(req, res, next) {
+            artistDao.getTopPlays();
+            res.end();
+        }
+
+        function getTopDownloadsArtists(req, res, next) {
+
+        }
 
         function searchArtist(req, res, next) {
             var pageIndex = req.query.pageIndex;
@@ -39,7 +50,7 @@
             );
         }
 
-        function getAllArtist(req, res, next) {
+        function getAllArtists(req, res, next) {
             var pageIndex = req.query.pageIndex;
             var pageSize = req.query.pageSize;
             artistDao.getAll(pageIndex, pageSize).then(
