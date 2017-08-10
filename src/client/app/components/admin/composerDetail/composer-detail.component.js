@@ -30,6 +30,8 @@ function composerDetailController($scope, $http, $q, authService) {
     vm.title = '';
     vm.backActionMode = 0;
 
+    console.log(vm.currentMusicianIndex);
+
     if (vm.currentMusicianIndex <= -1) {
         vm.title = 'Add new composer';
     } else {

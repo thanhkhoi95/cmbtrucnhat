@@ -12,8 +12,38 @@
         getAll: getAll,
         update: update,
         deleteById: deleteById,
-        getTop: getTop
+        getTop: getTop,
+        search: search
     };
+
+    function search(pageIndex, pageSize, str) {
+        if (!pageIndex || pageIndex < 1) {
+            pageIndex = 1;
+        } else {
+            pageIndex = parseInt(pageIndex);
+        }
+        if (!pageSize || pageSize < 1) {
+            pageSize = genConf.pageSize;
+        } else {
+            pageSize = parseInt(pageSize);
+        }
+
+        return Musician.count({ $text: { $search: str } }).then(function (count) {
+            return Musician.find({ $text: { $search: str } })
+                .skip((pageIndex > 0) ? (pageIndex - 1) * pageSize : 0)
+                .limit(pageSize).exec()
+                .then(
+                /* Fulfilled */
+                function (musicians) {
+                    var res = pagination.paging(musicians, count, pageIndex, pageSize);
+                    return Promise.resolve(res);
+                },
+                /* Catch error */
+                function (err) {
+                    return Promise.reject(err);
+                });
+        });
+    }
 
     function getTop(pageIndex, pageSize) {
         if (!pageIndex || pageIndex < 1) {

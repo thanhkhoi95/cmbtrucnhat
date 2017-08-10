@@ -8,7 +8,8 @@ angular.module('app.admin')
             subState: '=',
             numOfSingers: '=',
             currentArtistIndex: '=',
-            singersList: '='
+            singersList: '=',
+            changeCurrentArtistIndex: '&'
         }
     });
 
@@ -31,7 +32,7 @@ function singerController($scope, $q, $http, $state) {
     vm.search = {
         searchString: ''
     };
-    vm.title = 'ARTIST LIST (A-Z)';
+    vm.title = 'Artist list (a-z)';
 
     function searchArtist() {
         if (!vm.search.searchString || vm.search.searchString === '') {
@@ -39,7 +40,7 @@ function singerController($scope, $q, $http, $state) {
         }
         $('#artistSearchModal').modal('hide');
         vm.listMode = 2;
-        vm.title = 'SEARCH\'S RESULTS';
+        vm.title = 'Search\'s result';
         refresh();
     }
 
@@ -47,18 +48,18 @@ function singerController($scope, $q, $http, $state) {
         if (vm.listMode !== mode) {
             vm.listMode = mode;
             if (mode === 0) {
-                vm.title = 'ARTIST LIST (A-Z)';
+                vm.title = 'Artist list (a-z)';
             } else if (mode === 1) {
-                vm.title = 'ARTIST RANK LIST';
+                vm.title = 'Artist rank list';
             }
             refresh();
         }
     }
 
-    function changeView(index) {
+    function changeView(i) {
+        vm.changeCurrentArtistIndex({index: i});
         vm.subState[1] = 1;
-        vm.currentArtistIndex = index;
-    }
+    }   
 
     function getSingers(pageIndex) {
         var deferred = $q.defer();

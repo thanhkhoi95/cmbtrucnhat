@@ -8,7 +8,8 @@ angular.module('app.admin')
             subState: '=',
             numOfComposers: '=',
             currentMusicianIndex: '=',
-            composersList: '='
+            composersList: '=',
+            changeCurrentMusicianIndex: '&'
         }
     });
 
@@ -55,9 +56,9 @@ function composerController($scope, $q, $http, $state) {
         }
     }
 
-    function changeView(index) {
+    function changeView(i) {
+        vm.changeCurrentMusicianIndex({index: i});
         vm.subState[2] = 1;
-        vm.currentMusicianIndex = index;
     }
 
     function getComposers(pageIndex) {
@@ -134,6 +135,9 @@ function composerController($scope, $q, $http, $state) {
                         vm.currentPage++;
                         vm.isBusy = false;
                     }
+                },
+                function (err) {
+                    console.log(err);
                 }
             );
         }

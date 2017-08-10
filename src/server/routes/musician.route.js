@@ -7,7 +7,7 @@
     module.exports = function () {
 
         router.get('/', getAllMusician);
-        router.get('/:id', getMusicianById);
+        router.get('/getMusician/:id', getMusicianById);
         router.get('/top', getTopMusician);
         router.post('/', auth.parser('admin'), createMusician);
         router.put('/', auth.parser('admin'), updateMusician);

@@ -19,9 +19,19 @@ function adminController() {
     vm.numOfComposers = '';
     vm.currentMusicianIndex = -1;
     vm.composersList = [];
+    vm.changeCurrentArtistIndex = changeCurrentArtistIndex;
+    vm.changeCurrentMusicianIndex = changeCurrentMusicianIndex;
 
     function changeMenu(state) {
         vm.menu = state;
+    }
+
+    function changeCurrentArtistIndex(index) {
+        vm.currentArtistIndex = index;
+    }
+
+    function changeCurrentMusicianIndex(index) {
+        vm.currentMusicianIndex = index;
     }
 
 }

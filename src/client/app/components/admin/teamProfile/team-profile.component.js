@@ -11,6 +11,4 @@ teamProfileController.inject = [];
 
 function teamProfileController() {
   var vm = this;
-
-
 }
