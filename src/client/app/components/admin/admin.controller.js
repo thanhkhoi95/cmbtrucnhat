@@ -10,7 +10,7 @@ function adminController() {
         detailInformation: undefined
     };
 
-    vm.menu = 1;
+    vm.menu = 0;
     vm.subState = [0, 0, 0];
     vm.changeMenu = changeMenu;
     vm.numOfSingers = '';

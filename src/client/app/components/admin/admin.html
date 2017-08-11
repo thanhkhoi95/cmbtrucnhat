@@ -24,8 +24,9 @@
     <singer ng-show="vm.menu==1 && vm.subState[1]==0" menu="vm.menu" sub-state="vm.subState" num-of-singers="vm.numOfSingers" current-artist-index="vm.currentArtistIndex" singers-list="vm.singersList" change-current-artist-index="vm.changeCurrentArtistIndex(index)"></singer>
     <composer ng-show="vm.menu==2 && vm.subState[2]==0" menu="vm.menu" sub-state="vm.subState" num-of-composers="vm.numOfComposers" current-musician-index="vm.currentMusicianIndex" composers-list="vm.composersList" change-current-musician-index="vm.changeCurrentMusicianIndex(index)"></composer> 
 
+    <song-detail  ng-if="vm.menu==0 && vm.subState[0]!=0" menu="vm.menu" sub-state="vm.subState" current-music-index="vm.currentMusicIndex" songs-list="vm.songsList"></song-detail>
     <singer-detail  ng-if="vm.menu==1 && vm.subState[1]!=0" menu="vm.menu" sub-state="vm.subState" current-artist-index="vm.currentArtistIndex" singers-list="vm.singersList"></singer-detail>
-    <composer-detail  ng-if="vm.menu==2 && vm.subState[2]!=0" menu="vm.menu" sub-state="vm.subState" current-musician-index="vm.currentMusicianIndex" composers-list="vm.composersList"></composer-detail> 
+    <composer-detail  ng-if="vm.menu==2 && vm.subState[2]!=0" menu="vm.menu" sub-state="vm.subState" current-musician-index="vm.currentMusicianIndex" composers-list="vm.composersList"></composer-detail>
     <!-- <team-profile ng-if="vm.menu=='teamProfile'" menu="vm.menu"></team-profile> -->
   </div>
 </div>

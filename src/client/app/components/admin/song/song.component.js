@@ -9,7 +9,7 @@ angular.module('app.admin')
             numOfSongs: '=',
             currentSongIndex: '=',
             songsList: '=',
-            changeCurrentSongIndex: '&'
+            changeCurrentMusicIndex: '&'
         }
     });
 
@@ -47,8 +47,8 @@ function songController($scope, $q, $http, $state) {
     }
 
     function changeView(i) {
-        vm.changeCurrentSongIndex({ index: i });
-        vm.subState[1] = 1;
+        vm.changeCurrentMusicIndex({ index: i });
+        vm.subState[0] = 1;
     }
 
     function searchSong() {

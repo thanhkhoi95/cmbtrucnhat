@@ -26,7 +26,7 @@
         },
         lyric: {
             type: String,
-            default: 'Không có'
+            default: 'Not available'
         },
         uploadDate: {
             type: Date,

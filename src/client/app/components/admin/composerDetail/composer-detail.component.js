@@ -195,6 +195,7 @@ function composerDetailController($scope, $http, $q, authService) {
         } else {
             vm.currentMusician = JSON.parse(JSON.stringify(vm.newComposer));
         }
+        document.getElementById('musicianName').focus();
     }
 
     reset();
