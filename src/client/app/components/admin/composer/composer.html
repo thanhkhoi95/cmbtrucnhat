@@ -9,8 +9,8 @@
         <div ng-show="vm.subState[0] == 0" class="statisticBtn" ng-class="{'statisticBtn-active': vm.listMode == 1}" ng-click="vm.changeListMode(1)"></div>
         <div class="azBtn" ng-class="{'azBtn-active': vm.listMode == 0}" ng-click="vm.changeListMode(0)"></div>
     </div>
-    <div class="listContainer" id="listCon-singer">
-        <div infinite-scroll='vm.loadMore()' infinite-scroll-distance='1' infinite-scroll-container='"#listCon-singer"' infinite-scroll-parent="true">
+    <div class="listContainer" id="listCon-composer">
+        <div infinite-scroll='vm.loadMore()' infinite-scroll-distance='1' infinite-scroll-container='"#listCon-composer"' infinite-scroll-parent="true">
             <composer-item ng-repeat="composer in vm.composersList" composer={{composer}} index={{$index}} rank={{vm.listMode}} ng-click="vm.changeView($index)"></composer-item>
         </div>
     </div>

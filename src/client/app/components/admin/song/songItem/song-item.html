@@ -1,0 +1,16 @@
+<div class="infoTabContainer">
+    <div class="infoTabShadow">
+        <div class="teamInfoGroup">
+            <div class="teamName trackName">
+                <i ng-if="vm.rank == 0" class="fa fa-music" aria-hidden="true">&nbsp;&nbsp;</i>
+                <b ng-if="vm.rank == 1">{{vm.rankIndex}}.&nbsp;&nbsp;</b> {{vm.mySinger.name}}
+            </div>
+            <div class="teamName plays">
+                <b>ID:</b> &nbsp;&nbsp;{{vm.mySinger._id}}
+            </div>
+            <div class="teamName plays" ng-if="vm.rank == 1">
+                <i class="fa fa-play-circle" aria-hidden="true"></i> &nbsp;&nbsp;{{vm.mySinger.plays}}
+            </div>
+        </div>
+    </div>
+</div>
