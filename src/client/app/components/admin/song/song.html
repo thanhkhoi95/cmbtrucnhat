@@ -11,7 +11,7 @@
     </div>
     <div class="listContainer" id="listCon-song">
         <div infinite-scroll='vm.loadMore()' infinite-scroll-distance='1' infinite-scroll-container='"#listCon-song"' infinite-scroll-parent="true">
-            <song-item ng-repeat="song in vm.songrsList" singer={{song}} index={{$index}} rank={{vm.listMode}} ng-click="vm.changeView($index)"></song-item>
+            <song-item ng-repeat="song in vm.songsList" song={{song}} index={{$index}} rank={{vm.listMode}} ng-click="vm.changeView($index)"></song-item>
         </div>
     </div>
     <div class="modal fade" id="songSearchModal" role="dialog">

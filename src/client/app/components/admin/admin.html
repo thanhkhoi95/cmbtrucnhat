@@ -4,7 +4,7 @@
       <div ng-class="vm.menu=='0'?'neonOn-green':'neonOff'"></div>
       <img src="../../../assets/images/song.png" class="icon">
       <div class="menu-name">Songs</div>
-      <div class="quantity">69</div>
+      <div class="quantity">{{vm.numOfSongs}}</div>
     </div>
     <div class="team-menu col-xs-3 col-sm-3" ng-class="vm.menu==1?'lightup':''" ng-click="vm.changeMenu(1)">
       <div ng-class="vm.menu=='1'?'neonOn-pink':'neonOff'"></div>
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="page-detail">
-    <song-list ng-show="vm.menu==0" menu="vm.menu"></song-list>
+    <song ng-show="vm.menu==0 && vm.subState[0]==0" menu="vm.menu" sub-state="vm.subState" num-of-songs="vm.numOfSongs" current-music-index="vm.currentMusicIndex" songs-list="vm.songsList" change-current-music-index="vm.changeCurrentMusicIndex(index)"></song>
     <singer ng-show="vm.menu==1 && vm.subState[1]==0" menu="vm.menu" sub-state="vm.subState" num-of-singers="vm.numOfSingers" current-artist-index="vm.currentArtistIndex" singers-list="vm.singersList" change-current-artist-index="vm.changeCurrentArtistIndex(index)"></singer>
     <composer ng-show="vm.menu==2 && vm.subState[2]==0" menu="vm.menu" sub-state="vm.subState" num-of-composers="vm.numOfComposers" current-musician-index="vm.currentMusicianIndex" composers-list="vm.composersList" change-current-musician-index="vm.changeCurrentMusicianIndex(index)"></composer> 
 

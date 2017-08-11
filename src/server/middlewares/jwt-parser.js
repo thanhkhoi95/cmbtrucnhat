@@ -3,7 +3,6 @@
     var jwt = require('./../services/jwt');
 
     exports.parser = function () {
-        console.log('parse token');
         var role = Array.prototype.slice.call(arguments);
         return function (req, res, next) {
             var token = req.headers['x-access-token'];

@@ -14,7 +14,6 @@ angular.module('app.admin')
 
 function composerItemController($scope) {
     var vm = this;
-    console.log(vm.composer);
     vm.myComposer = JSON.parse(vm.composer);
     vm.rankIndex = parseInt(vm.index) + 1;
 }

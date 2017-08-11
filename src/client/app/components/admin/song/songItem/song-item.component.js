@@ -16,4 +16,13 @@ function songItemController($scope) {
     var vm = this;
     vm.mySong = JSON.parse(vm.song);
     vm.rankIndex = parseInt(vm.index) + 1;
+
+    if (!vm.mySong.artist) {
+        vm.mySong.artist = {};
+        vm.mySong.artist.name = 'Unknown';
+    }
+    if (!vm.mySong.musician) {
+        vm.mySong.musician = {};
+        vm.mySong.musician.name = 'Unknown';
+    }
 }

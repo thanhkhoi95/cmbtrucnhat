@@ -19,11 +19,18 @@ function adminController() {
     vm.numOfComposers = '';
     vm.currentMusicianIndex = -1;
     vm.composersList = [];
+    vm.currentMusicIndex = -1;
+    vm.songsList =[];
     vm.changeCurrentArtistIndex = changeCurrentArtistIndex;
     vm.changeCurrentMusicianIndex = changeCurrentMusicianIndex;
+    vm.changeCurrentMusicIndex = changeCurrentMusicIndex;
 
     function changeMenu(state) {
-        vm.menu = state;
+        if (vm.menu !== state) {
+            vm.menu = state;
+            vm.subState[(state + 1) % 3] = 0;
+            vm.subState[(state + 2) % 3] = 0;
+        }
     }
 
     function changeCurrentArtistIndex(index) {
@@ -32,6 +39,10 @@ function adminController() {
 
     function changeCurrentMusicianIndex(index) {
         vm.currentMusicianIndex = index;
+    }
+
+    function changeCurrentMusicIndex(index) {
+        vm.currentMusicIndex = index;
     }
 
 }

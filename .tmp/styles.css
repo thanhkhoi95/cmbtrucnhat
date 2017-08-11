@@ -251,11 +251,11 @@ html {
 #listCon {
   height: 84%; }
 
-#listCon-singer {
+#listCon-singer, #listCon-composer, #listCon-song {
   height: 84%; }
-  #listCon-singer .infoTabContainer {
+  #listCon-singer .infoTabContainer, #listCon-composer .infoTabContainer, #listCon-song .infoTabContainer {
     cursor: pointer; }
-    #listCon-singer .infoTabContainer:hover {
+    #listCon-singer .infoTabContainer:hover, #listCon-composer .infoTabContainer:hover, #listCon-song .infoTabContainer:hover {
       background-color: rgba(0, 0, 90, 0.2); }
 
 #player {
