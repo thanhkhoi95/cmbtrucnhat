@@ -72,6 +72,10 @@ function composerDetailController($scope, $http, $q, authService) {
                 saveRequest().then(
                     function (data) {
                         toastr.success('Update composer information successfully');
+                        if (data.composer.birthdate) {
+                            data.composer.birthdate = moment(data.composer.birthdate).format('MM/DD/YYYY');
+                            data.composer.birthdate = new Date(data.composer.birthdate);
+                        }
                         vm.composersList[vm.currentMusicianIndex] = data.composer;
                     },
                     function (err) {
@@ -100,6 +104,10 @@ function composerDetailController($scope, $http, $q, authService) {
                 saveRequest().then(
                     function (data) {
                         toastr.success('Add new composer successfully');
+                        if (data.newMusician.birthdate) {
+                            data.newMusician.birthdate = moment(data.newMusician.birthdate).format('MM/DD/YYYY');
+                            data.newMusician.birthdate = new Date(data.newMusician.birthdate);
+                        }
                         if (vm.subState[0] === 1) {
                             vm.currentMusician = data.newMusician;
                             choose(true);
