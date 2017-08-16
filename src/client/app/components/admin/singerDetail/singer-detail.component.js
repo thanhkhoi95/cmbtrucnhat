@@ -7,7 +7,9 @@ angular.module('app.admin')
             menu: '=',
             subState: '=',
             currentArtistIndex: '=',
-            singersList: '='
+            singersList: '=',
+            currentArtist: '=',
+            setCurrentSongArtist: '&'
         }
     });
 
@@ -29,6 +31,7 @@ function singerDetailController($scope, $http, $q, authService) {
     vm.confirm = confirm;
     vm.title = '';
     vm.backActionMode = 0;
+    vm.choose = choose;
 
     if (vm.currentArtistIndex <= -1) {
         vm.title = 'Add new artist';
@@ -36,7 +39,15 @@ function singerDetailController($scope, $http, $q, authService) {
         vm.title = 'Artist\'s information';
     }
 
-    $('#confirmModal').on('hidden.bs.modal', backAction);
+    $('#singerConfirmModal').on('hidden.bs.modal', backAction);
+
+    function choose(noGetBack) {
+        var a = JSON.parse(JSON.stringify(vm.currentArtist));
+        console.log(a);
+        a.birthdate = undefined;
+        vm.setCurrentSongArtist({artist: a});
+        if (!noGetBack) back();
+    }
 
     function backAction() {
         switch (vm.backActionMode) {
@@ -60,6 +71,10 @@ function singerDetailController($scope, $http, $q, authService) {
                 saveRequest().then(
                     function (data) {
                         toastr.success('Update artist information successfully');
+                        if (data.artist.birthdate) {
+                            data.artist.birthdate = moment(data.artist.birthdate).format('MM/DD/YYYY');
+                            data.artist.birthdate = new Date(data.artist.birthdate);
+                        }
                         vm.singersList[vm.currentArtistIndex] = data.artist;
                     },
                     function (err) {
@@ -67,7 +82,7 @@ function singerDetailController($scope, $http, $q, authService) {
                     }
                 );
                 vm.backActionMode = 0;
-                $('#confirmModal').modal('hide');
+                $('#singerConfirmModal').modal('hide');
                 break;
             }
             case 1: {
@@ -81,26 +96,41 @@ function singerDetailController($scope, $http, $q, authService) {
                     }
                 );
                 vm.backActionMode = 1;
-                $('#confirmModal').modal('hide');
+                $('#singerConfirmModal').modal('hide');
                 break;
             }
             case 2: {
                 saveRequest().then(
                     function (data) {
+                        if (data.newArtist.birthdate) {
+                            data.newArtist.birthdate = moment(data.newArtist.birthdate).format('MM/DD/YYYY');
+                            data.newArtist.birthdate = new Date(data.newArtist.birthdate);
+                        }
                         toastr.success('Add new artist successfully');
+                        if (vm.subState[0] === 1) {
+                            vm.currentArtist = data.newArtist;
+                            choose(true);
+                            vm.backAction = 1;
+                            $('#singerConfirmModal').modal('hide');
+                            return;
+                        }
                         reset();
                     },
                     function (err) {
                         toastr.error(err);
                     }
                 );
-                $('#confirmModal').modal('hide');
+                $('#singerConfirmModal').modal('hide');
                 break;
             }
         }
     }
 
-    function back() {
+    function back(backOnly) {
+        if (backOnly && vm.currentArtistIndex !== -2){
+            vm.subState[1] = 0;
+            return;
+        }
         if (vm.subState[0] === 1) {
             vm.menu = 0;
         } else {
@@ -112,7 +142,7 @@ function singerDetailController($scope, $http, $q, authService) {
         if (!document.getElementById('artistName').checkValidity() ||
             !document.getElementById('artistBirthdate').checkValidity()) return;
         vm.nextAction = nextAction;
-        $('#confirmModal').modal('toggle');
+        $('#singerConfirmModal').modal('toggle');
     }
 
     function deleteRequest() {
@@ -146,7 +176,7 @@ function singerDetailController($scope, $http, $q, authService) {
         };
         var errMessage = '';
         var deferred = $q.defer();
-        if (vm.currentArtistIndex > -1) {
+        if (vm.currentArtistIndex > -1 || vm.currentArtistIndex === -2) {
             var updatedArtist = JSON.parse(JSON.stringify(vm.currentArtist));
             if (vm.currentArtist.birthdate instanceof Date && !isNaN(vm.currentArtist.birthdate.valueOf())) {
                 updatedArtist.birthdate = vm.currentArtist.birthdate.toISOString();
@@ -155,18 +185,17 @@ function singerDetailController($scope, $http, $q, authService) {
             }
             req.data = updatedArtist;
             req.method = 'PUT';
-            if (vm.currentArtist.detailInformation === '') {
-                vm.currentArtist.detailInformation = undefined;
-            }
+            
             errMessage = 'Update artist information failed!';
-        } else {
+        } else if (vm.currentArtistIndex === -1){
             req.method = 'POST';
+            var updatedArtist = JSON.parse(JSON.stringify(vm.currentArtist));
             if (vm.currentArtist.birthdate instanceof Date && !isNaN(vm.currentArtist.birthdate.valueOf())) {
-                vm.currentArtist.birthdate = vm.currentArtist.birthdate.toISOString();
+                updatedArtist.birthdate = vm.currentArtist.birthdate.toISOString();
             } else {
-                vm.currentArtist.birthdate = undefined;
+                updatedArtist.birthdate = undefined;
             }
-            req.data = vm.currentArtist;
+            req.data = updatedArtist;
             errMessage = 'Add new artist failed!';
         }
 
@@ -183,14 +212,49 @@ function singerDetailController($scope, $http, $q, authService) {
         return deferred.promise;
     }
 
+    function getArtist(id) {
+        var req = {
+            url: '/api/artist/getArtist/' + id,
+            method: 'GET'
+        };
+        var deferred = $q.defer();
+        $http(req).then(
+            function successCallback(response) {
+                deferred.resolve(response.data);
+            }, function (err) {
+                deferred.reject('Singer not found!');
+            }
+        );
+        return deferred.promise;
+    }
+
     function reset() {
         if (vm.currentArtistIndex > -1) {
             vm.currentArtist = JSON.parse(JSON.stringify(vm.singersList[vm.currentArtistIndex]));
             if (vm.currentArtist.birthdate) {
                 vm.currentArtist.birthdate = new Date(vm.currentArtist.birthdate);
             }
-        } else {
+        } else if (vm.currentArtistIndex === -1){
             vm.currentArtist = JSON.parse(JSON.stringify(vm.newArtist));
+        } else if (vm.currentArtistIndex === -2){
+            getArtist(vm.currentArtist._id).then(
+                function (data) {
+                    if (data.artist.birthdate) {
+                        data.artist.birthdate = moment(data.artist.birthdate).format('MM/DD/YYYY');
+                        data.artist.birthdate = new Date(data.artist.birthdate);
+                    }
+                    vm.currentArtist = data.artist;
+                    console.log(data);
+                },
+                function (err) {
+                    toastr.error(err);
+                    vm.currentArtist = {
+                        name: 'Unknown',
+                        _id: ''
+                    }
+                    choose();
+                }
+            );
         }
     }
 

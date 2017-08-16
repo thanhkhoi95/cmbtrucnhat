@@ -3,6 +3,7 @@
     var deepPopulate = require('mongoose-deep-populate')(mongoose);
     mongoose.plugin(deepPopulate);
     var Schema = mongoose.Schema;
+    var removeDiacritics = require('diacritics').remove;
 
     var musicSchema = new Schema({
         artistId: {
@@ -43,7 +44,7 @@
     });
 
     musicSchema.pre('save', function(next){
-        this.lowerCaseName = this.name.toLowerCase();
+        this.lowerCaseName = removeDiacritics(this.name.toLowerCase());
         next();
     });
 

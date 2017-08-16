@@ -1,7 +1,9 @@
 angular.module('app.admin')
     .controller('adminController', adminController);
 
-function adminController() {
+    adminController.$inject =['$state', 'authService'];
+
+function adminController($state, authService) {
     var vm = this;
 
     var newMusician = {
@@ -20,16 +22,30 @@ function adminController() {
     vm.currentMusicianIndex = -1;
     vm.composersList = [];
     vm.currentMusicIndex = -1;
-    vm.songsList =[];
+    vm.songsList = [];
+    vm.currentSong;
+    vm.currentArtist;
+    vm.currentMusician;
     vm.changeCurrentArtistIndex = changeCurrentArtistIndex;
     vm.changeCurrentMusicianIndex = changeCurrentMusicianIndex;
     vm.changeCurrentMusicIndex = changeCurrentMusicIndex;
+    vm.setCurrentSongArtist = setCurrentSongArtist;
+    vm.setCurrentSongMusician = setCurrentSongMusician;
+    vm.setCurrentArtist = setCurrentArtist;
+    vm.setCurrentMusician = setCurrentMusician;
+    vm.logout = logout;
+
+    function logout() {
+        toastr.success(authService.logout());
+        $state.go('auth.login');
+    }
 
     function changeMenu(state) {
         if (vm.menu !== state) {
             vm.menu = state;
             vm.subState[(state + 1) % 3] = 0;
             vm.subState[(state + 2) % 3] = 0;
+            if (state !== 0) vm.subState[state] = 0;
         }
     }
 
@@ -43,6 +59,23 @@ function adminController() {
 
     function changeCurrentMusicIndex(index) {
         vm.currentMusicIndex = index;
+    }
+
+    function setCurrentSongArtist(artist) {
+        vm.currentSong.artist = artist;
+    }
+
+    function setCurrentSongMusician(musician) {
+        vm.currentSong.musician = musician;
+    }
+
+    function setCurrentArtist(artist) {
+        vm.currentArtist = artist;
+    }
+
+    function setCurrentMusician(musician) {
+        vm.currentMusician = musician;
+        console.log(vm.currentMusician);
     }
 
 }

@@ -2,53 +2,73 @@
     <div class="messageBarContainer ">
         <h4 class="messageTitle">{{vm.title}}</h4>
     </div>
-    <form class="teamRegisterContainer col-xs-12" id="singerDetail">
-        <div class="infoTeamRegister col-xs-9">
-            <div class="input-group">
-                <h5>NAME</h5>
-                <input type="text" class="form-control" required id="songName" ng-model="vm.currentSong.name">
+    <div class="messageBarContainer btnGroup">
+        <div class="saveBtn" ng-click="vm.action(2)" ng-if="vm.currentMusicIndex == -1"></div>
+        <div class="saveBtn" ng-click="vm.action(0)" ng-if="vm.currentMusicIndex > -1"></div>
+        <div class="deleteBtn" ng-click="vm.action(1)" ng-if="vm.currentMusicIndex > -1"></div>
+        <div class="refreshBtn" ng-click="vm.reset()"></div>
+        <div class="backBtn" ng-click="vm.back()"></div>
+    </div>
+    <form class="teamRegisterContainer col-xs-12" id="songDetail">
+        <div class="infoTeamRegister customScrollBar col-xs-12">
+            <div class="input-group" ng-if="vm.currentMusicIndex == -1">
+                <h5>File</h5>
+                <input type="file" name "musicFile" class="form-control" id="musicFile" ngf-select ng-model="vm.currentSong.musicFile" accept="audio/mp3"
+                    required ngf-model-invalid="errorFile">
+                <i ng-show="!vm.currentSong.musicFile" style="color: red">*required</i>
             </div>
             <div class="input-group">
+                <h5>Name</h5>
+                <input type="text" class="form-control" required id="musicName" ng-model="vm.currentSong.name">
+                <i ng-show="vm.currentSong.name == '' || !vm.currentSong.name" style="color: red">*required</i>
+            </div>
+            <div class="input-group" ng-if="vm.currentMusicIndex != -1">
                 <h5>Upload date</h5>
-                <input type="date" class="form-control"id="artistUploadDate" ng-model="vm.currentSong.uploadDate">
+                <input type="date" class="form-control" id="musicUploadDate" ng-model="vm.currentSong.uploadDate" disabled>
             </div>
             <div class="input-group">
                 <h5>Artist</h5>
-                <input type="text" class="form-control" ng-model="vm.currentSong.artist.name">
+                <input type="text" class="form-control" ng-model="vm.currentSong.artist.name" disabled>
+                <div class="specialBtn" ng-click="vm.goToArtistsList()"><i class="fa fa-address-book-o" aria-hidden="true"></i></div>
+                <div class="specialBtn" ng-click="vm.viewArtistInfo()" ng-if="vm.currentSong.artist._id != ''"><i class="fa fa-address-card-o" aria-hidden="true"></i></div>
+                <div class="specialBtn" ng-click="vm.removeSongArtist()" ng-if="vm.currentSong.artist._id != ''"><i class="fa fa-times" aria-hidden="true"></i></div>
+            </div>
+            <div class="input-group">
+                <h5>Composer</h5>
+                <input type="text" class="form-control" ng-model="vm.currentSong.musician.name" disabled>
+                <div class="specialBtn" ng-click="vm.goToMusiciansList()"><i class="fa fa-address-book-o" aria-hidden="true"></i></div>
+                <div class="specialBtn" ng-click="vm.viewMusicianInfo()" ng-if="vm.currentSong.musician._id != ''"><i class="fa fa-address-card-o" aria-hidden="true"></i></div>
+                <div class="specialBtn" ng-click="vm.removeSongMusician()" ng-if="vm.currentSong.musician._id != ''"><i class="fa fa-times" aria-hidden="true"></i></div>
+            </div>
+            <div class="input-group" ng-if="vm.currentMusicIndex != -1">
+                <h5>Plays</h5>
+                <input type="text" class="form-control" ng-model="vm.currentSong.plays" disabled>
+            </div>
+            <div class="input-group" ng-if="vm.currentMusicIndex != -1">
+                <h5>Downloads</h5>
+                <input type="text" class="form-control" ng-model="vm.currentSong.downloads" disabled>
             </div>
             <div class="input-group">
                 <h5>Lyric</h5>
-                <textarea class="form-control detailInformation" rows="5" id="songLyric" ng-model="vm.currentSong.lyric"></textarea>
-            </div>
-        </div>
-        <div class="btnGroup infoTeamRegister col-xs-3" ng-style="vm.currentArtistIndex == -1 ? {'margin-top': '40px'} : {}">
-            <div class="input-group" ng-if="vm.currentArtistIndex == -1">
-                <button class="btn btn-default" ng-click="vm.action(2)">ADD</button>
-            </div>
-            <div class="input-group" ng-if="vm.currentArtistIndex > -1">
-                <button class="btn btn-default" ng-click="vm.action(0)">SAVE</button>
-            </div>
-            <div class="input-group">
-                <button class="btn btn-default" ng-click="vm.reset()">RESET</button>
-            </div>
-            <div class="input-group" ng-if="vm.currentArtistIndex > -1">
-                <button class="btn btn-default" ng-click="vm.action(1)">REMOVE</button>
-            </div>
-            <div class="input-group">
-                <button class="btn btn-default" ng-click="vm.back()">BACK</button>
+                <textarea class="form-control detailInformation" rows="5" id="musicLyric" ng-model="vm.currentSong.lyric"></textarea>
             </div>
         </div>
     </form>
-    <div class="modal fade" id="confirmModal" role="dialog">
+    <div class="modal fade" id="songConfirmModal" role="dialog">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title">WARNING</h3>
-                    <p>Are you sure to update this artist's infomation?</p>
+                    <p>Are you sure?</p>
+                </div>
+                <div class="modal-body" ng-show="vm.currentSong.progress >= 0">
+                    <span class="progress">
+                        <div style="width:{{vm.currentSong.progress}}%">{{vm.currentSong.progress}}%</div>
+                      </span>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" ng-click="vm.confirm()" class="btn btn-default">Yes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+                    <button type="button" ng-click="vm.confirm()" class="btn btn-default" ng-show="!vm.currentSong.progress || vm.currentSong.progress < 0">Yes</button>
+                    <button type="button" class="btn btn-default" ng-click="vm.dismissModal()" ng-show="!vm.currentSong.progress || vm.currentSong.progress < 0">Back</button>
                 </div>
             </div>
         </div>

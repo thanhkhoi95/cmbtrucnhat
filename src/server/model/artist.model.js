@@ -2,6 +2,7 @@
 
     var mongoose = require('mongoose');
     var Schema = mongoose.Schema;
+    var removeDiacritics = require('diacritics').remove;
 
     var artistSchema = new Schema({
         name: {
@@ -29,7 +30,7 @@
     });
 
     artistSchema.pre('save', function(next){
-        this.lowerCaseName = this.name.toLowerCase();
+        this.lowerCaseName = removeDiacritics(this.name.toLowerCase());
         next();
     });
 

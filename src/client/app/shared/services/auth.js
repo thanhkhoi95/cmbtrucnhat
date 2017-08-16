@@ -42,7 +42,7 @@
             delete $sessionStorage.welifeToken;
             delete $localStorage.welifeUser;
             delete $sessionStorage.welifeUser;
-            return 'Logout successful';
+            return 'Logout successfully';
         }
 
         function getToken() {

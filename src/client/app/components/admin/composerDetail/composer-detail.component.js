@@ -7,11 +7,13 @@ angular.module('app.admin')
             menu: '=',
             subState: '=',
             currentMusicianIndex: '=',
-            composersList: '='
+            composersList: '=',
+            setCurrentSongMusician: '&',
+            currentMusician: '='
         }
     });
 
-    composerDetailController.$inject = ['$scope', '$http', '$q', 'authService'];
+composerDetailController.$inject = ['$scope', '$http', '$q', 'authService'];
 
 function composerDetailController($scope, $http, $q, authService) {
     var vm = this;
@@ -25,12 +27,12 @@ function composerDetailController($scope, $http, $q, authService) {
     vm.action = action;
     vm.reset = reset;
     vm.back = back;
+    vm.choose = choose;
+
     vm.nextAction = -1;
     vm.confirm = confirm;
     vm.title = '';
     vm.backActionMode = 0;
-
-    console.log(vm.currentMusicianIndex);
 
     if (vm.currentMusicianIndex <= -1) {
         vm.title = 'Add new composer';
@@ -38,7 +40,15 @@ function composerDetailController($scope, $http, $q, authService) {
         vm.title = 'Composer\'s information';
     }
 
-    $('#confirmModal').on('hidden.bs.modal', backAction);
+    $('#ComposerConfirmModal').on('hidden.bs.modal', backAction);
+
+    function choose(noGetBack) {
+        var a = JSON.parse(JSON.stringify(vm.currentMusician));
+        console.log(a);
+        a.birthdate = undefined;
+        vm.setCurrentSongMusician({musician: a});
+        if (!noGetBack) back();
+    }
 
     function backAction() {
         switch (vm.backActionMode) {
@@ -61,17 +71,15 @@ function composerDetailController($scope, $http, $q, authService) {
             case 0: {
                 saveRequest().then(
                     function (data) {
-                        console.log(data);
                         toastr.success('Update composer information successfully');
                         vm.composersList[vm.currentMusicianIndex] = data.composer;
-                        console.log(vm.composersList);
                     },
                     function (err) {
                         toastr.error(err);
                     }
                 );
                 vm.backActionMode = 0;
-                $('#confirmModal').modal('hide');
+                $('#ComposerConfirmModal').modal('hide');
                 break;
             }
             case 1: {
@@ -85,26 +93,37 @@ function composerDetailController($scope, $http, $q, authService) {
                     }
                 );
                 vm.backActionMode = 1;
-                $('#confirmModal').modal('hide');
+                $('#ComposerConfirmModal').modal('hide');
                 break;
             }
             case 2: {
                 saveRequest().then(
                     function (data) {
                         toastr.success('Add new composer successfully');
+                        if (vm.subState[0] === 1) {
+                            vm.currentMusician = data.newMusician;
+                            choose(true);
+                            vm.backAction = 1;
+                            $('#singerConfirmModal').modal('hide');
+                            return;
+                        }
                         reset();
                     },
                     function (err) {
                         toastr.error(err);
                     }
                 );
-                $('#confirmModal').modal('hide');
+                $('#ComposerConfirmModal').modal('hide');
                 break;
             }
         }
     }
 
-    function back() {
+    function back(backOnly) {
+        if (backOnly && vm.currentMusicianIndex !== -2) {
+            vm.subState[2] = 0;
+            return;
+        }
         if (vm.subState[0] === 1) {
             vm.menu = 0;
         } else {
@@ -116,7 +135,7 @@ function composerDetailController($scope, $http, $q, authService) {
         if (!document.getElementById('musicianName').checkValidity() ||
             !document.getElementById('musicianBirthdate').checkValidity()) return;
         vm.nextAction = nextAction;
-        $('#confirmModal').modal('toggle');
+        $('#ComposerConfirmModal').modal('toggle');
     }
 
     function deleteRequest() {
@@ -150,7 +169,7 @@ function composerDetailController($scope, $http, $q, authService) {
         };
         var errMessage = '';
         var deferred = $q.defer();
-        if (vm.currentMusicianIndex > -1) {
+        if (vm.currentMusicianIndex > -1 || vm.currentMusicianIndex === -2) {
             var updatedMusician = JSON.parse(JSON.stringify(vm.currentMusician));
             if (vm.currentMusician.birthdate instanceof Date && !isNaN(vm.currentMusician.birthdate.valueOf())) {
                 updatedMusician.birthdate = vm.currentMusician.birthdate.toISOString();
@@ -165,16 +184,16 @@ function composerDetailController($scope, $http, $q, authService) {
             errMessage = 'Update composer information failed!';
         } else {
             req.method = 'POST';
+            var updatedMusician = JSON.parse(JSON.stringify(vm.currentMusician));
             if (vm.currentMusician.birthdate instanceof Date && !isNaN(vm.currentMusician.birthdate.valueOf())) {
-                vm.currentMusician.birthdate = vm.currentMusician.birthdate.toISOString();
+                updatedMusician.birthdate = vm.currentMusician.birthdate.toISOString();
             } else {
-                vm.currentMusician.birthdate = undefined;
+                updatedMusician.birthdate = undefined;
             }
-            req.data = vm.currentMusician;
+            req.data = updatedMusician;
             errMessage = 'Add new composer failed!';
         }
 
-        console.log(req);
         $http(req).then(
             function successCallback(response) {
                 deferred.resolve(response.data);
@@ -186,16 +205,50 @@ function composerDetailController($scope, $http, $q, authService) {
         return deferred.promise;
     }
 
+    function getMusician(id) {
+        var req = {
+            url: '/api/musician/getMusician/' + id,
+            method: 'GET'
+        };
+        var deferred = $q.defer();
+        $http(req).then(
+            function successCallback(response) {
+                deferred.resolve(response.data);
+            }, function (err) {
+                deferred.reject('Composer not found!');
+            }
+        );
+        return deferred.promise;
+    }
+
     function reset() {
         if (vm.currentMusicianIndex > -1) {
             vm.currentMusician = JSON.parse(JSON.stringify(vm.composersList[vm.currentMusicianIndex]));
             if (vm.currentMusician.birthdate) {
                 vm.currentMusician.birthdate = new Date(vm.currentMusician.birthdate);
             }
-        } else {
+        } else if (vm.currentMusicianIndex === -1) {
             vm.currentMusician = JSON.parse(JSON.stringify(vm.newComposer));
+        } else if (vm.currentMusicianIndex === -2) {
+            getMusician(vm.currentMusician._id).then(
+                function (data) {
+                    console.log(data);
+                    if (data.musician.birthdate) {
+                        data.musician.birthdate = moment(data.musician.birthdate).format('MM/DD/YYYY');
+                        data.musician.birthdate = new Date(data.musician.birthdate);
+                    }
+                    vm.currentMusician = data.musician;
+                },
+                function (err) {
+                    toastr.error(err);
+                    vm.currentMusician = {
+                        name: 'Unknown',
+                        _id: ''
+                    }
+                    choose();
+                }
+            );
         }
-        document.getElementById('musicianName').focus();
     }
 
     reset();

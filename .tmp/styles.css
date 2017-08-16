@@ -55,187 +55,272 @@ html {
     height: 20px; } }
 
 .searchBtn {
-  width: 20px;
-  height: 20px;
-  background-image: url("../src/client/assets/images/search.svg");
-  background-size: 20px 20px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  background-image: url("../src/client/assets/images/search-active.svg");
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   display: inline-block;
-  margin: 0 10px; }
+  margin: 0 10px 0 0; }
 
 .searchBtn-active {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 100%;
   background-image: url("../src/client/assets/images/search-active.svg");
-  background-size: 20px 20px;
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   display: inline-block;
-  margin: 0 10px; }
+  margin: 0 10px 0 0; }
+
+.chooseBtn {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  background-image: url("../src/client/assets/images/choose.svg");
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 10px 0 0; }
 
 .refreshBtn {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
   background-image: url("../src/client/assets/images/refresh.svg");
-  background-size: 20px 20px;
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   display: inline-block;
-  margin: 0 10px; }
+  margin: 0 10px 0 0; }
+
+.backBtn {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  background-image: url("../src/client/assets/images/back.svg");
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 10px 0 0; }
+
+.deleteBtn {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  background-image: url("../src/client/assets/images/delete.svg");
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 10px 0 0; }
+
+.saveBtn {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  background-image: url("../src/client/assets/images/save.svg");
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 10px 0 0; }
 
 .addnewBtn {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
   background-image: url("../src/client/assets/images/addnew.svg");
-  background-size: 20px 20px;
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   display: inline-block;
-  margin: 0 10px; }
+  margin: 0 10px 0 0; }
 
 .statisticBtn {
-  width: 20px;
-  height: 20px;
-  background-image: url("../src/client/assets/images/statistic.svg");
-  background-size: 20px 20px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  background-image: url("../src/client/assets/images/statistic-active.svg");
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   display: inline-block;
-  margin: 0 10px; }
+  margin: 0 10px 0 0; }
 
 .statisticBtn-active {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 100%;
   background-image: url("../src/client/assets/images/statistic-active.svg");
-  background-size: 20px 20px;
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   display: inline-block;
-  margin: 0 10px; }
+  margin: 0 10px 0 0; }
 
 .azBtn {
-  width: 20px;
-  height: 20px;
-  background-image: url("../src/client/assets/images/az.svg");
-  background-size: 20px 20px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  background-image: url("../src/client/assets/images/az-active.svg");
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   display: inline-block;
-  margin: 0 10px; }
+  margin: 0 10px 0 0; }
 
 .azBtn-active {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 100%;
   background-image: url("../src/client/assets/images/az-active.svg");
-  background-size: 20px 20px;
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   display: inline-block;
-  margin: 0 10px; }
+  margin: 0 10px 0 0; }
 
 .topBtn {
-  width: 20px;
-  height: 20px;
-  background-image: url("../src/client/assets/images/top.svg");
-  background-size: 20px 20px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  background-image: url("../src/client/assets/images/top-active.svg");
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   display: inline-block;
-  margin: 0 10px; }
+  margin: 0 10px 0 0; }
 
 .topBtn-active {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 100%;
   background-image: url("../src/client/assets/images/top-active.svg");
-  background-size: 20px 20px;
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   display: inline-block;
-  margin: 0 10px; }
+  margin: 0 10px 0 0; }
 
 .newBtn {
-  width: 20px;
-  height: 20px;
-  background-image: url("../src/client/assets/images/new.svg");
-  background-size: 20px 20px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  background-image: url("../src/client/assets/images/new-active.svg");
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   display: inline-block;
-  margin: 0 30px 0 10px; }
+  margin: 0 10px 0 0; }
 
 .newBtn-active {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 100%;
   background-image: url("../src/client/assets/images/new-active.svg");
-  background-size: 20px 20px;
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   display: inline-block;
-  margin: 0 30px 0 10px; }
+  margin: 0 10px 0 0; }
 
 .removeBtn {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
   background-image: url("../src/client/assets/images/remove-symbol.svg");
-  background-size: 20px 20px;
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   margin: 5px 0 5px 0;
   cursor: pointer; }
 
 .infoBtn {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
   background-image: url("../src/client/assets/images/info.svg");
-  background-size: 20px 20px;
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
-  margin-right: 5px;
+  margin: 5px !important;
   cursor: pointer; }
 
 .playnowBtn {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
   background-image: url("../src/client/assets/images/play-circle.svg");
-  background-size: 20px 20px;
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
-  margin-right: 5px;
-  margin: 5px 0 5px 0;
+  margin: 5px !important;
   cursor: pointer; }
 
 .addBtn {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
   background-image: url("../src/client/assets/images/add.svg");
-  background-size: 20px 20px;
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
   margin-right: 5px;
-  margin: 5px 0 5px 0;
+  margin: 5px !important;
   cursor: pointer; }
 
 .downBtn {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
   background-image: url("../src/client/assets/images/download.svg");
-  background-size: 20px 20px;
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center;
-  margin: 5px 0 5px 0;
+  margin: 5px !important;
   cursor: pointer; }
 
 .playlistItemContainer {
@@ -249,10 +334,10 @@ html {
   cursor: pointer; }
 
 #listCon {
-  height: 84%; }
+  height: 82%; }
 
 #listCon-singer, #listCon-composer, #listCon-song {
-  height: 84%; }
+  height: 82%; }
   #listCon-singer .infoTabContainer, #listCon-composer .infoTabContainer, #listCon-song .infoTabContainer {
     cursor: pointer; }
     #listCon-singer .infoTabContainer:hover, #listCon-composer .infoTabContainer:hover, #listCon-song .infoTabContainer:hover {
@@ -529,10 +614,10 @@ html {
   padding-right: 2%; }
 
 .tracksListBtnGroup {
-  width: 60% !important;
-  display: inline-block !important;
+  width: auto !important;
   margin: 15px 0px 16px 0px !important;
-  text-align: right !important; }
+  text-align: right !important;
+  float: right !important; }
 
 .radioGroup {
   margin-left: 20px; }
@@ -555,6 +640,10 @@ html {
   #searchContent:focus {
     outline: none; }
 
+#songDetail .infoTeamRegister {
+  height: 100%;
+  overflow: auto; }
+
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="date"]::-webkit-inner-spin-button {
   display: none; }
@@ -567,6 +656,44 @@ input[type='date']:focus {
   background: none !important;
   color: white;
   resize: none; }
+
+.specialBtn {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  margin-top: 15px;
+  margin-right: 15px;
+  padding-top: 10px;
+  cursor: pointer; }
+  .specialBtn:hover {
+    background-color: rgba(0, 0, 0, 0.2); }
+
+.progress {
+  display: inline-block;
+  width: 100%;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 0;
+  position: relative; }
+  .progress div {
+    background: orange;
+    width: 0;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    text-align: center; }
+
+.btnHover:hover, .searchBtn:hover, .searchBtn-active:hover, .chooseBtn:hover, .refreshBtn:hover, .backBtn:hover, .deleteBtn:hover, .saveBtn:hover, .addnewBtn:hover, .statisticBtn:hover, .statisticBtn-active:hover, .azBtn:hover, .azBtn-active:hover, .topBtn:hover, .topBtn-active:hover, .newBtn:hover, .newBtn-active:hover, .removeBtn:hover, .infoBtn:hover, .playnowBtn:hover, .addBtn:hover, .downBtn:hover {
+  background-color: rgba(0, 0, 0, 0.2); }
+
+.logout {
+  position: absolute;
+  right: 10px;
+  top: 5px; }
 
 @font-face {
   font-family: "JosefinSans";
@@ -846,7 +973,7 @@ input[type='date']:focus {
     display: inline-block;
     border-radius: 5px; }
     .homeContainer .box .listContainer {
-      min-height: 84%;
+      min-height: 82%;
       padding: 0 16px 0 20px; }
   .homeContainer .btn {
     width: 82px;
@@ -1395,7 +1522,7 @@ input[type='date']:focus {
       background-color: transparent;
       padding-top: 3px; }
   .messageContainer .listContainer {
-    min-height: 84%; }
+    min-height: 82%; }
   .messageContainer > .btnGroup {
     width: 49% !important;
     margin-top: 17px;

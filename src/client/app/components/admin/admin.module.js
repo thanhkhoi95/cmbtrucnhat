@@ -1,1 +1,1 @@
-angular.module('app.admin', ['ui.router']);
+angular.module('app.admin', ['ui.router', 'ngFileUpload']);
