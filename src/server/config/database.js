@@ -16,7 +16,7 @@
 
     function connect() {
         console.log('Connecting to database...');
-        mongoose.connect('mongodb://thanhkhoi95:4271845khoi@ds125181.mlab.com:62919/welife', {
+        mongoose.connect('mongodb://thanhkhoi95:123abc@ds125181.mlab.com:25181/welife', {
             useMongoClient: true,
             /* other options */
         }).then(
