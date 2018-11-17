@@ -12,8 +12,6 @@ var dbConfig = require('./config/database');
 var environment = process.env.NODE_ENV;
 var errorHandler = require('./middlewares/error-handler').errorHandler;
 
-process.env.SECRET_KEY = 'huycongxe';
-
 /* Connect to database */
 dbConfig.connect();
 

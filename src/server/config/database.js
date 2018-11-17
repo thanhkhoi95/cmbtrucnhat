@@ -16,7 +16,7 @@
 
     function connect() {
         console.log('Connecting to database...');
-        mongoose.connect(conStrBuild(), {
+        mongoose.connect('mongodb://thanhkhoi95:4271845khoi@ds062919.mlab.com:62919/welife', {
             useMongoClient: true,
             /* other options */
         }).then(
@@ -26,7 +26,6 @@
             function () {
                 console.log('Unable to connect to database!');
                 console.log('Trying to reconnect after 5s...');
-                console.log(conStrBuild());
                 setTimeout(connect, 5000);
             }
         );
