@@ -12,7 +12,7 @@
         var deferred = $q.defer();
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/trucnhat'
+            url: '/api/trucnhat'
         }).then(function successCallback(response) {
             deferred.resolve(response.data);
         }, function () {

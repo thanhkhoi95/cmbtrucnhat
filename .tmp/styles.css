@@ -10,14 +10,6 @@ html {
   background-repeat: no-repeat;
   background-position: center; }
 
-@-webkit-keyframes change-color-progress {
-  0% {
-    background-color: olive; }
-  50% {
-    background-color: orange; }
-  100% {
-    background-color: olive; } }
-
 @keyframes change-color-progress {
   0% {
     background-color: olive; }
@@ -26,25 +18,11 @@ html {
   100% {
     background-color: olive; } }
 
-@-webkit-keyframes change-color-default {
-  0% {
-    background-color: darkslategray; }
-  100% {
-    background-color: dimgrey; } }
-
 @keyframes change-color-default {
   0% {
     background-color: darkslategray; }
   100% {
     background-color: dimgrey; } }
-
-@-webkit-keyframes sound {
-  0% {
-    opacity: .35;
-    height: 3px; }
-  100% {
-    opacity: 1;
-    height: 20px; } }
 
 @keyframes sound {
   0% {
@@ -346,17 +324,19 @@ html {
 #player {
   width: 90%;
   height: 100%;
-  margin: 0;
-  bottom: 0; }
+  padding-top: 10px;
+  bottom: 0;
+  text-align: left; }
   #player #musicTitle {
-    height: 30%;
+    height: 100%;
     width: 100%;
     font-size: 20px;
     font-weight: bold;
     margin-top: 3px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden; }
+    overflow: hidden;
+    text-align: left; }
   #player nav {
     width: 100%;
     height: 70%;
@@ -374,7 +354,6 @@ html {
         border: 1px solid grey;
         height: 9px; }
         #player nav #defaultBar:hover #progressBar {
-          -webkit-animation: change-color-progress 1.5s infinite;
           animation: change-color-progress 1.5s infinite; }
       #player nav #defaultBar #progressBar {
         border: none;
@@ -550,33 +529,27 @@ html {
   height: 3px;
   position: absolute;
   width: 3px;
-  -webkit-animation: sound 0ms -800ms linear infinite alternate;
   animation: sound 0ms -800ms linear infinite alternate; }
 
 .bar:nth-child(1) {
   left: 1px;
-  -webkit-animation-duration: 374ms;
-          animation-duration: 374ms; }
+  animation-duration: 374ms; }
 
 .bar:nth-child(2) {
   left: 5px;
-  -webkit-animation-duration: 433ms;
-          animation-duration: 433ms; }
+  animation-duration: 433ms; }
 
 .bar:nth-child(3) {
   left: 9px;
-  -webkit-animation-duration: 300ms;
-          animation-duration: 300ms; }
+  animation-duration: 300ms; }
 
 .bar:nth-child(4) {
   left: 13px;
-  -webkit-animation-duration: 478ms;
-          animation-duration: 478ms; }
+  animation-duration: 478ms; }
 
 .bar:nth-child(5) {
   left: 17px;
-  -webkit-animation-duration: 500ms;
-          animation-duration: 500ms; }
+  animation-duration: 500ms; }
 
 .infoBody {
   max-height: 400px;
@@ -872,8 +845,8 @@ input[type='date']:focus {
         color: #FFFFFF;
         opacity: 1; }
   .sideBar-container img {
-    width: 30px;
-    height: 30px; }
+    width: 50px;
+    height: 50px; }
 
 .topNavContainer {
   width: 100%;
@@ -923,7 +896,7 @@ input[type='date']:focus {
     .sideBar-container .navbar-brand {
       width: 70px;
       height: 70px;
-      padding: 20px !important; }
+      padding: 5px !important; }
   .main-panel {
     width: calc(100% - 70px);
     height: 100%;
@@ -938,8 +911,10 @@ input[type='date']:focus {
     margin-top: 2px;
     color: white; }
   .sideBar-container img {
-    width: 25px;
-    height: 25px; }
+    width: 40px;
+    height: 40px; }
+  .sideBar-container .navbar-brand {
+    padding: 5px !important; }
   .sideBar-container .navbar-header {
     display: inline-block;
     margin: 0; }
@@ -1035,6 +1010,7 @@ input[type='date']:focus {
 
 .upcomingMatch .upcomingMatchContainer {
   width: 100%;
+  height: 100% !important;
   color: white;
   line-height: 90px;
   text-align: center; }
@@ -1048,7 +1024,7 @@ input[type='date']:focus {
     vertical-align: middle;
     margin: 0 2%; }
   .upcomingMatch .upcomingMatchContainer .matchTimeGroup {
-    height: 90px; }
+    height: 100%; }
     .upcomingMatch .upcomingMatchContainer .matchTimeGroup .weekContainer {
       top: 32%; }
     .upcomingMatch .upcomingMatchContainer .matchTimeGroup .infoDate {
@@ -1232,7 +1208,7 @@ input[type='date']:focus {
     padding: 0 3% 3% 3%; }
   .upcomingMatch {
     width: 100%;
-    height: auto;
+    height: 90%;
     margin-bottom: 2.2%; }
   .challenges {
     width: 64%;
@@ -1253,7 +1229,7 @@ input[type='date']:focus {
     margin-bottom: 5%; }
   .upcomingMatch {
     width: 100%;
-    height: auto; }
+    height: 90%; }
   .challenges {
     width: 100%;
     height: 400px; }
