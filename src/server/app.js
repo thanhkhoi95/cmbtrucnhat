@@ -79,5 +79,5 @@ app.listen(port, function () {
 });
 
 setInterval(function () {
-    http.get('https://cmbtrucnhat.herokuapp.com/api/wake');
+    http.get('http://cmbtrucnhat.herokuapp.com/api/wake');
 }, 300000);
