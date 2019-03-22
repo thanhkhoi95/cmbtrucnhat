@@ -3,148 +3,25 @@
     <div class="upcomingMatchContainer">
       <div class="matchTimeGroup">
         <audio id="music">
-          <p>fuck</p>
           <source id="audioSource" src="" type="audio/mpeg">
         </audio>
         <div id="player">
-          <div id="musicTitle">
-            <div id="soundwave" ng-if="vm.playingTrackName !== ''">
-              <div id='bars'>
-                <div class='bar'></div>
-                <div class='bar'></div>
-                <div class='bar'></div>
-                <div class='bar'></div>
-                <div class='bar'></div>
-              </div>
-            </div>
-            <span ng-if="vm.playingTrackName === ''">Select track to play now</span>
-            <span ng-if="vm.playingTrackName !== ''">Now playing: {{vm.playingTrackName}}</span>
-          </div>
-          <nav>
-            <div id="defaultBar">
-              <div id="bufferBar"></div>
-              <div id="progressBar"></div>
-            </div>
-            <div id="controlButtons">
-              <button id="playBtn" ng-click="vm.playBtnClick()"></button>
-              <button id="previousBtn" ng-click="vm.previousTrack()"></button>
-              <button id="nextBtn" ng-click="vm.nextTrack()"></button>
-              <button id="volumeBtn"></button>
-              <div id="defaultVolumeBar">
-                <div id="adjustVolumeBar"></div>
-              </div>
-              <div id="time">
-                00:00/00:00
-              </div>
-            </div>
-          </nav>
+            <h4><b>LỊCH TRỰC NHẬT</b></h4>
+            <h5>
+              <p>- Từ {{vm.from}} đến {{vm.to}}</p>
+              <p>+ Tầng 1: <b><u>{{vm.danhsach[0]}}</u></b></p>
+              <p>+ Phòng 201: <b><u>{{vm.danhsach[1]}}</u></b></p>
+              <p>+ WC tầng 2: <b><u>{{vm.danhsach[2]}}</u></b></p>
+              <p>+ WC tầng 3: <b><u>{{vm.danhsach[3]}}</u></b></p>
+              <p>+ Bếp, nhà ăn, tủ lạnh: <b><u>{{vm.danhsach[4]}}</u></p>
+              <p>+ Phòng 202: <b><u>{{vm.danhsach[5]}}</u></b></p>
+              <p>+ Phòng 302: <b><u>{{vm.danhsach[6]}}</u></b></p>
+              <p>+ Cầu thang: <b><u>{{vm.danhsach[7]}}</u></b></p>
+              <p>+ Đổ rác: <b><u>{{vm.danhsach[8]}}</u></p>
+            </h5>
         </div>
       </div>
 
-    </div>
-  </div>
-  <div class="box rankings">
-    <h4 class="homeTitle"><b>Playlist</b></h4>
-    <div class="SwitchBtn" ng-class="{'normal': vm.playMode == 0, 'loop': vm.playMode == 2, 'loop-one': vm.playMode == 1}" ng-click="vm.changePlayMode()">
-    </div>
-    <div class="listContainer" id="playlist">
-      <div ui-sortable ng-model="playlist">
-        <div ng-repeat="track in playlist" ng-class="{'playlistItemContainer-playing': vm.playingTrackId == track._id}" class="playlistItemContainer"
-          ng-click="vm.playClickedTrack(track._id)">
-          <playlist-item track={{track}} remove-playlist-item="vm.removePlaylistItem(trackId)" show-info="vm.showInfo(trackId)"></playlist-item>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="box challenges">
-    <h4 class="homeTitle"><b>{{vm.tracksListTitle}}</b></h4>
-    <div class="tracksListBtnGroup homeTitle">
-      <div class="refreshBtn" ng-click="vm.refresh()"></div>
-      <div class="searchBtn" ng-class="{'searchBtn-active': vm.tracksListMode == 2}" data-toggle="modal" data-target="#searchModal"></div>
-      <div class="azBtn" ng-class="{'azBtn-active': vm.tracksListMode == 3}" ng-click="vm.getAll(3)"></div>
-      <div class="topBtn" ng-class="{'topBtn-active': vm.tracksListMode == 1}" ng-click="vm.getAll(1)"></div>
-      <div class="newBtn" ng-class="{'newBtn-active': vm.tracksListMode == 0}" ng-click="vm.getAll(0)"></div>
-    </div>
-    <div class="listContainer" id="listCon">
-      <div infinite-scroll='vm.loadMore()' infinite-scroll-distance='1' infinite-scroll-container='"#listCon"' infinite-scroll-parent="true">
-        <info-tab ng-repeat="track in tracksList" track={{track}} play-now="vm.playNow(trackId)" add-to-playlist="vm.addToPlaylist(trackId)"
-          show-info="vm.showInfo(trackId)"></info-tab>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="choseTeamModal" role="dialog">
-    <div class="modal-dialog modal-md">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 class="modal-title">Song's information</h3>
-        </div>
-        <div class="infoBody modal-body customScrollBar">
-          <p>
-            <h4>Name: {{vm.song.name}}</h4>
-            <p>
-              <b>Singer:</b><span ng-if="!vm.song.artist"> Unknown</span><br>
-              <ul ng-if="vm.song.artist">
-                <li ng-if="vm.song.artist.name">
-                  <u>Name</u>: {{vm.song.artist.name}}</li>
-                <li ng-if="vm.song.artist.birthdate">
-                  <u>Birthdate</u>: {{vm.song.artist.birthdate}}</li>
-                <li ng-if="vm.song.artist.detailInformation">
-                  <u>Detail</u>: {{vm.song.artist.detailInformation}}</li>
-              </ul>
-            </p>
-            <p>
-              <b>Composer:</b><span ng-if="!vm.song.musician"> Unknown</span><br>
-              <ul ng-if="vm.song.musician">
-                <li ng-if="vm.song.musician.name">
-                  <u>Name</u>: {{vm.song.musician.name}}</li>
-                <li ng-if="vm.song.musician.birthdate">
-                  <u>Birthdate</u>: {{vm.song.musician.birthdate}}</li>
-                <li ng-if="vm.song.musician.detailInformation">
-                  <u>Detail</u>: {{vm.song.musician.detailInformation}}</li>
-              </ul>
-            </p>
-            <p>
-              <b>Lyric:</b><br>
-              <ul>
-                <li class="lyric">{{vm.song.lyric}}</li>
-              </ul>
-            </p>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="searchModal" role="dialog">
-    <div class="modal-dialog modal-md">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 class="modal-title">Search</h3>
-        </div>
-        <div class="infoBody modal-body customScrollBar">
-          <p>
-            <form>
-              <h4>Field:</h4>
-              <div class="radioGroup">
-                <input value="name" type="radio" name="searchType" id="songName" checked="checked"><span class="radioTitle" ng-click="vm.check('songName')"> Song's name</span>
-                <input value="lyric" type="radio" name="searchType" id="songLyric"><span class="radioTitle" ng-click="vm.check('songLyric')"> Song's lyric</span>
-                <input value="artist" type="radio" name="searchType" id="songArtist"><span class="radioTitle" ng-click="vm.check('songArtist')"> Singer</span>
-                <input value="musician" type="radio" name="searchType" id="songMusician"><span class="radioTitle" ng-click="vm.check('songMusician')"> Composer</span>
-              </div>
-              <br>
-              <h4>Content:</h4>
-              <input ng-model="vm.search.searchString" type="text" id="searchContent" placeholder="Enter the contents you want to search...">
-              <tt ng-if="vm.search.searchString == ''" style="color: red"><i>&nbsp;&nbsp;Search content cannot leaved blank!</i></tt>
-            </form>
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button ng-click="vm.searchSong()" type="submit" class="btn btn-default">Search</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-        </div>
-      </div>
     </div>
   </div>
 </div>

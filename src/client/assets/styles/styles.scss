@@ -422,10 +422,11 @@ html {
 #player {
     width: 90%;
     height: 100%;
-    margin: 0;
+    padding-top: 10px;
     bottom: 0;
+    text-align: left;
     #musicTitle {
-        height: 30%;
+        height: 100%;
         width: 100%;
         font-size: 20px;
         font-weight: bold;
@@ -433,6 +434,7 @@ html {
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+        text-align: left;
     }
     nav {
         width: 100%;

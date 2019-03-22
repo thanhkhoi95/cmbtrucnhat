@@ -3,17 +3,13 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var four0four = require('./utils/404')();
 var genConfig = require('./config/general');
 var port = process.env.PORT || genConfig.port;
-var dbConfig = require('./config/database');
 var environment = process.env.NODE_ENV;
 var errorHandler = require('./middlewares/error-handler').errorHandler;
-
-/* Connect to database */
-dbConfig.connect();
+var http = require('http');
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -30,10 +26,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(logger('dev'));
 
-app.use(genConfig.baseUrl + '/artist', require('./routes/artist.route')());
-app.use(genConfig.baseUrl + '/musician', require('./routes/musician.route')());
-app.use(genConfig.baseUrl + '/music', require('./routes/music.route')());
-app.use(genConfig.baseUrl + '/auth', require('./routes/auth.route')());
+app.use('/api/trucnhat', require('./routes/trucnhat.route')());
+app.use('/api/wake', require('./routes/wake.route')());
 
 console.log('About to crank up node');
 console.log('PORT=' + port);
@@ -83,3 +77,7 @@ app.listen(port, function () {
         '\n__dirname = ' + __dirname +
         '\nprocess.cwd = ' + process.cwd());
 });
+
+setInterval(function () {
+    http.get('');
+}, 300000);

@@ -65,7 +65,7 @@
             height: 70px;
             a {
                 height: 100%;
-                color: #FFFFFF; // padding: 15px 15px;
+                color: #FFFFFF;
                 opacity: .66;
                 display: block;
                 text-decoration: none;
@@ -82,8 +82,8 @@
         }
     }
     img {
-        width: 30px;
-        height: 30px;
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -147,7 +147,7 @@
         .navbar-brand {
             width: 70px;
             height: 70px;
-            padding: 20px!important;
+            padding: 5px!important;
         }
     }
     .main-panel {
@@ -170,8 +170,11 @@
             color: white;
         }
         img {
-            width: 25px;
-            height: 25px;
+            width: 40px;
+            height: 40px;
+        }
+        .navbar-brand {
+            padding: 5px!important;
         }
         .navbar-header {
             display: inline-block;

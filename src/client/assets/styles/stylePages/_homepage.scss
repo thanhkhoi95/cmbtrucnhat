@@ -102,6 +102,7 @@
 .upcomingMatch {
     .upcomingMatchContainer {
         width: 100%; // height: 90px;
+        height: 100% !important;
         color: white;
         line-height: 90px;
         text-align: center;
@@ -120,7 +121,7 @@
             margin: 0 2%;
         }
         .matchTimeGroup {
-            height: 90px;
+            height: 100%;
             .weekContainer {
                 top: 32%;
             }
@@ -349,7 +350,7 @@
     }
     .upcomingMatch {
         width: 100%;
-        height: auto;
+        height: 90%;
         margin-bottom: 2.2%;
     }
     .challenges {
@@ -380,7 +381,7 @@
     }
     .upcomingMatch {
         width: 100%;
-        height: auto;
+        height: 90%;
     }
     .challenges {
         width: 100%;
