@@ -372,7 +372,7 @@
 
 /*PHONE DISPLAY*/
 
-@media (max-width: 768px) {
+@media (device-pixel-ratio: 2), (-webkit-device-pixel-ratio: 2), (max-width: 768px) {
     .homeContainer {
         font-size: small;
     }
