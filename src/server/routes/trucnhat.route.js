@@ -76,6 +76,7 @@
         // var now = '2019-03-30T17:00:00.000Z';
         // now = new Date(now);
         var days = dateSubtract(now, lastUpdateDate);
+        console.log(days);
         // console.log(days);
         var max = 0;
         var x = 0;
