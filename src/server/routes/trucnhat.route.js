@@ -44,7 +44,6 @@
 
         // Calculate the difference in milliseconds
         var differenceMs = date1Ms - date2Ms;
-        console.log(differenceMs);
 
         // Convert back to days and return
         return Math.round(differenceMs / oneDay);
@@ -55,8 +54,8 @@
         router.get('/', getTrucnhatList);
 
         function getTrucnhatList(req, res, next) {
-            var endDate = new Date();
-            endDate.setDate((new Date(lastUpdateDate.valueOf())).getDate() +5);
+            var endDate = new Date(lastUpdateDate.getTime);
+            endDate.setDate((new Date(lastUpdateDate.valueOf())).getDate() + 6);
             res.send({
                 'thutu': thutu,
                 'from': lastUpdateDate.toLocaleString('vi', {timeZone: 'Asia/Bangkok'}).split(',')[0],
@@ -67,6 +66,10 @@
         return router;
     };
 
+    // var date = new Date();
+    // date.setDate((new Date(lastUpdateDate.valueOf())).getDate() + 6);
+    // console.log(date.toLocaleString('vi', {timeZone: 'Asia/Bangkok'}));
+    // console.log(dateSubtract(date, lastUpdateDate));
     setInterval(function() {
         var now = new Date();
         var flag = [0, 0, 0, 0, 0, 0, 0, 0, 0];
