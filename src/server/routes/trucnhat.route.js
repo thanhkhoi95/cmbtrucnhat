@@ -54,7 +54,7 @@
         router.get('/', getTrucnhatList);
 
         function getTrucnhatList(req, res, next) {
-            var endDate = new Date(lastUpdateDate.getTime);
+            var endDate = new Date(lastUpdateDate.getTime());
             endDate.setDate((new Date(lastUpdateDate.valueOf())).getDate() + 6);
             res.send({
                 'thutu': thutu,
