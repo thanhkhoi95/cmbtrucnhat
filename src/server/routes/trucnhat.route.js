@@ -128,6 +128,6 @@
         }
         // console.log(state);
         // console.log(thutu);
-    }, 3600000);
+    }, 60000);
 
 })();
