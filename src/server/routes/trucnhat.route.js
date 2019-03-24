@@ -46,7 +46,7 @@
         var differenceMs = date1Ms - date2Ms;
 
         // Convert back to days and return
-        return Math.round(differenceMs / oneDay);
+        return (differenceMs / oneDay);
     }
 
     module.exports = function () {
@@ -55,7 +55,7 @@
 
         function getTrucnhatList(req, res, next) {
             var endDate = new Date(lastUpdateDate.getTime());
-            endDate.setDate((new Date(lastUpdateDate.valueOf())).getDate() + 6);
+            endDate.setDate((new Date(lastUpdateDate.valueOf())).getDate() + 5);
             res.send({
                 'thutu': thutu,
                 'from': lastUpdateDate.toLocaleString('vi', {timeZone: 'Asia/Bangkok'}).split(',')[0],
